@@ -1,8 +1,26 @@
 {
   "name": "noby-ui-kit",
   "version": "0.1.0",
-  "private": true,
+  "keywords": [
+    "react",
+    "components",
+    "ui"
+  ],
+  "description": "An accessible React UI kit",
+  "author": "noby88",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noby88/noby-ui-kit.git"
+  },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -20,6 +38,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-lib": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "build-lib-win": "rm -rf dist && babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,6 +62,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@types/styled-components": "^5.1.13"
   }
 }
