@@ -1,17 +1,14 @@
-import { Button } from './lib';
+import ThemeContext from './lib/ThemeContext';
+import { theme } from './lib/theme';
+import Buttons from './components/Buttons';
 
-function App() {
-  return (
+const App = () => (
+  <ThemeContext.Provider value={theme}>
     <main>
       <h1>Component showcase</h1>
-      <section>
-        <h2>Buttons</h2>
-        <article>
-          <Button title={'Default'} />
-        </article>
-      </section>
+      <Buttons />
     </main>
-  );
-}
+  </ThemeContext.Provider>
+);
 
 export default App;
