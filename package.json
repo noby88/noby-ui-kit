@@ -4,7 +4,10 @@
   "keywords": [
     "react",
     "components",
-    "ui"
+    "ui",
+    "ui-kit",
+    "typescript",
+    "theme context provider"
   ],
   "description": "An accessible React UI kit",
   "author": "noby88",
