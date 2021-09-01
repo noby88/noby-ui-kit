@@ -1,8 +1,13 @@
 # This is not ready to be used!
 
+## Accessability and customization is the main focus
+
+All components by default with aria props.
+
 ## Example
 
-![](.images/showcase.png)
+![](.images/buttons.gif)
+![](.images/spinners.gif)
 
 ## Setting you own theme
 

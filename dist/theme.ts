@@ -30,7 +30,7 @@ export const theme: ITheme = {
     primary: {
       hue: 200,
       saturation: 80,
-      lightness: 40,
+      lightness: 30,
     },
     secondary: {
       hue: 300,
@@ -39,13 +39,13 @@ export const theme: ITheme = {
     },
     success: {
       hue: 100,
-      saturation: 90,
-      lightness: 40,
+      saturation: 70,
+      lightness: 30,
     },
     warning: {
-      hue: 40,
-      saturation: 80,
-      lightness: 45,
+      hue: 35,
+      saturation: 70,
+      lightness: 35,
     },
     danger: {
       hue: 360,

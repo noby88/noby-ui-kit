@@ -24,6 +24,10 @@ const Button = ({
       theme={theme}
       {...rest}
       disabled={rest.disabled || loading}
+      type={'button'}
+      aria-busy={loading}
+      aria-disabled={rest.disabled || loading}
+      aria-label={children?.toString()}
     >
       {loading ? <Spinner size={10} variant={variant} /> : children}
     </StyledButton>
