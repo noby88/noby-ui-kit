@@ -1,5 +1,9 @@
 # This is not ready to be used!
 
+## Example
+
+![](.images/showcase.png)
+
 ## Setting you own theme
 
 1. Import the Theme context and the default theme
