@@ -54,7 +54,7 @@ export const theme: ITheme = {
     },
   },
   layout: {
-    corners: '0.3rem',
+    corners: '0.5rem',
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
