@@ -29,7 +29,7 @@ const Button = ({
       aria-disabled={rest.disabled || loading}
       aria-label={children?.toString()}
     >
-      {loading ? <Spinner size={10} variant={variant} /> : children}
+      {loading ? <Spinner size={11.25} variant={variant} /> : children}
     </StyledButton>
   );
 };

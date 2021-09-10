@@ -6,6 +6,10 @@ All components by default with aria props.
 
 ## Example
 
+A live showcase of components can be found on https://noby88.github.io/noby-ui-kit/
+
+Below are a few captured examples.
+
 ![](.images/buttons.gif)
 ![](.images/spinners.gif)
 
