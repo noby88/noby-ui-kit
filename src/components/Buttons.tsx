@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Button from '../lib/Button';
 import { ShowInline, variants } from './Layout';
 

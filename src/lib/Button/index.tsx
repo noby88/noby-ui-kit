@@ -1,7 +1,5 @@
-import { useContext } from 'react';
-
 import Spinner from '../Spinner';
-import ThemeContext from '../ThemeContext';
+import { useThemeContext } from '../ThemeContext';
 
 import { IVariant } from '../theme';
 import { StyledButton } from './styles';
@@ -17,7 +15,7 @@ const Button = ({
   loading = false,
   ...rest
 }: IProps) => {
-  const theme = useContext(ThemeContext);
+  const theme = useThemeContext();
   return (
     <StyledButton
       variant={variant}
