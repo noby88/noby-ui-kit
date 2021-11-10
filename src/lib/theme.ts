@@ -20,7 +20,6 @@ export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
-  shadows: { [key in IVariant]: IColor };
   layout: {
     corners: string;
     buttons: {
@@ -42,43 +41,6 @@ export interface ITheme {
 export const theme: ITheme = {
   transitionsTime: 300,
   colors: {
-    primary: {
-      hue: 200,
-      saturation: 80,
-      lightness: 30,
-    },
-    secondary: {
-      hue: 300,
-      saturation: 70,
-      lightness: 45,
-    },
-    success: {
-      hue: 100,
-      saturation: 70,
-      lightness: 30,
-    },
-    warning: {
-      hue: 35,
-      saturation: 70,
-      lightness: 35,
-    },
-    danger: {
-      hue: 360,
-      saturation: 80,
-      lightness: 45,
-    },
-    dark: {
-      hue: 0,
-      saturation: 0,
-      lightness: 25,
-    },
-    white: {
-      hue: 0,
-      saturation: 0,
-      lightness: 90,
-    },
-  },
-  shadows: {
     primary: {
       hue: 200,
       saturation: 80,
