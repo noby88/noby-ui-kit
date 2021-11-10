@@ -3,9 +3,15 @@ export interface IColor {
     saturation: number;
     lightness: number;
 }
-export declare type IVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+export declare type IVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'white';
+export declare type IElevation = 1 | 2 | 3 | 4;
+export declare type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
+    transitionsTime: number;
     colors: {
+        [key in IVariant]: IColor;
+    };
+    shadows: {
         [key in IVariant]: IColor;
     };
     layout: {
@@ -13,8 +19,16 @@ export interface ITheme {
         buttons: {
             boxShadow: string;
             padding: string;
+            width: string;
             hover: {
                 boxShadow: string;
+            };
+        };
+        card: {
+            padding: string;
+            border: string;
+            size: {
+                [key in ISize]: string;
             };
         };
     };

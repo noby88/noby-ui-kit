@@ -8,8 +8,11 @@ export const StyledButton = styled.button<{
   variant: IVariant;
   disabled?: boolean;
   loading?: boolean;
+  width?: string;
 }>`
   cursor: pointer;
+  width: ${(props) =>
+    props.width || props.theme.layout.buttons.width || 'auto'};
   background-color: ${(props) =>
     props.disabled
       ? getHSL(props.theme.colors[props.variant], {
@@ -32,17 +35,17 @@ export const StyledButton = styled.button<{
   ${(props) =>
     props.disabled
       ? ''
-      : `&:hover {
+      : `&:hover, &:focus-visible {
     outline: 0.1rem solid
       ${getHSL(props.theme.colors[props.variant], {
         hue: 0,
-        saturation: 20,
+        saturation: 0,
         lightness: -10,
       })};
     background-color: ${getHSL(props.theme.colors[props.variant], {
       hue: 0,
-      saturation: 20,
-      lightness: -10,
+      saturation: 0,
+      lightness: -5,
     })};
     ${
       props.theme.layout.buttons.hover.boxShadow
