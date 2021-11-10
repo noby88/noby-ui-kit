@@ -7,6 +7,12 @@ export const ShowInline = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 `;
 
+export const ShowGrid = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
 export const CenterText = styled.p`
   text-align: center;
 `;

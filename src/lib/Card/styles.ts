@@ -11,7 +11,8 @@ export const StyledCard = styled.div<{
   shadowVariant: IVariant;
   size: ISize;
 }>`
-  border-radius: 5px;
+  border-radius: ${(props) => props.theme.layout.corners};
+  border: ${(props) => props.theme.border || 'none'};
   box-shadow: ${boxShadowOffset} ${(props) => props.elevation * 0.2}rem
     ${(props) => props.elevation * 0.01}rem
     ${(props) =>

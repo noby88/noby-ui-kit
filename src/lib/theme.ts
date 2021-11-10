@@ -26,12 +26,14 @@ export interface ITheme {
     buttons: {
       boxShadow: string;
       padding: string;
+      width: string;
       hover: {
         boxShadow: string;
       };
     };
     card: {
       padding: string;
+      border: string;
       size: { [key in ISize]: string };
     };
   };
@@ -118,17 +120,19 @@ export const theme: ITheme = {
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
+      width: '',
       hover: {
         boxShadow: '0 0 0.1rem black',
       },
     },
     card: {
       padding: '0.7rem 1rem',
+      border: '',
       size: {
-        sm: '5rem',
-        md: '10rem',
-        lg: '20rem',
-        xl: '40rem',
+        sm: '10rem',
+        md: '20rem',
+        lg: '40rem',
+        xl: '60rem',
         xxl: '80rem',
         full: '100%',
       },
