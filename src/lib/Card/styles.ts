@@ -15,8 +15,7 @@ export const StyledCard = styled.div<{
   border: ${(props) => props.theme.border || 'none'};
   box-shadow: ${boxShadowOffset} ${(props) => props.elevation * 0.2}rem
     ${(props) => props.elevation * 0.01}rem
-    ${(props) =>
-      getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 30)};
+    ${(props) => getHSLWithOpacity(props.theme.colors[props.shadowVariant], 30)};
   box-sizing: border-box;
   padding: ${(props) => props.theme.layout.card.padding};
   width: ${(props) => props.theme.layout.card.size[props.size]};
@@ -30,6 +29,6 @@ export const StyledCard = styled.div<{
     &:hover, &:focus {
         box-shadow: ${boxShadowOffset} ${props.elevation * 0.4}rem
         ${props.elevation * 0.2}rem
-        ${getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 20)};
+        ${getHSLWithOpacity(props.theme.colors[props.shadowVariant], 20)};
     }`}
 `;
