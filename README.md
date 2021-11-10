@@ -12,6 +12,7 @@ Below are a few captured examples.
 
 ![](.images/buttons.gif)
 ![](.images/spinners.gif)
+![](.images/cards.gif)
 
 ## Setting you own theme
 
