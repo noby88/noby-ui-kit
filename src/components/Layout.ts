@@ -1,10 +1,16 @@
 import styled from 'styled-components';
-import { IElevation, IShadowVariant, IVariant } from '../lib/theme';
+import { IElevation, IVariant } from '../lib/theme';
 
 export const ShowInline = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+`;
+
+export const ShowGrid = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 `;
 
 export const CenterText = styled.p`
@@ -17,15 +23,8 @@ export const variants: IVariant[] = [
   'success',
   'warning',
   'danger',
-];
-
-export const shadowVariants: IShadowVariant[] = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'gray',
+  'dark',
+  'white',
 ];
 
 export const elevations: IElevation[] = [1, 2, 3, 4];

@@ -1,66 +1,78 @@
+import { useState } from 'react';
+import Button from '../lib/Button';
+
 import Card from '../lib/Card';
 import { IElevation, ISize } from '../lib/theme';
-import { CenterText, shadowVariants, ShowInline } from './Layout';
+import { CenterText, variants, ShowGrid, ShowInline } from './Layout';
+
+const elevations: IElevation[] = [1, 2, 3, 4];
+const sizes: ISize[] = ['sm', 'md', 'lg', 'xl', 'xxl', 'full'];
 
 const Cards = () => {
-  const elevations: IElevation[] = [1, 2, 3, 4];
-  const sizes: ISize[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
+  const [cardElevation, setCardElevation] = useState(elevations[0]);
+  const [cardsSize, setCardsSize] = useState(sizes[0]);
+  const [isInteractive, setIsInteractive] = useState(true);
 
-  const elevatedCards = elevations.map((elevation) => (
-    <>
-      <h3>Shadow colors with elevation {elevation}</h3>
-      <ShowInline>
-        {shadowVariants.map((shadowVariant) => (
-          <Card elevation={elevation} shadowVariant={shadowVariant}>
-            <CenterText>
-              Card default with shadowVariant {shadowVariant}
-            </CenterText>
-          </Card>
-        ))}
-      </ShowInline>
-    </>
-  ));
+  const cards = (
+    <ShowGrid>
+      {variants.map((shadowVariant) => (
+        <Card
+          elevation={cardElevation}
+          size={cardsSize}
+          shadowVariant={shadowVariant}
+          interactive={isInteractive}
+        >
+          <CenterText>Card with {shadowVariant} shadow</CenterText>
+        </Card>
+      ))}
+    </ShowGrid>
+  );
 
-  const elevatedInteractiveCards = elevations.map((elevation) => (
-    <>
-      <h3>Interactive with elevation {elevation}</h3>
-      <ShowInline>
-        {shadowVariants.map((shadowVariant) => (
-          <Card
-            elevation={elevation}
-            interactive={true}
-            shadowVariant={shadowVariant}
-          >
-            <CenterText>
-              Card interactive with shadowVariant {shadowVariant}
-            </CenterText>
-          </Card>
-        ))}
-      </ShowInline>
-    </>
-  ));
+  const elevationsSelector = (
+    <select
+      value={cardElevation}
+      onChange={(event) =>
+        setCardElevation(event.target.value as unknown as IElevation)
+      }
+    >
+      {elevations.map((elevation) => (
+        <option value={elevation}>Elevation level {elevation}</option>
+      ))}
+    </select>
+  );
 
-  const sizedCards = sizes.map((size) => (
-    <article>
-      <h3>Card with size {size}</h3>
-      <Card size={size}>
-        <CenterText>{size}</CenterText>
-      </Card>
-    </article>
-  ));
+  const sizeSelector = (
+    <select
+      value={cardsSize}
+      onChange={(event) => setCardsSize(event.target.value as unknown as ISize)}
+    >
+      {sizes.map((size) => (
+        <option value={size}>{size.toUpperCase()} card size</option>
+      ))}
+    </select>
+  );
+
+  const interactiveToggle = (
+    <Button
+      title={'toggle interactive'}
+      onClick={() => setIsInteractive(!isInteractive)}
+    >
+      {isInteractive ? 'Interactive' : 'Not interactive'}
+    </Button>
+  );
 
   return (
     <section>
       <h2>Cards</h2>
       <article>
-        <h3>Default</h3>
-        <Card>
-          <CenterText>Card default</CenterText>
-        </Card>
+        <ShowInline>
+          {elevationsSelector}
+          {sizeSelector}
+          {interactiveToggle}
+        </ShowInline>
+        <br />
+        {cards}
       </article>
-      {sizedCards}
-      <article>{elevatedCards}</article>
-      <article>{elevatedInteractiveCards}</article>
     </section>
   );
 };

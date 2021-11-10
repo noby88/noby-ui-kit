@@ -4,4 +4,5 @@ export declare const StyledButton: import("styled-components").StyledComponent<"
     variant: IVariant;
     disabled?: boolean | undefined;
     loading?: boolean | undefined;
+    width?: string | undefined;
 }, never>;

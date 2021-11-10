@@ -1,6 +1,4 @@
-import { useContext } from 'react';
-
-import ThemeContext from '../ThemeContext';
+import { useThemeContext } from '../ThemeContext';
 
 import { IVariant } from '../theme';
 import { StyledSpinner } from './styles';
@@ -11,7 +9,7 @@ interface IProps {
 }
 
 const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
-  const theme = useContext(ThemeContext);
+  const theme = useThemeContext();
   return <StyledSpinner theme={theme} variant={variant} size={size} />;
 };
 

@@ -9,15 +9,9 @@ export type IVariant =
   | 'secondary'
   | 'success'
   | 'warning'
-  | 'danger';
-
-export type IShadowVariant =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
   | 'danger'
-  | 'gray';
+  | 'dark'
+  | 'white';
 
 export type IElevation = 1 | 2 | 3 | 4;
 
@@ -26,18 +20,20 @@ export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
-  shadows: { [key in IShadowVariant]: IColor };
+  shadows: { [key in IVariant]: IColor };
   layout: {
     corners: string;
     buttons: {
       boxShadow: string;
       padding: string;
+      width: string;
       hover: {
         boxShadow: string;
       };
     };
     card: {
       padding: string;
+      border: string;
       size: { [key in ISize]: string };
     };
   };
@@ -71,6 +67,16 @@ export const theme: ITheme = {
       saturation: 80,
       lightness: 45,
     },
+    dark: {
+      hue: 0,
+      saturation: 0,
+      lightness: 25,
+    },
+    white: {
+      hue: 0,
+      saturation: 0,
+      lightness: 90,
+    },
   },
   shadows: {
     primary: {
@@ -98,10 +104,15 @@ export const theme: ITheme = {
       saturation: 80,
       lightness: 45,
     },
-    gray: {
+    dark: {
       hue: 0,
       saturation: 0,
-      lightness: 50,
+      lightness: 25,
+    },
+    white: {
+      hue: 0,
+      saturation: 0,
+      lightness: 90,
     },
   },
   layout: {
@@ -109,17 +120,19 @@ export const theme: ITheme = {
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
+      width: '',
       hover: {
         boxShadow: '0 0 0.1rem black',
       },
     },
     card: {
       padding: '0.7rem 1rem',
+      border: '',
       size: {
-        sm: '5rem',
-        md: '10rem',
-        lg: '20rem',
-        xl: '40rem',
+        sm: '10rem',
+        md: '20rem',
+        lg: '40rem',
+        xl: '60rem',
         xxl: '80rem',
         full: '100%',
       },
