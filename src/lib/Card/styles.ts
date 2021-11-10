@@ -1,19 +1,21 @@
 import styled from 'styled-components';
-import { IShadowVariant, ISize, ITheme, IVariant } from '../theme';
-import { getHSL, getHSLWithOpacity } from '../utils';
+import { ISize, ITheme, IVariant } from '../theme';
+import { getHSLWithOpacity } from '../utils';
+
+const boxShadowOffset = '0 0.1rem';
 
 export const StyledCard = styled.div<{
   elevation: number;
   interactive: boolean;
   theme: ITheme;
-  shadowVariant: IShadowVariant;
+  shadowVariant: IVariant;
   size: ISize;
 }>`
   border-radius: 5px;
-  box-shadow: 0 0 ${(props) => props.elevation * 5}px
-    ${(props) => props.elevation - 2}px
+  box-shadow: ${boxShadowOffset} ${(props) => props.elevation * 0.2}rem
+    ${(props) => props.elevation * 0.01}rem
     ${(props) =>
-      getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 60)};
+      getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 30)};
   box-sizing: border-box;
   padding: ${(props) => props.theme.layout.card.padding};
   width: ${(props) => props.theme.layout.card.size[props.size]};
@@ -23,9 +25,10 @@ export const StyledCard = styled.div<{
     `
     cursor: pointer;
     transition: box-shadow ${props.theme.transitionsTime}ms;
-    :hover {
-        box-shadow: 0 0 ${props.elevation * 10}px
-        ${props.elevation}px
-        ${getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 65)};
+
+    &:hover, &:focus {
+        box-shadow: ${boxShadowOffset} ${props.elevation * 0.4}rem
+        ${props.elevation * 0.2}rem
+        ${getHSLWithOpacity(props.theme.shadows[props.shadowVariant], 20)};
     }`}
 `;

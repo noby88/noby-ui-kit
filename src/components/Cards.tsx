@@ -1,6 +1,6 @@
 import Card from '../lib/Card';
 import { IElevation, ISize } from '../lib/theme';
-import { CenterText, shadowVariants, ShowInline } from './Layout';
+import { CenterText, variants, ShowInline } from './Layout';
 
 const Cards = () => {
   const elevations: IElevation[] = [1, 2, 3, 4];
@@ -10,7 +10,7 @@ const Cards = () => {
     <>
       <h3>Shadow colors with elevation {elevation}</h3>
       <ShowInline>
-        {shadowVariants.map((shadowVariant) => (
+        {variants.map((shadowVariant) => (
           <Card elevation={elevation} shadowVariant={shadowVariant}>
             <CenterText>
               Card default with shadowVariant {shadowVariant}
@@ -25,7 +25,7 @@ const Cards = () => {
     <>
       <h3>Interactive with elevation {elevation}</h3>
       <ShowInline>
-        {shadowVariants.map((shadowVariant) => (
+        {variants.map((shadowVariant) => (
           <Card
             elevation={elevation}
             interactive={true}

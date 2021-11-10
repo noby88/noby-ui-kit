@@ -9,15 +9,9 @@ export type IVariant =
   | 'secondary'
   | 'success'
   | 'warning'
-  | 'danger';
-
-export type IShadowVariant =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
   | 'danger'
-  | 'gray';
+  | 'dark'
+  | 'white';
 
 export type IElevation = 1 | 2 | 3 | 4;
 
@@ -26,7 +20,7 @@ export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
-  shadows: { [key in IShadowVariant]: IColor };
+  shadows: { [key in IVariant]: IColor };
   layout: {
     corners: string;
     buttons: {
@@ -71,6 +65,16 @@ export const theme: ITheme = {
       saturation: 80,
       lightness: 45,
     },
+    dark: {
+      hue: 0,
+      saturation: 0,
+      lightness: 25,
+    },
+    white: {
+      hue: 0,
+      saturation: 0,
+      lightness: 90,
+    },
   },
   shadows: {
     primary: {
@@ -98,10 +102,15 @@ export const theme: ITheme = {
       saturation: 80,
       lightness: 45,
     },
-    gray: {
+    dark: {
       hue: 0,
       saturation: 0,
-      lightness: 50,
+      lightness: 25,
+    },
+    white: {
+      hue: 0,
+      saturation: 0,
+      lightness: 90,
     },
   },
   layout: {

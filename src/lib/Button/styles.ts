@@ -32,17 +32,17 @@ export const StyledButton = styled.button<{
   ${(props) =>
     props.disabled
       ? ''
-      : `&:hover {
+      : `&:hover, &:focus {
     outline: 0.1rem solid
       ${getHSL(props.theme.colors[props.variant], {
         hue: 0,
-        saturation: 20,
+        saturation: 0,
         lightness: -10,
       })};
     background-color: ${getHSL(props.theme.colors[props.variant], {
       hue: 0,
-      saturation: 20,
-      lightness: -10,
+      saturation: 0,
+      lightness: -5,
     })};
     ${
       props.theme.layout.buttons.hover.boxShadow

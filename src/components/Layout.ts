@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IElevation, IShadowVariant, IVariant } from '../lib/theme';
+import { IElevation, IVariant } from '../lib/theme';
 
 export const ShowInline = styled.div`
   display: grid;
@@ -17,15 +17,8 @@ export const variants: IVariant[] = [
   'success',
   'warning',
   'danger',
-];
-
-export const shadowVariants: IShadowVariant[] = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'gray',
+  'dark',
+  'white',
 ];
 
 export const elevations: IElevation[] = [1, 2, 3, 4];

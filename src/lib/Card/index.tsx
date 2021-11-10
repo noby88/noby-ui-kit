@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { StyledCard } from './styles';
 import { useThemeContext } from '../ThemeContext';
-import { IElevation, IShadowVariant, ISize } from '../theme';
+import { IElevation, IVariant, ISize } from '../theme';
 
 interface IProps {
   elevation?: IElevation;
   interactive?: boolean;
-  shadowVariant?: IShadowVariant;
+  shadowVariant?: IVariant;
   size?: ISize;
 }
 
@@ -14,7 +14,7 @@ const Card: FC<IProps> = ({
   children,
   elevation = 1,
   interactive = false,
-  shadowVariant = 'gray',
+  shadowVariant = 'dark',
   size = 'full',
 }) => {
   const theme = useThemeContext();
