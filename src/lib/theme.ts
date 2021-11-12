@@ -11,9 +11,9 @@ export type IVariant =
   | 'warning'
   | 'danger'
   | 'dark'
-  | 'white';
+  | 'light';
 
-export type IElevation = 1 | 2 | 3 | 4;
+export type IElevation = 0 | 1 | 2 | 3 | 4;
 
 export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 
@@ -34,6 +34,11 @@ export interface ITheme {
       padding: string;
       border: string;
       size: { [key in ISize]: string };
+    };
+    surface: {
+      base: string;
+      middle: string;
+      top: string;
     };
   };
 }
@@ -71,7 +76,7 @@ export const theme: ITheme = {
       saturation: 0,
       lightness: 25,
     },
-    white: {
+    light: {
       hue: 0,
       saturation: 0,
       lightness: 90,
@@ -98,6 +103,11 @@ export const theme: ITheme = {
         xxl: '80rem',
         full: '100%',
       },
+    },
+    surface: {
+      base: 'hsl(0 0% 95%)',
+      middle: 'hsl(0 0% 98%)',
+      top: 'hsl(0 0% 100%)',
     },
   },
 };

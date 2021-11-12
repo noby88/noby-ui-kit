@@ -11,7 +11,7 @@ export type IVariant =
   | 'warning'
   | 'danger'
   | 'dark'
-  | 'white';
+  | 'light';
 
 export type IElevation = 1 | 2 | 3 | 4;
 
@@ -72,7 +72,7 @@ export const theme: ITheme = {
       saturation: 0,
       lightness: 25,
     },
-    white: {
+    light: {
       hue: 0,
       saturation: 0,
       lightness: 90,
@@ -109,7 +109,7 @@ export const theme: ITheme = {
       saturation: 0,
       lightness: 25,
     },
-    white: {
+    light: {
       hue: 0,
       saturation: 0,
       lightness: 90,

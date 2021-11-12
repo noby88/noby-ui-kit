@@ -11,26 +11,29 @@ export const StyledButton = styled.button<{
   width?: string;
 }>`
   cursor: pointer;
-  width: ${(props) =>
-    props.width || props.theme.layout.buttons.width || 'auto'};
-  background-color: ${(props) =>
-    props.disabled
-      ? getHSL(props.theme.colors[props.variant], {
-          hue: 0,
-          saturation: -30,
-          lightness: 30,
-        })
-      : getHSL(props.theme.colors[props.variant])};
-  padding: ${(props) => props.theme.layout.buttons.padding};
   border: none;
-  border-radius: ${(props) => props.theme.layout.corners};
   font-size: 1rem;
-  color: ${(props) =>
-    props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'};
   ${(props) =>
-    props.theme.layout.buttons.boxShadow
-      ? `box-shadow: ${props.theme.layout.buttons.boxShadow};`
-      : ''}
+    `width: ${props.width || props.theme.layout.buttons.width || 'auto'};
+    background-color: ${
+      props.disabled
+        ? getHSL(props.theme.colors[props.variant], {
+            hue: 0,
+            saturation: -30,
+            lightness: 30,
+          })
+        : getHSL(props.theme.colors[props.variant])
+    };
+    padding: ${props.theme.layout.buttons.padding};
+    border-radius: ${props.theme.layout.corners};
+    color: ${
+      props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'
+    };
+    ${
+      props.theme.layout.buttons.boxShadow
+        ? `box-shadow: ${props.theme.layout.buttons.boxShadow};`
+        : ''
+    }`}
 
   ${(props) =>
     props.disabled

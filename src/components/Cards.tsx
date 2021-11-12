@@ -5,12 +5,12 @@ import Card from '../lib/Card';
 import { IElevation, ISize } from '../lib/theme';
 import { CenterText, variants, ShowGrid, ShowInline } from './Layout';
 
-const elevations: IElevation[] = [1, 2, 3, 4];
+const elevations: IElevation[] = [0, 1, 2, 3, 4];
 const sizes: ISize[] = ['sm', 'md', 'lg', 'xl', 'xxl', 'full'];
 
 const Cards = () => {
-  const [cardElevation, setCardElevation] = useState(elevations[0]);
-  const [cardsSize, setCardsSize] = useState(sizes[0]);
+  const [cardElevation, setCardElevation] = useState(elevations[1]);
+  const [cardsSize, setCardsSize] = useState(sizes[1]);
   const [isInteractive, setIsInteractive] = useState(true);
 
   const cards = (

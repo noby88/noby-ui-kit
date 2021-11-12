@@ -26,7 +26,7 @@ export const StyledButton = styled.button<{
   border-radius: ${(props) => props.theme.layout.corners};
   font-size: 1rem;
   color: ${(props) =>
-    props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'};
+    props.theme.colors[props.variant].lightness > 60 ? 'black' : 'light'};
   ${(props) =>
     props.theme.layout.buttons.boxShadow
       ? `box-shadow: ${props.theme.layout.buttons.boxShadow};`

@@ -24,7 +24,7 @@ export const variants: IVariant[] = [
   'warning',
   'danger',
   'dark',
-  'white',
+  'light',
 ];
 
 export const elevations: IElevation[] = [1, 2, 3, 4];
