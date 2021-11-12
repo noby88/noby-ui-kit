@@ -1,43 +1,41 @@
 export interface IColor {
-  hue: number;
-  saturation: number;
-  lightness: number;
+    hue: number;
+    saturation: number;
+    lightness: number;
 }
-export declare type IVariant =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'dark'
-  | 'light';
-export declare type IElevation = 1 | 2 | 3 | 4;
+export declare type IVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'light';
+export declare type IElevation = 0 | 1 | 2 | 3 | 4;
 export declare type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
-  transitionsTime: number;
-  colors: {
-    [key in IVariant]: IColor;
-  };
-  shadows: {
-    [key in IVariant]: IColor;
-  };
-  layout: {
-    corners: string;
-    buttons: {
-      boxShadow: string;
-      padding: string;
-      width: string;
-      hover: {
-        boxShadow: string;
-      };
+    transitionsTime: number;
+    colors: {
+        [key in IVariant]: IColor;
     };
-    card: {
-      padding: string;
-      border: string;
-      size: {
-        [key in ISize]: string;
-      };
+    layout: {
+        corners: string;
+        buttons: {
+            boxShadow: string;
+            padding: string;
+            width: string;
+            hover: {
+                boxShadow: string;
+            };
+        };
+        card: {
+            padding: string;
+            border: string;
+            size: {
+                [key in ISize]: string;
+            };
+        };
+        page: {
+            padding: string;
+        };
+        surface: {
+            base: string;
+            middle: string;
+            top: string;
+        };
     };
-  };
 }
 export declare const theme: ITheme;

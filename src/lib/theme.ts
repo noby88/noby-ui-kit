@@ -35,6 +35,9 @@ export interface ITheme {
       border: string;
       size: { [key in ISize]: string };
     };
+    page: {
+      padding: string;
+    };
     surface: {
       base: string;
       middle: string;
@@ -44,7 +47,7 @@ export interface ITheme {
 }
 
 export const theme: ITheme = {
-  transitionsTime: 300,
+  transitionsTime: 200,
   colors: {
     primary: {
       hue: 200,
@@ -104,10 +107,13 @@ export const theme: ITheme = {
         full: '100%',
       },
     },
+    page: {
+      padding: '1rem',
+    },
     surface: {
-      base: 'hsl(0 0% 95%)',
+      base: 'hsl(0 0% 100%)',
       middle: 'hsl(0 0% 98%)',
-      top: 'hsl(0 0% 100%)',
+      top: 'hsl(0 0% 95%)',
     },
   },
 };

@@ -16,12 +16,14 @@ export const StyledSpinner = styled.div<{
   size: number;
 }>`
   box-sizing: border-box;
-  width: ${(props) => props.size / 10}rem;
-  height: ${(props) => props.size / 10}rem;
   margin: 0 auto;
   border-radius: 50%;
-  border: ${(props) => props.size / 100}rem solid transparent;
-  border-top: ${(props) => props.size / 100}rem solid
-    ${(props) => getHSL(props.theme.colors[props.variant])};
   animation: ${animation} 1s linear infinite;
+  ${(props) =>
+    `width: ${props.size / 10}rem;
+    height: ${props.size / 10}rem;
+    border: ${props.size / 100}rem solid transparent;
+    border-top: ${props.size / 100}rem solid ${getHSL(
+      props.theme.colors[props.variant]
+    )};`}
 `;
