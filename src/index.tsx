@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { theme } from './lib/theme';
 import reportWebVitals from './reportWebVitals';
+
+document.getElementById('root').style.backgroundColor =
+  theme.layout.surface.base;
 
 ReactDOM.render(
   <React.StrictMode>

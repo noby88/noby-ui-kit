@@ -37,6 +37,7 @@ export interface ITheme {
     };
     page: {
       padding: string;
+      maxWidth: string;
     };
     surface: {
       base: string;
@@ -82,7 +83,7 @@ export const theme: ITheme = {
     light: {
       hue: 0,
       saturation: 0,
-      lightness: 90,
+      lightness: 95,
     },
   },
   layout: {
@@ -92,7 +93,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0 0.1rem black',
+        boxShadow: '0 0.1rem 0.1rem grey',
       },
     },
     card: {
@@ -109,10 +110,11 @@ export const theme: ITheme = {
     },
     page: {
       padding: '1rem',
+      maxWidth: '70rem',
     },
     surface: {
-      base: 'hsl(0 0% 100%)',
-      middle: 'hsl(0 0% 98%)',
+      base: 'hsl(0 0% 99%)',
+      middle: 'hsl(0 0% 97%)',
       top: 'hsl(0 0% 95%)',
     },
   },

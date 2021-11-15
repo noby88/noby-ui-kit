@@ -4,6 +4,7 @@ import Buttons from './components/Buttons';
 import Spinners from './components/Spinners';
 import Cards from './components/Cards';
 import Page from './lib/Page';
+import Groups from './components/Groups';
 
 const App = () => (
   <ThemeContext.Provider value={theme}>
@@ -12,6 +13,7 @@ const App = () => (
       <Buttons />
       <Spinners />
       <Cards />
+      <Groups />
     </Page>
   </ThemeContext.Provider>
 );

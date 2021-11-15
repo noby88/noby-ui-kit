@@ -30,6 +30,7 @@ export interface ITheme {
         };
         page: {
             padding: string;
+            maxWidth: string;
         };
         surface: {
             base: string;

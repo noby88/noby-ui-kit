@@ -25,6 +25,7 @@ const Card: FC<IProps> = ({
       theme={theme}
       shadowVariant={shadowVariant}
       size={size}
+      role={'contentinfo'}
     >
       {children}
     </StyledCard>

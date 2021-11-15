@@ -10,7 +10,15 @@ interface IProps {
 
 const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
   const theme = useThemeContext();
-  return <StyledSpinner theme={theme} variant={variant} size={size} />;
+  return (
+    <StyledSpinner
+      theme={theme}
+      variant={variant}
+      size={size}
+      aria-busy={'true'}
+      role={'status'}
+    />
+  );
 };
 
 export default Spinner;

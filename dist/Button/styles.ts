@@ -20,7 +20,8 @@ export const StyledButton = styled.button<{
         ? getHSL(props.theme.colors[props.variant], {
             hue: 0,
             saturation: -30,
-            lightness: 30,
+            lightness:
+              props.theme.colors[props.variant].lightness < 65 ? 35 : -5,
           })
         : getHSL(props.theme.colors[props.variant])
     };
@@ -43,12 +44,12 @@ export const StyledButton = styled.button<{
       ${getHSL(props.theme.colors[props.variant], {
         hue: 0,
         saturation: 0,
-        lightness: -10,
+        lightness: props.theme.colors[props.variant].lightness < 30 ? -5 : 3,
       })};
     background-color: ${getHSL(props.theme.colors[props.variant], {
       hue: 0,
       saturation: 0,
-      lightness: -5,
+      lightness: props.theme.colors[props.variant].lightness < 30 ? -5 : 3,
     })};
     ${
       props.theme.layout.buttons.hover.boxShadow

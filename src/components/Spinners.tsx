@@ -1,4 +1,5 @@
 import Spinner from '../lib/Spinner';
+import Card from '../lib/Card';
 import { ShowInline, variants } from './Layout';
 
 const Spinners = () => {
@@ -6,11 +7,21 @@ const Spinners = () => {
     <Spinner variant={variant} key={variant} />
   ));
 
+  const usage = (
+    <Card size={'lg'}>
+      {
+        'import Spinner from "noby-ui-kit/Spinner"\n...\n<Spinner variant={"success"} />'
+      }
+    </Card>
+  );
+
   return (
     <section>
       <h2>Spinners</h2>
       <article>
-        <h3>Default</h3>
+        <h3>Usage</h3>
+        <pre>{usage}</pre>
+        <h3>Examples</h3>
         <ShowInline>{defaultSpinners}</ShowInline>
       </article>
     </section>

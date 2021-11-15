@@ -4,15 +4,11 @@
 
 All components by default with aria props.
 
+Any of the styling can be overwritten (recommended with Styled Components). None of the headaches when needing to change the styling juts a bit. One of the motives behind this package are the frustration with other UI kits like Material UI when it comes to adding your unique twist.
+
 ## Example
 
 A live showcase of components can be found on https://noby88.github.io/noby-ui-kit/
-
-Below are a few captured examples.
-
-![](.images/buttons.gif)
-![](.images/spinners.gif)
-![](.images/cards.png)
 
 ## Setting you own theme
 
@@ -40,12 +36,13 @@ myTheme.colors.primary.hue = 10;
 
 ## Available components
 
-| Component | Description |
-| --------- | ----------- |
-| Button    | Button      |
-| Spinner   | Spinner     |
-| Card      | Card        |
-| Page      | Page        |
+| Component | Description                                                                                                                                                                                                                                                                                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Button    | Can receive the following props:<br /><br />variant: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />loading: true \| false                                                                                                                                                                                        |
+| Spinner   | Can receive the following props:<br /><br />variant: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />size: \<number\>                                                                                                                                                                                              |
+| Card      | Can receive the following props:<br /><br />elevation: 0 \| 1 \| 2 \| 3 \| 4<br />shadowVariant: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />interactive: true \| false<br />size: 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'full'                                                                             |
+| Page      | A standard <strong>main</strong> HTML element with teh aria role also as <strong>main</strong>. Additionally, it's padding can be configured with though the theme.                                                                                                                                                                                          |
+| Group     | Can receive the following props:<br /><br />direction: 'vertical' \| 'horizontal' <br /><br />A simple flex container that removes any margins, any rounded corners from the children and adds them only to the 4 newly formed corners from the group. Also adds a small gap for separation of the elements. Recommended to use for grouping: Buttons, Cards |
 
 ## Default Theme object
 
@@ -86,7 +83,7 @@ myTheme.colors.primary.hue = 10;
     light: {
       hue: 0,
       saturation: 0,
-      lightness: 90,
+      lightness: 95,
     },
   },
   layout: {
@@ -96,7 +93,7 @@ myTheme.colors.primary.hue = 10;
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0 0.1rem black',
+        boxShadow: '0 0.1rem 0.1rem grey',
       },
     },
     card: {
@@ -113,10 +110,11 @@ myTheme.colors.primary.hue = 10;
     },
     page: {
       padding: '1rem',
+      maxWidth: '70rem',
     },
     surface: {
-      base: 'hsl(0 0% 100%)',
-      middle: 'hsl(0 0% 98%)',
+      base: 'hsl(0 0% 99%)',
+      middle: 'hsl(0 0% 97%)',
       top: 'hsl(0 0% 95%)',
     },
   },
