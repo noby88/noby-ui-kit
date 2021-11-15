@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { StyledCard } from './styles';
 import { useThemeContext } from '../ThemeContext';
 import { IElevation, IVariant, ISize } from '../theme';
+import { StyledCard } from './styles';
 
 interface IProps {
   elevation?: IElevation;
@@ -25,6 +25,7 @@ const Card: FC<IProps> = ({
       theme={theme}
       shadowVariant={shadowVariant}
       size={size}
+      role={'contentinfo'}
     >
       {children}
     </StyledCard>

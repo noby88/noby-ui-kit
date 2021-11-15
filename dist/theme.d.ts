@@ -3,15 +3,12 @@ export interface IColor {
     saturation: number;
     lightness: number;
 }
-export declare type IVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'white';
-export declare type IElevation = 1 | 2 | 3 | 4;
+export declare type IVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark' | 'light';
+export declare type IElevation = 0 | 1 | 2 | 3 | 4;
 export declare type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 export interface ITheme {
     transitionsTime: number;
     colors: {
-        [key in IVariant]: IColor;
-    };
-    shadows: {
         [key in IVariant]: IColor;
     };
     layout: {
@@ -30,6 +27,15 @@ export interface ITheme {
             size: {
                 [key in ISize]: string;
             };
+        };
+        page: {
+            padding: string;
+            maxWidth: string;
+        };
+        surface: {
+            base: string;
+            middle: string;
+            top: string;
         };
     };
 }

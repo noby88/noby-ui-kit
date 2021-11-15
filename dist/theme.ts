@@ -11,16 +11,15 @@ export type IVariant =
   | 'warning'
   | 'danger'
   | 'dark'
-  | 'white';
+  | 'light';
 
-export type IElevation = 1 | 2 | 3 | 4;
+export type IElevation = 0 | 1 | 2 | 3 | 4;
 
 export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
-  shadows: { [key in IVariant]: IColor };
   layout: {
     corners: string;
     buttons: {
@@ -36,11 +35,20 @@ export interface ITheme {
       border: string;
       size: { [key in ISize]: string };
     };
+    page: {
+      padding: string;
+      maxWidth: string;
+    };
+    surface: {
+      base: string;
+      middle: string;
+      top: string;
+    };
   };
 }
 
 export const theme: ITheme = {
-  transitionsTime: 300,
+  transitionsTime: 200,
   colors: {
     primary: {
       hue: 200,
@@ -72,47 +80,10 @@ export const theme: ITheme = {
       saturation: 0,
       lightness: 25,
     },
-    white: {
+    light: {
       hue: 0,
       saturation: 0,
-      lightness: 90,
-    },
-  },
-  shadows: {
-    primary: {
-      hue: 200,
-      saturation: 80,
-      lightness: 30,
-    },
-    secondary: {
-      hue: 300,
-      saturation: 70,
-      lightness: 45,
-    },
-    success: {
-      hue: 100,
-      saturation: 70,
-      lightness: 30,
-    },
-    warning: {
-      hue: 35,
-      saturation: 70,
-      lightness: 35,
-    },
-    danger: {
-      hue: 360,
-      saturation: 80,
-      lightness: 45,
-    },
-    dark: {
-      hue: 0,
-      saturation: 0,
-      lightness: 25,
-    },
-    white: {
-      hue: 0,
-      saturation: 0,
-      lightness: 90,
+      lightness: 95,
     },
   },
   layout: {
@@ -122,7 +93,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0 0.1rem black',
+        boxShadow: '0 0.1rem 0.1rem grey',
       },
     },
     card: {
@@ -136,6 +107,15 @@ export const theme: ITheme = {
         xxl: '80rem',
         full: '100%',
       },
+    },
+    page: {
+      padding: '1rem',
+      maxWidth: '70rem',
+    },
+    surface: {
+      base: 'hsl(0 0% 99%)',
+      middle: 'hsl(0 0% 97%)',
+      top: 'hsl(0 0% 95%)',
     },
   },
 };

@@ -11,14 +11,19 @@ export const StyledCard = styled.div<{
   shadowVariant: IVariant;
   size: ISize;
 }>`
-  border-radius: ${(props) => props.theme.layout.corners};
-  border: ${(props) => props.theme.border || 'none'};
-  box-shadow: ${boxShadowOffset} ${(props) => props.elevation * 0.2}rem
-    ${(props) => props.elevation * 0.01}rem
-    ${(props) => getHSLWithOpacity(props.theme.colors[props.shadowVariant], 30)};
   box-sizing: border-box;
-  padding: ${(props) => props.theme.layout.card.padding};
-  width: ${(props) => props.theme.layout.card.size[props.size]};
+  ${(props) =>
+    `border-radius: ${props.theme.layout.corners};
+    border: ${props.theme.border || 'none'};
+    background-color: ${props.theme.layout.surface.middle};
+    padding: ${props.theme.layout.card.padding};
+    width: ${props.theme.layout.card.size[props.size]};`}
+  box-shadow: ${(props) =>
+    props.elevation > 0
+      ? `${boxShadowOffset} ${props.elevation * 0.2}rem ${
+          props.elevation * 0.01
+        }rem ${getHSLWithOpacity(props.theme.colors[props.shadowVariant], 30)}`
+      : 'none'};
 
   ${(props) =>
     props.interactive &&
