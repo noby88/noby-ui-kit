@@ -39,6 +39,10 @@ export interface ITheme {
       padding: string;
       maxWidth: string;
     };
+    slider: {
+      height: string;
+      minWidth: string;
+    };
     surface: {
       base: string;
       middle: string;
@@ -93,7 +97,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0.1rem 0.1rem grey',
+        boxShadow: '0 0.1rem 0.2rem grey',
       },
     },
     card: {
@@ -111,6 +115,10 @@ export const theme: ITheme = {
     page: {
       padding: '1rem',
       maxWidth: '70rem',
+    },
+    slider: {
+      height: '0.5rem',
+      minWidth: '10rem',
     },
     surface: {
       base: 'hsl(0 0% 99%)',
