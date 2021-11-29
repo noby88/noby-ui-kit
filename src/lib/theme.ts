@@ -42,6 +42,10 @@ export interface ITheme {
     slider: {
       height: string;
       minWidth: string;
+      bullet: {
+        size: string;
+        shadow: string;
+      };
     };
     surface: {
       base: string;
@@ -119,6 +123,10 @@ export const theme: ITheme = {
     slider: {
       height: '0.5rem',
       minWidth: '10rem',
+      bullet: {
+        size: '1rem',
+        shadow: '0 0.1rem 0.2rem grey',
+      },
     },
     surface: {
       base: 'hsl(0 0% 99%)',

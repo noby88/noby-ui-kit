@@ -1,11 +1,22 @@
+import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 
-import { Track } from './styles';
+import { Bullet, Track } from './styles';
 
-const Slider = () => {
+interface IProps {
+  variant?: IVariant;
+}
+
+const Slider = (props: IProps) => {
+  const { variant = 'primary' } = props;
+
   const theme = useThemeContext();
 
-  return <Track theme={theme} variant={'primary'} />;
+  return (
+    <Track theme={theme} variant={variant}>
+      <Bullet theme={theme} variant={variant} />
+    </Track>
+  );
 };
 
 export default Slider;

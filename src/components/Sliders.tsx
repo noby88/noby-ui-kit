@@ -1,5 +1,6 @@
 import Card from '../lib/Card';
 import Slider from '../lib/Slider';
+import { variants } from './Layout';
 
 const Sliders = () => {
   const usage = (
@@ -8,6 +9,13 @@ const Sliders = () => {
     </Card>
   );
 
+  const sliders = variants.map((variant) => (
+    <>
+      <h4>{variant}</h4>
+      <Slider variant={variant} />
+    </>
+  ));
+
   return (
     <section>
       <h2>Spinners</h2>
@@ -15,7 +23,7 @@ const Sliders = () => {
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
-        <Slider />
+        {sliders}
       </article>
     </section>
   );
