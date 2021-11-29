@@ -10,12 +10,20 @@ export const Track = styled.div<{ theme: ITheme; variant: IVariant }>`
       attributes.height
     }; min-width: ${attributes.minWidth}; background-color: ${getHSL(
       props.theme.colors[props.variant],
-      { hue: 0, saturation: -10, lightness: 10 }
+      { hue: 0, saturation: -25, lightness: 15 }
     )};`;
   }}
 `;
 
-export const Bullet = styled.div<{ theme: ITheme; variant: IVariant }>`
+export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
+  style: {
+    left: offset + 'px',
+  },
+}))<{
+  theme: ITheme;
+  variant: IVariant;
+  offset: number;
+}>`
   position: absolute;
   cursor: pointer;
   ${(props) => {
