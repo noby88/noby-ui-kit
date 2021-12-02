@@ -45,6 +45,7 @@ export interface ITheme {
       bullet: {
         size: string;
         shadow: string;
+        outline: string;
       };
       label: {
         fontSize: string;
@@ -129,6 +130,7 @@ export const theme: ITheme = {
       minWidth: '10rem',
       bullet: {
         size: '1.5rem',
+        outline: '0.5rem',
         shadow: '0 0.1rem 0.2rem grey',
       },
       label: {

@@ -8,7 +8,9 @@ const Sliders = () => {
 
   const usage = (
     <Card size={'lg'}>
-      {'import Slider from "noby-ui-kit/Slider"\n...\n<Slider />'}
+      {
+        'import Slider from "noby-ui-kit/Slider"\n...\n<Slider values={[1, 2, 3, 4, 5]} selected={selected} onChange={setSelected} />'
+      }
     </Card>
   );
 

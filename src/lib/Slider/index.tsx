@@ -108,7 +108,11 @@ const Slider = (props: IProps) => {
     <StepContainer theme={theme}>
       {values.map((value) => (
         <StepValueContainer theme={theme}>
-          <StepValue theme={theme} variant={labelVariant || variant}>
+          <StepValue
+            selected={value === selected}
+            theme={theme}
+            variant={labelVariant || variant}
+          >
             {labelTransform(value as never)}
           </StepValue>
         </StepValueContainer>

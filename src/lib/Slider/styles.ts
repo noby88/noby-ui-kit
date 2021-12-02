@@ -54,7 +54,7 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
       props.theme.colors[props.variant]
     )}; box-shadow: ${attributes.bullet.shadow};\
     &:hover, &:focus-visible {
-      outline: calc(${attributes.bullet.size} / 1.5) solid
+      outline: ${attributes.bullet.outline} solid
         ${getHSLWithOpacity(props.theme.colors[props.variant], 25, {
           hue: 0,
           saturation: -50,
@@ -102,16 +102,17 @@ export const StepValueContainer = styled.div<{ theme: ITheme }>`
 export const StepValue = styled.span<{
   theme: ITheme;
   variant: IVariant;
+  selected?: boolean;
 }>`
   position: relative;
   text-align: center;
   width: max-content;
   ${(props) => {
-    const offset = `calc((${props.theme.layout.slider.bullet.size} / 2) - 50%)`;
+    const offset = `calc((${props.theme.layout.slider.bullet.size} / 2.5) - 50%)`;
     return `top: ${
       props.theme.layout.slider.label.offset
     }; transform: translateX(${offset}); color: ${getHSL(
       props.theme.colors[props.variant]
-    )};`;
+    )}; font-weight: ${props.selected ? 'bold' : 'base'}`;
   }}
 `;
