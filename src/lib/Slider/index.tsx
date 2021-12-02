@@ -2,7 +2,13 @@ import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 
-import { Bullet, Track } from './styles';
+import {
+  Bullet,
+  SliderContainer,
+  StepBullet,
+  StepContainer,
+  Track,
+} from './styles';
 
 type IElement = string | number;
 
@@ -11,10 +17,17 @@ interface IProps {
   values: IElement[];
   selected: IElement;
   onChange: ((value: string) => void) | ((value: number) => void);
+  showStepBullets?: boolean;
 }
 
 const Slider = (props: IProps) => {
-  const { variant = 'primary', values, selected, onChange } = props;
+  const {
+    variant = 'primary',
+    values,
+    selected,
+    onChange,
+    showStepBullets = false,
+  } = props;
 
   const [bulletOffset, setBulletOffset] = useState(0);
   const [dragging, setDragging] = useState(0);
@@ -23,7 +36,6 @@ const Slider = (props: IProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
-  const bulletRef = useRef<HTMLDivElement>(null);
 
   const theme = useThemeContext();
 
@@ -50,13 +62,11 @@ const Slider = (props: IProps) => {
   }, [selected, values, maxWidth]);
 
   useEffect(() => {
-    const maxLength = Math.ceil(
-      (ref.current?.offsetWidth || 0) - (bulletRef.current?.offsetWidth || 0)
-    );
+    const maxLength = Math.ceil(ref.current?.offsetWidth || 0);
     const stepLength = Math.ceil((maxLength || 0) / (values.length - 1));
     setStep(stepLength);
     setMaxWidth(maxLength);
-  }, [ref, bulletRef, values]);
+  }, [ref, values]);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation?.();
@@ -73,6 +83,14 @@ const Slider = (props: IProps) => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   };
+
+  const stepBullets = showStepBullets && (
+    <StepContainer theme={theme}>
+      {values.map((value) => (
+        <StepBullet theme={theme} variant={variant} />
+      ))}
+    </StepContainer>
+  );
 
   const isNumbers = typeof selected === 'number';
 
@@ -98,21 +116,16 @@ const Slider = (props: IProps) => {
   };
 
   return (
-    <Track
-      ref={ref}
-      theme={theme}
-      variant={variant}
-      onMouseDown={handleClick}
-      role={'slider'}
-      {...ariaProps}
-    >
+    <SliderContainer theme={theme} role={'slider'} {...ariaProps}>
+      <Track ref={ref} variant={variant} theme={theme} />
+      {stepBullets}
       <Bullet
-        ref={bulletRef}
         offset={bulletOffset}
+        onMouseDown={handleClick}
         theme={theme}
         variant={variant}
       />
-    </Track>
+    </SliderContainer>
   );
 };
 

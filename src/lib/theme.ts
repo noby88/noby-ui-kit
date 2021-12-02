@@ -124,7 +124,7 @@ export const theme: ITheme = {
       height: '0.5rem',
       minWidth: '10rem',
       bullet: {
-        size: '1rem',
+        size: '1.5rem',
         shadow: '0 0.1rem 0.2rem grey',
       },
     },

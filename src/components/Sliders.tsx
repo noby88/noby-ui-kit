@@ -20,6 +20,7 @@ const Sliders = () => {
         values={[1, 2, 3, 4, 5]}
         selected={selected}
         onChange={setSelected}
+        showStepBullets={true}
       />
     </div>
   ));
