@@ -20,5 +20,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - run: npm ci
+      - run: npm run deploy
       - name: Deploy react app to github pages
-        uses: amitsingh-007/deploy-to-github-pages@v1.2
+        uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
