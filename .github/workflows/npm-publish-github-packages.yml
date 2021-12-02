@@ -9,16 +9,16 @@ on:
       - master
 
 jobs:
-  publish-npm:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Publish to npm
-        uses: pascalgn/npm-publish-action@1.3.8
-        with:
-          publish_command: npm ci && tsc -p tsconfig.json && npm run build && npm publish
+#   publish-npm:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Publish to npm
+#         uses: pascalgn/npm-publish-action@1.3.8
+#         with:
+#           publish_command: npm ci && tsc -p tsconfig.json && npm run build && npm publish
 
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy react app to github pages
-        uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
+        uses: amitsingh-007/deploy-to-github-pages@v1.2
