@@ -32,6 +32,19 @@ export interface ITheme {
             padding: string;
             maxWidth: string;
         };
+        slider: {
+            height: string;
+            minWidth: string;
+            bullet: {
+                size: string;
+                shadow: string;
+                outline: string;
+            };
+            label: {
+                fontSize: string;
+                offset: string;
+            };
+        };
         surface: {
             base: string;
             middle: string;

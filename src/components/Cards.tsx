@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from '../lib/Button';
 
 import Card from '../lib/Card';
+import Slider from '../lib/Slider';
 import { IElevation, ISize } from '../lib/theme';
 import { CenterText, variants, ShowGrid, ShowInline } from './Layout';
 
@@ -9,8 +10,8 @@ const elevations: IElevation[] = [0, 1, 2, 3, 4];
 const sizes: ISize[] = ['sm', 'md', 'lg', 'xl', 'xxl', 'full'];
 
 const Cards = () => {
-  const [cardElevation, setCardElevation] = useState(elevations[1]);
-  const [cardsSize, setCardsSize] = useState(sizes[1]);
+  const [cardElevation, setCardElevation] = useState<number>(elevations[1]);
+  const [cardsSize, setCardsSize] = useState<string>(sizes[1]);
   const [isInteractive, setIsInteractive] = useState(true);
 
   const cards = (
@@ -18,8 +19,8 @@ const Cards = () => {
       {variants.map((shadowVariant) => (
         <Card
           key={shadowVariant}
-          elevation={cardElevation}
-          size={cardsSize}
+          elevation={cardElevation as IElevation}
+          size={cardsSize as ISize}
           shadowVariant={shadowVariant}
           interactive={isInteractive}
         >
@@ -30,31 +31,20 @@ const Cards = () => {
   );
 
   const elevationsSelector = (
-    <select
-      value={cardElevation}
-      onChange={(event) =>
-        setCardElevation(event.target.value as unknown as IElevation)
-      }
-    >
-      {elevations.map((elevation) => (
-        <option key={elevation} value={elevation}>
-          Elevation level {elevation}
-        </option>
-      ))}
-    </select>
+    <Slider
+      values={elevations}
+      selected={cardElevation}
+      onChange={setCardElevation}
+    />
   );
 
   const sizeSelector = (
-    <select
-      value={cardsSize}
-      onChange={(event) => setCardsSize(event.target.value as unknown as ISize)}
-    >
-      {sizes.map((size) => (
-        <option key={size} value={size}>
-          {size.toUpperCase()} card size
-        </option>
-      ))}
-    </select>
+    <Slider
+      values={sizes}
+      selected={cardsSize}
+      onChange={setCardsSize}
+      labelTransform={(value: string) => value.toUpperCase()}
+    />
   );
 
   const interactiveToggle = (
@@ -81,9 +71,16 @@ const Cards = () => {
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
-        <ShowInline>
+        <ShowInline min={'15rem'}>
+          <h4>Elevation:</h4>
           {elevationsSelector}
+        </ShowInline>
+        <ShowInline min={'15rem'}>
+          <h4>Card size:</h4>
           {sizeSelector}
+        </ShowInline>
+        <ShowInline min={'15rem'}>
+          <h4>Animate on hover:</h4>
           {interactiveToggle}
         </ShowInline>
         <br />
