@@ -7,8 +7,11 @@ const deSaturationObject = { hue: 0, saturation: -25, lightness: 15 };
 export const SliderContainer = styled.div<{ theme: ITheme }>`
   position: relative;
   display: grid;
-  ${(props) =>
-    `min-width: ${props.theme.layout.slider.minWidth}; margin: ${props.theme.layout.slider.bullet.size} 0`}
+  ${(props) => {
+    const offset = props.theme.layout.slider.label.offset;
+    const margin = offset[0] === '-' ? `calc(${offset} * -1)` : offset;
+    return `min-width: ${props.theme.layout.slider.minWidth}; margin: ${margin} 0;`;
+  }}
 `;
 
 export const Track = styled.div<{ theme: ITheme; variant: IVariant }>`
@@ -88,14 +91,27 @@ export const StepBullet = styled.div<{
   }}
 `;
 
+export const StepValueContainer = styled.div<{ theme: ITheme }>`
+  display: grid;
+  ${(props) => {
+    const size = `calc(${props.theme.layout.slider.bullet.size} / 1.25)`;
+    return `width: ${size};`;
+  }}
+`;
+
 export const StepValue = styled.span<{
   theme: ITheme;
   variant: IVariant;
 }>`
   position: relative;
   text-align: center;
+  width: max-content;
   ${(props) => {
-    const size = `calc(${props.theme.layout.slider.bullet.size} / 1.25)`;
-    return `width: ${size}; top: calc(${props.theme.layout.slider.bullet.size} * -1);`;
+    const offset = `calc((${props.theme.layout.slider.bullet.size} / 2) - 50%)`;
+    return `top: ${
+      props.theme.layout.slider.label.offset
+    }; transform: translateX(${offset}); color: ${getHSL(
+      props.theme.colors[props.variant]
+    )};`;
   }}
 `;

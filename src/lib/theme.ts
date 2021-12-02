@@ -46,6 +46,10 @@ export interface ITheme {
         size: string;
         shadow: string;
       };
+      label: {
+        fontSize: string;
+        offset: string;
+      };
     };
     surface: {
       base: string;
@@ -126,6 +130,10 @@ export const theme: ITheme = {
       bullet: {
         size: '1.5rem',
         shadow: '0 0.1rem 0.2rem grey',
+      },
+      label: {
+        fontSize: '1rem',
+        offset: '-1.5rem',
       },
     },
     surface: {

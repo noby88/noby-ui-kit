@@ -13,9 +13,9 @@ const App = () => (
       <h1>Component showcase</h1>
       <Buttons />
       <Spinners />
+      <Sliders />
       <Cards />
       <Groups />
-      <Sliders />
     </Page>
   </ThemeContext.Provider>
 );

@@ -8,6 +8,7 @@ import {
   StepBullet,
   StepContainer,
   StepValue,
+  StepValueContainer,
   Track,
 } from './styles';
 
@@ -19,6 +20,9 @@ interface IProps {
   selected: IElement;
   onChange: ((value: string) => void) | ((value: number) => void);
   showStepBullets?: boolean;
+  showLabels?: boolean;
+  labelVariant?: IVariant;
+  labelTransform?: ((value: string) => any) | ((value: number) => any);
 }
 
 const Slider = (props: IProps) => {
@@ -28,6 +32,9 @@ const Slider = (props: IProps) => {
     selected,
     onChange,
     showStepBullets = false,
+    showLabels = true,
+    labelVariant,
+    labelTransform = (value: string | number) => value,
   } = props;
 
   const [bulletOffset, setBulletOffset] = useState(0);
@@ -97,12 +104,14 @@ const Slider = (props: IProps) => {
     </StepContainer>
   );
 
-  const stepValues = (
+  const stepValues = showLabels && (
     <StepContainer theme={theme}>
       {values.map((value) => (
-        <StepValue theme={theme} variant={variant}>
-          {value}
-        </StepValue>
+        <StepValueContainer theme={theme}>
+          <StepValue theme={theme} variant={labelVariant || variant}>
+            {labelTransform(value as never)}
+          </StepValue>
+        </StepValueContainer>
       ))}
     </StepContainer>
   );
@@ -133,8 +142,8 @@ const Slider = (props: IProps) => {
   return (
     <SliderContainer theme={theme} role={'slider'} {...ariaProps}>
       <Track ref={ref} variant={variant} theme={theme} />
-      {stepBullets}
       {stepValues}
+      {stepBullets}
       <Bullet
         offset={bulletOffset}
         onMouseDown={handleClick}
