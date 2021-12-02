@@ -7,7 +7,8 @@ const deSaturationObject = { hue: 0, saturation: -25, lightness: 15 };
 export const SliderContainer = styled.div<{ theme: ITheme }>`
   position: relative;
   display: grid;
-  ${(props) => `min-width: ${props.theme.layout.slider.minWidth};`}
+  ${(props) =>
+    `min-width: ${props.theme.layout.slider.minWidth}; margin: ${props.theme.layout.slider.bullet.size} 0`}
 `;
 
 export const Track = styled.div<{ theme: ITheme; variant: IVariant }>`
@@ -77,12 +78,24 @@ export const StepBullet = styled.div<{
   theme: ITheme;
   variant: IVariant;
 }>`
-  position: relative;
+  cursor: pointer;
   ${(props) => {
     const size = `calc(${props.theme.layout.slider.bullet.size} / 1.25)`;
     return `border-radius: ${size}; height: ${size}; width: ${size}; background-color: ${getHSL(
       props.theme.colors[props.variant],
       deSaturationObject
     )};`;
+  }}
+`;
+
+export const StepValue = styled.span<{
+  theme: ITheme;
+  variant: IVariant;
+}>`
+  position: relative;
+  text-align: center;
+  ${(props) => {
+    const size = `calc(${props.theme.layout.slider.bullet.size} / 1.25)`;
+    return `width: ${size}; top: calc(${props.theme.layout.slider.bullet.size} * -1);`;
   }}
 `;

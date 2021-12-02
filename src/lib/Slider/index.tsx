@@ -7,6 +7,7 @@ import {
   SliderContainer,
   StepBullet,
   StepContainer,
+  StepValue,
   Track,
 } from './styles';
 
@@ -87,7 +88,21 @@ const Slider = (props: IProps) => {
   const stepBullets = showStepBullets && (
     <StepContainer theme={theme}>
       {values.map((value) => (
-        <StepBullet theme={theme} variant={variant} />
+        <StepBullet
+          theme={theme}
+          variant={variant}
+          onClick={() => onChange(value as never)}
+        />
+      ))}
+    </StepContainer>
+  );
+
+  const stepValues = (
+    <StepContainer theme={theme}>
+      {values.map((value) => (
+        <StepValue theme={theme} variant={variant}>
+          {value}
+        </StepValue>
       ))}
     </StepContainer>
   );
@@ -119,6 +134,7 @@ const Slider = (props: IProps) => {
     <SliderContainer theme={theme} role={'slider'} {...ariaProps}>
       <Track ref={ref} variant={variant} theme={theme} />
       {stepBullets}
+      {stepValues}
       <Bullet
         offset={bulletOffset}
         onMouseDown={handleClick}
