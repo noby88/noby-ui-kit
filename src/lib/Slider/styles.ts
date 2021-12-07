@@ -44,6 +44,7 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
 }>`
   position: absolute;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   grid-row: 1;
   grid-column: 1;
   align-self: center;

@@ -16,6 +16,7 @@ export const StyledButton = styled.button<{
   width?: string;
 }>`
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   border: none;
   font-size: 1rem;
   ${(props) =>
@@ -40,7 +41,7 @@ export const StyledButton = styled.button<{
     return props.disabled
       ? ''
       : `&:hover, &:focus-visible {
-    outline: 0.1rem solid
+    touch-outline: 0.1rem solid
       ${getHSL(props.theme.colors[props.variant], offsetLightness)};
     background-color: ${getHSL(
       props.theme.colors[props.variant],
