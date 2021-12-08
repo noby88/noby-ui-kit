@@ -22,6 +22,7 @@ export interface ITheme {
   colors: { [key in IVariant]: IColor };
   layout: {
     corners: string;
+    gap: string;
     buttons: {
       boxShadow: string;
       padding: string;
@@ -34,7 +35,6 @@ export interface ITheme {
       boxShadow: string;
       padding: string;
       width: string;
-      textColor: IVariant;
       fontSize: string;
       border: {
         width: string;
@@ -114,6 +114,7 @@ export const theme: ITheme = {
   },
   layout: {
     corners: '0.5rem',
+    gap: '1rem',
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
@@ -126,7 +127,6 @@ export const theme: ITheme = {
       padding: '0.7rem 1rem',
       boxShadow: '',
       width: '',
-      textColor: 'dark',
       fontSize: '1rem',
       border: {
         width: '2px',

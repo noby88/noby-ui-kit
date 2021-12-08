@@ -45,3 +45,13 @@ export const disabledOffset = (value: IColor) => ({
   saturation: -30,
   lightness: value.lightness < 65 ? 35 : -5,
 });
+
+export const randomId = (length = 5) => {
+  const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const limit = pool.length - 1;
+  let result = '';
+  for (let index = 0; index < length; index++) {
+    result += pool[Math.floor(Math.random() * limit)];
+  }
+  return result;
+};
