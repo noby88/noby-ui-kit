@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import Input from '../lib/Input';
 import Card from '../lib/Card';
 
 const Inputs = () => {
+  const [value, setValue] = useState('');
+
   const usage = (
     <Card size={'lg'}>
-      {'import Input from "noby-ui-kit/Input"\n...\n<Input />'}
+      {
+        'import Input from "noby-ui-kit/Input"\n...\n<Input variant={\'success\'} onChange={event => setValue(event.target.value)} />'
+      }
     </Card>
   );
 
@@ -15,10 +20,14 @@ const Inputs = () => {
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Default</h3>
-        <Input placeholder={'Placeholder'} />
+        <Input
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
       </article>
       <article>
         <h3>Disabled</h3>
+        <Input value={value} disabled={true} />
       </article>
     </section>
   );

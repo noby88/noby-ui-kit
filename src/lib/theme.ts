@@ -35,9 +35,9 @@ export interface ITheme {
       padding: string;
       width: string;
       textColor: IVariant;
+      fontSize: string;
       border: {
         width: string;
-        color: IVariant;
         style: string;
       };
     };
@@ -67,6 +67,8 @@ export interface ITheme {
       base: string;
       middle: string;
       top: string;
+      paper: string;
+      disabledPaper: string;
     };
   };
 }
@@ -125,10 +127,10 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       textColor: 'dark',
+      fontSize: '1rem',
       border: {
-        width: '1px',
+        width: '2px',
         style: 'solid',
-        color: 'primary',
       },
     },
     card: {
@@ -164,6 +166,8 @@ export const theme: ITheme = {
       base: 'hsl(0 0% 99%)',
       middle: 'hsl(0 0% 97%)',
       top: 'hsl(0 0% 95%)',
+      paper: 'hsl(0 0% 100%)',
+      disabledPaper: 'hsl(0 0% 96%)',
     },
   },
 };
