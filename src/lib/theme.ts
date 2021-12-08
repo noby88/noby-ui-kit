@@ -22,12 +22,23 @@ export interface ITheme {
   colors: { [key in IVariant]: IColor };
   layout: {
     corners: string;
+    gap: string;
     buttons: {
       boxShadow: string;
       padding: string;
       width: string;
       hover: {
         boxShadow: string;
+      };
+    };
+    input: {
+      boxShadow: string;
+      padding: string;
+      width: string;
+      fontSize: string;
+      border: {
+        width: string;
+        style: string;
       };
     };
     card: {
@@ -56,6 +67,8 @@ export interface ITheme {
       base: string;
       middle: string;
       top: string;
+      paper: string;
+      disabledPaper: string;
     };
   };
 }
@@ -101,12 +114,23 @@ export const theme: ITheme = {
   },
   layout: {
     corners: '0.5rem',
+    gap: '1rem',
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
       width: '',
       hover: {
         boxShadow: '0 0.1rem 0.2rem grey',
+      },
+    },
+    input: {
+      padding: '0.7rem 1rem',
+      boxShadow: '',
+      width: '',
+      fontSize: '1rem',
+      border: {
+        width: '2px',
+        style: 'solid',
       },
     },
     card: {
@@ -142,6 +166,8 @@ export const theme: ITheme = {
       base: 'hsl(0 0% 99%)',
       middle: 'hsl(0 0% 97%)',
       top: 'hsl(0 0% 95%)',
+      paper: 'hsl(0 0% 100%)',
+      disabledPaper: 'hsl(0 0% 96%)',
     },
   },
 };

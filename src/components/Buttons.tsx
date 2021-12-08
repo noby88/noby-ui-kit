@@ -58,12 +58,8 @@ const Buttons = () => {
         <pre>{usage}</pre>
         <h3>Default</h3>
         <ShowInline>{defaultButtons}</ShowInline>
-      </article>
-      <article>
         <h3>Disabled</h3>
         <ShowInline>{disabledButtons}</ShowInline>
-      </article>
-      <article>
         <h3>Loading</h3>
         <ShowInline>{loadingButtons}</ShowInline>
       </article>

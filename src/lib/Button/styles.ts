@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 import { ITheme, IVariant } from '../theme';
-import { getHSL } from '../utils';
+import {
+  disabledOffset,
+  generateCSSAttribute,
+  getHSL,
+  hoverOffset,
+} from '../utils';
 
 export const StyledButton = styled.button<{
   theme: ITheme;
@@ -17,44 +22,34 @@ export const StyledButton = styled.button<{
     `width: ${props.width || props.theme.layout.buttons.width || 'auto'};
     background-color: ${
       props.disabled
-        ? getHSL(props.theme.colors[props.variant], {
-            hue: 0,
-            saturation: -30,
-            lightness:
-              props.theme.colors[props.variant].lightness < 65 ? 35 : -5,
-          })
+        ? getHSL(
+            props.theme.colors[props.variant],
+            disabledOffset(props.theme.colors[props.variant])
+          )
         : getHSL(props.theme.colors[props.variant])
     };
-    padding: ${props.theme.layout.buttons.padding};
-    border-radius: ${props.theme.layout.corners};
+    ${generateCSSAttribute('padding', props.theme.layout.buttons.padding)}
+    ${generateCSSAttribute('border-radius', props.theme.layout.corners)}
+    ${generateCSSAttribute('box-shadow', props.theme.layout.buttons.boxShadow)}
     color: ${
       props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'
-    };
-    ${
-      props.theme.layout.buttons.boxShadow
-        ? `box-shadow: ${props.theme.layout.buttons.boxShadow};`
-        : ''
-    }`}
+    };`}
 
-  ${(props) =>
-    props.disabled
+  ${(props) => {
+    const offsetLightness = hoverOffset(props.theme.colors[props.variant]);
+    return props.disabled
       ? ''
       : `&:hover, &:focus-visible {
     outline: 0.1rem solid
-      ${getHSL(props.theme.colors[props.variant], {
-        hue: 0,
-        saturation: 0,
-        lightness: props.theme.colors[props.variant].lightness < 30 ? -5 : 3,
-      })};
-    background-color: ${getHSL(props.theme.colors[props.variant], {
-      hue: 0,
-      saturation: 0,
-      lightness: props.theme.colors[props.variant].lightness < 30 ? -5 : 3,
-    })};
-    ${
+      ${getHSL(props.theme.colors[props.variant], offsetLightness)};
+    background-color: ${getHSL(
+      props.theme.colors[props.variant],
+      offsetLightness
+    )};
+    ${generateCSSAttribute(
+      'box-shadow',
       props.theme.layout.buttons.hover.boxShadow
-        ? `box-shadow: ${props.theme.layout.buttons.hover.boxShadow};`
-        : ''
-    }
-  }`}
+    )};
+  }`;
+  }}
 `;

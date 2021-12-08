@@ -30,3 +30,28 @@ export const getHSLWithOpacity = (
   opacity: number = 0,
   offset: IColor = { hue: 0, saturation: 0, lightness: 0 }
 ) => `hsla(${getHSLValues(color, offset)} / ${opacity}%)`;
+
+export const generateCSSAttribute = (attribute: string, value: string) =>
+  value ? `${attribute}:${value};` : '';
+
+export const hoverOffset = (value: IColor) => ({
+  hue: 0,
+  saturation: 0,
+  lightness: value.lightness < 30 ? -5 : 3,
+});
+
+export const disabledOffset = (value: IColor) => ({
+  hue: 0,
+  saturation: -30,
+  lightness: value.lightness < 65 ? 35 : -5,
+});
+
+export const randomId = (length = 5) => {
+  const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const limit = pool.length - 1;
+  let result = '';
+  for (let index = 0; index < length; index++) {
+    result += pool[Math.floor(Math.random() * limit)];
+  }
+  return result;
+};

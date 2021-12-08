@@ -144,7 +144,12 @@ const Slider = (props: IProps) => {
   };
 
   return (
-    <SliderContainer theme={theme} role={'slider'} {...ariaProps}>
+    <SliderContainer
+      theme={theme}
+      role={'slider'}
+      aria-label="slider"
+      {...ariaProps}
+    >
       <Track ref={ref} variant={variant} theme={theme} />
       {stepValues}
       {stepBullets}

@@ -3,7 +3,7 @@ import { useThemeContext } from '../ThemeContext';
 import { IElevation, IVariant, ISize } from '../theme';
 import { StyledCard } from './styles';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   elevation?: IElevation;
   interactive?: boolean;
   shadowVariant?: IVariant;
@@ -16,6 +16,7 @@ const Card: FC<IProps> = ({
   interactive = false,
   shadowVariant = 'dark',
   size = 'full',
+  ...rest
 }) => {
   const theme = useThemeContext();
   return (
@@ -26,6 +27,7 @@ const Card: FC<IProps> = ({
       shadowVariant={shadowVariant}
       size={size}
       role={'contentinfo'}
+      {...rest}
     >
       {children}
     </StyledCard>
