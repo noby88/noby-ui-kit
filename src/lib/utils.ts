@@ -30,3 +30,6 @@ export const getHSLWithOpacity = (
   opacity: number = 0,
   offset: IColor = { hue: 0, saturation: 0, lightness: 0 }
 ) => `hsla(${getHSLValues(color, offset)} / ${opacity}%)`;
+
+export const generateCSSAttribute = (attribute: string, value: string) =>
+  value ? `${attribute}:${value}` : '';

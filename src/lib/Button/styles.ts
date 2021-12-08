@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { ITheme, IVariant } from '../theme';
-import { getHSL } from '../utils';
+import { generateCSSAttribute, getHSL } from '../utils';
 
 export const StyledButton = styled.button<{
   theme: ITheme;
@@ -25,16 +25,12 @@ export const StyledButton = styled.button<{
           })
         : getHSL(props.theme.colors[props.variant])
     };
-    padding: ${props.theme.layout.buttons.padding};
-    border-radius: ${props.theme.layout.corners};
+    ${generateCSSAttribute('padding', props.theme.layout.button.padding)}
+    ${generateCSSAttribute('border-radius', props.theme.layout.corners)}
+    ${generateCSSAttribute('box-shadow', props.theme.layout.buttons.boxShadow)}
     color: ${
       props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'
-    };
-    ${
-      props.theme.layout.buttons.boxShadow
-        ? `box-shadow: ${props.theme.layout.buttons.boxShadow};`
-        : ''
-    }`}
+    };`}
 
   ${(props) =>
     props.disabled
@@ -51,10 +47,9 @@ export const StyledButton = styled.button<{
       saturation: 0,
       lightness: props.theme.colors[props.variant].lightness < 30 ? -5 : 3,
     })};
-    ${
+    ${generateCSSAttribute(
+      'box-shadow',
       props.theme.layout.buttons.hover.boxShadow
-        ? `box-shadow: ${props.theme.layout.buttons.hover.boxShadow};`
-        : ''
-    }
+    )}
   }`}
 `;

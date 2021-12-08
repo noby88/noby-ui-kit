@@ -30,6 +30,17 @@ export interface ITheme {
         boxShadow: string;
       };
     };
+    input: {
+      boxShadow: string;
+      padding: string;
+      width: string;
+      textColor: IVariant;
+      border: {
+        width: string;
+        color: IVariant;
+        style: string;
+      };
+    };
     card: {
       padding: string;
       border: string;
@@ -107,6 +118,17 @@ export const theme: ITheme = {
       width: '',
       hover: {
         boxShadow: '0 0.1rem 0.2rem grey',
+      },
+    },
+    input: {
+      padding: '0.7rem 1rem',
+      boxShadow: '',
+      width: '',
+      textColor: 'dark',
+      border: {
+        width: '1px',
+        style: 'solid',
+        color: 'primary',
       },
     },
     card: {

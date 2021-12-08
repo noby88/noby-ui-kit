@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ISize, ITheme, IVariant } from '../theme';
-import { getHSLWithOpacity } from '../utils';
+import { generateCSSAttribute, getHSLWithOpacity } from '../utils';
 
 const boxShadowOffset = '0 0.1rem';
 
@@ -16,7 +16,7 @@ export const StyledCard = styled.div<{
     `border-radius: ${props.theme.layout.corners};
     border: ${props.theme.border || 'none'};
     background-color: ${props.theme.layout.surface.middle};
-    padding: ${props.theme.layout.card.padding};
+    ${generateCSSAttribute('padding', props.theme.layout.card.padding)}
     width: ${props.theme.layout.card.size[props.size]};`}
   box-shadow: ${(props) =>
     props.elevation > 0
@@ -35,5 +35,5 @@ export const StyledCard = styled.div<{
         box-shadow: ${boxShadowOffset} ${props.elevation * 0.4}rem
         ${props.elevation * 0.2}rem
         ${getHSLWithOpacity(props.theme.colors[props.shadowVariant], 20)};
-    }`}
+     }`}
 `;
