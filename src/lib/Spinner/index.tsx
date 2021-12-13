@@ -8,6 +8,11 @@ interface IProps {
   size?: number;
 }
 
+/**
+ *
+ * @param variant Color variant for the spinner.
+ * @param size The size of the spinner.
+ */
 const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
   const theme = useThemeContext();
   return (

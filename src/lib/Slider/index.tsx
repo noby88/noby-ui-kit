@@ -25,6 +25,16 @@ interface IProps {
   labelTransform?: ((value: string) => any) | ((value: number) => any);
 }
 
+/**
+ *
+ * @param variant Overall color variant.
+ * @param values The values for the steps. The index in the array drives the indexes in the slider.
+ * @param selected The currently selected value. A value from the values array.
+ * @param onChange Function that receives the new value as parameter.
+ * @param showLabels Flag to show of hide the labels.
+ * @param labelVariant Color variant. Affects the step labels.
+ * @param labelTransform A function to process the values and return as result the label to be displayed.
+ */
 const Slider = (props: IProps) => {
   const {
     variant = 'primary',
@@ -94,8 +104,9 @@ const Slider = (props: IProps) => {
 
   const stepBullets = showStepBullets && (
     <StepContainer theme={theme}>
-      {values.map((value) => (
+      {values.map((value, index) => (
         <StepBullet
+          key={index}
           theme={theme}
           variant={variant}
           onClick={() => onChange(value as never)}
@@ -106,8 +117,8 @@ const Slider = (props: IProps) => {
 
   const stepValues = showLabels && (
     <StepContainer theme={theme}>
-      {values.map((value) => (
-        <StepValueContainer theme={theme}>
+      {values.map((value, index) => (
+        <StepValueContainer key={index} theme={theme}>
           <StepValue
             selected={value === selected}
             theme={theme}

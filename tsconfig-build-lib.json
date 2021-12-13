@@ -15,8 +15,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "dist",
-    "noEmit": true
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
   },
   "include": ["src/lib"],
   "exclude": ["node_modules", "dist", "**/__test__/**", "**/styles.ts"]

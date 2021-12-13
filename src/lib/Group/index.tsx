@@ -6,6 +6,10 @@ interface IProps {
   direction?: IDirection;
 }
 
+/**
+ *
+ * @param direction Control the flow direction of the items within.
+ */
 const Group: FC<IProps> = ({ children, direction = 'horizontal' }) => {
   const theme = useThemeContext();
   return (
