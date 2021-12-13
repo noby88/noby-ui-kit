@@ -9,6 +9,11 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
+/**
+ *
+ * @param variant Background color variant.
+ * @param loading Flag if should display spinner instead of text and not trigger onClick event.
+ */
 const Button = ({
   variant = 'primary',
   children,

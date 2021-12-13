@@ -10,6 +10,13 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: ISize;
 }
 
+/**
+ *
+ * @param elevation Specify the level of elevation the card should mimic. Effects the box shadow.
+ * @param interactive Flag to control if the card should animate on hover. Animates as of the Card would elevate more.
+ * @param shadowVariant Color variant for the shadow.
+ * @param size Set a predefined with for the Card. Defined in the Theme object
+ */
 const Card: FC<IProps> = ({
   children,
   elevation = 1,

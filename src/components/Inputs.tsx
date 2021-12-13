@@ -36,14 +36,14 @@ const Inputs = () => {
         <pre>{usage}</pre>
         <h3>Default</h3>
         <Input
-          label={'disabled'}
+          label={'Default'}
           value={value}
           onChange={(event) => setValue(event.target.value)}
         />
         <h3>Full colored</h3>
         <ShowInline min={'15rem'}>{colorInputs}</ShowInline>
         <h3>Disabled</h3>
-        <Input label={'disabled'} value={value} disabled={true} />
+        <Input label={'Disabled'} value={value} disabled={true} />
       </article>
     </section>
   );
