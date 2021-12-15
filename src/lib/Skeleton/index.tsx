@@ -26,7 +26,7 @@ const Skeleton: FC<IProps> = (props) => {
   const animation = <AnimatedGradient variant={variant} theme={theme} />;
 
   return type === 'paragraph' ? (
-    <ParagraphContainer theme={theme}>
+    <ParagraphContainer theme={theme} aria-busy={'true'}>
       {Array(Math.max(lines, 1))
         .fill(1)
         .map((_, index) => (
@@ -43,11 +43,23 @@ const Skeleton: FC<IProps> = (props) => {
         ))}
     </ParagraphContainer>
   ) : type === 'circle' ? (
-    <Circle variant={variant} height={height} width={width} theme={theme}>
+    <Circle
+      variant={variant}
+      height={height}
+      width={width}
+      theme={theme}
+      aria-busy={'true'}
+    >
       {animation}
     </Circle>
   ) : (
-    <Block variant={variant} height={height} width={width} theme={theme}>
+    <Block
+      variant={variant}
+      height={height}
+      width={width}
+      theme={theme}
+      aria-busy={'true'}
+    >
       {animation}
     </Block>
   );

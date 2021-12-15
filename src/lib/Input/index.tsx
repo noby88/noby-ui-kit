@@ -54,6 +54,7 @@ const Input: FC<IProps> = ({
         name={rest.placeholder || 'input'}
         theme={theme}
         aria-label={label || 'unlabeled input'}
+        aria-disabled={rest.disabled}
         {...rest}
       />
     </Container>
