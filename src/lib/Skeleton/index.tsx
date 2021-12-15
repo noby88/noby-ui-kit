@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 import { AnimatedGradient, Block, Circle, ParagraphContainer } from './styles';
@@ -30,11 +30,17 @@ const Skeleton: FC<IProps> = (props) => {
     lines = 2,
   } = props;
   const theme = useThemeContext();
+  const [left, setLeft] = useState(0);
 
-  const animation = <AnimatedGradient variant={variant} theme={theme} />;
+  const setLeftFromRef = (ref: HTMLDivElement) =>
+    setLeft(ref?.getBoundingClientRect().x || 0);
+
+  const animation = (
+    <AnimatedGradient variant={variant} theme={theme} left={left} />
+  );
 
   return type === 'paragraph' ? (
-    <ParagraphContainer theme={theme} aria-busy={'true'}>
+    <ParagraphContainer ref={setLeftFromRef} theme={theme} aria-busy={'true'}>
       {Array(Math.max(lines, 1))
         .fill(1)
         .map((_, index) => (
@@ -52,6 +58,7 @@ const Skeleton: FC<IProps> = (props) => {
     </ParagraphContainer>
   ) : type === 'circle' ? (
     <Circle
+      ref={setLeftFromRef}
       variant={variant}
       height={height}
       width={width}
@@ -62,6 +69,7 @@ const Skeleton: FC<IProps> = (props) => {
     </Circle>
   ) : (
     <Block
+      ref={setLeftFromRef}
       variant={variant}
       height={height}
       width={width}
