@@ -79,6 +79,10 @@ export interface ITheme {
         lightness: number;
         accentLightnessOffset: number;
       };
+      paragraph: {
+        gap: string;
+        lastRowTrunc: string;
+      };
     };
     surface: {
       base: string;
@@ -188,6 +192,10 @@ export const theme: ITheme = {
         deSaturation: -30,
         lightness: 90,
         accentLightnessOffset: 5,
+      },
+      paragraph: {
+        gap: '0.5rem',
+        lastRowTrunc: '10%',
       },
     },
     surface: {

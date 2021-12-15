@@ -68,16 +68,46 @@ export const Block = styled.div<{
   variant: IVariant;
   height: string;
   width: string;
+  lastLine?: boolean;
 }>`
   overflow: hidden;
   ${(props) =>
     `border-radius: ${props.theme.layout.corners}; height: ${
       props.height
-    }; width: ${props.width}; background-color: ${baseBackgroundColor(
+    }; width: ${
+      props.lastLine
+        ? `calc(${props.width} - ${props.theme.layout.skeleton.paragraph.lastRowTrunc})`
+        : props.width
+    }; background-color: ${baseBackgroundColor(
       props.theme.colors[props.variant],
       props.theme.layout.skeleton.colors.deSaturation,
       props.variant === 'light'
         ? undefined
         : props.theme.layout.skeleton.colors.lightness
     )}`}
+`;
+
+export const Circle = styled.div<{
+  theme: ITheme;
+  variant: IVariant;
+  height: string;
+  width: string;
+}>`
+  overflow: hidden;
+  border-radius: 50%;
+  ${(props) =>
+    `height: ${props.height}; width: ${
+      props.height
+    }; background-color: ${baseBackgroundColor(
+      props.theme.colors[props.variant],
+      props.theme.layout.skeleton.colors.deSaturation,
+      props.variant === 'light'
+        ? undefined
+        : props.theme.layout.skeleton.colors.lightness
+    )}`}
+`;
+
+export const ParagraphContainer = styled.div<{ theme: ITheme }>`
+  display: grid;
+  ${(props) => `gap: ${props.theme.layout.skeleton.paragraph.gap}`}
 `;

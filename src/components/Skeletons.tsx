@@ -26,6 +26,16 @@ const Skeletons = () => {
         <Skeleton />
         <h4>Variants</h4>
         <ShowInline>{blockSpinners}</ShowInline>
+        <h4>Circle</h4>
+        <Skeleton type={'circle'} height={'7rem'} />
+        <h4>Block</h4>
+        <Skeleton type={'block'} height={'5rem'} width={'25rem'} />
+        <h4>Paragraph</h4>
+        <Card size={'lg'}>
+          {'<Skeleton type={"paragraph"} height={"1rem"} lines={3} />'}
+        </Card>
+        <br />
+        <Skeleton type={'paragraph'} height={'1rem'} lines={3} />
       </article>
     </section>
   );
