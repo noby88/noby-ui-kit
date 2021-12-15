@@ -7,6 +7,7 @@ import Cards from './components/Cards';
 import Page from './lib/Page';
 import Groups from './components/Groups';
 import Sliders from './components/Sliders';
+import Skeletons from './components/Skeletons';
 
 const App = () => (
   <ThemeContext.Provider value={theme}>
@@ -18,6 +19,7 @@ const App = () => (
       <Sliders />
       <Cards />
       <Groups />
+      <Skeletons />
     </Page>
   </ThemeContext.Provider>
 );
