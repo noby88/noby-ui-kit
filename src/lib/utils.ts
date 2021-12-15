@@ -1,4 +1,4 @@
-import { IColor } from './theme';
+import { IColor, IColorPartial } from './theme';
 
 const capNumberToRange = (
   number: number,
@@ -7,29 +7,38 @@ const capNumberToRange = (
 
 const getHSLValues = (
   color: IColor,
-  offset: IColor = { hue: 0, saturation: 0, lightness: 0 }
+  offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
+  hardSet?: IColorPartial
 ) =>
-  `${capNumberToRange(color.hue + offset.hue, {
+  `${capNumberToRange(hardSet?.hue || color.hue + offset.hue, {
     from: 0,
     to: 360,
-  })} ${capNumberToRange(color.saturation + offset.saturation, {
-    from: 0,
-    to: 100,
-  })}% ${capNumberToRange(color.lightness + offset.lightness, {
-    from: 0,
-    to: 100,
-  })}%`;
+  })} ${capNumberToRange(
+    hardSet?.saturation || color.saturation + offset.saturation,
+    {
+      from: 0,
+      to: 100,
+    }
+  )}% ${capNumberToRange(
+    hardSet?.lightness || color.lightness + offset.lightness,
+    {
+      from: 0,
+      to: 100,
+    }
+  )}%`;
 
 export const getHSL = (
   color: IColor,
-  offset: IColor = { hue: 0, saturation: 0, lightness: 0 }
-) => `hsl(${getHSLValues(color, offset)})`;
+  offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
+  hardSet?: IColorPartial
+) => `hsl(${getHSLValues(color, offset, hardSet)})`;
 
 export const getHSLWithOpacity = (
   color: IColor,
   opacity: number = 0,
-  offset: IColor = { hue: 0, saturation: 0, lightness: 0 }
-) => `hsla(${getHSLValues(color, offset)} / ${opacity}%)`;
+  offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
+  hardSet?: IColorPartial
+) => `hsla(${getHSLValues(color, offset, hardSet)} / ${opacity}%)`;
 
 export const generateCSSAttribute = (attribute: string, value: string) =>
   value ? `${attribute}:${value};` : '';

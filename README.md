@@ -45,6 +45,7 @@ myTheme.colors.primary.hue = 10;
 | Card      | Can receive the following props:<br /><br />**elevation**: 0 \| 1 \| 2 \| 3 \| 4<br />**shadowVariant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />**interactive**: true \| false<br />**size**: 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'full'                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Page      | A standard <strong>main</strong> HTML element with teh aria role also as <strong>main</strong>. Additionally, it's padding can be configured with though the theme.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Group     | Can receive the following props:<br /><br />**direction**: 'vertical' \| 'horizontal' <br /><br />A simple flex container that removes any margins, any rounded corners from the children and adds them only to the 4 newly formed corners from the group. Also adds a small gap for separation of the elements. Recommended to use for grouping: Buttons, Cards                                                                                                                                                                                                                                                                                                                                                                         |
+| Skleton   | Can receive the following props:<br /><br />**type**: 'block' \| 'circle' \| 'paragraph'<br />**shadowVariant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**height**: \<string> - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph.<br />**width**: \<string> - The widht in case of type Blocke. The with of the long lines in case of type Paragraph.<br />**lines**: \<number> - Has effect only if of type Paragraph.                                                                                                                                                                                           |
 
 ## Default Theme object
 
@@ -90,12 +91,23 @@ myTheme.colors.primary.hue = 10;
   },
   layout: {
     corners: '0.5rem',
+    gap: '1rem',
     buttons: {
       padding: '0.7rem 1rem',
       boxShadow: '',
       width: '',
       hover: {
         boxShadow: '0 0.1rem 0.2rem grey',
+      },
+    },
+    input: {
+      padding: '0.7rem 1rem',
+      boxShadow: '',
+      width: '',
+      fontSize: '1rem',
+      border: {
+        width: '2px',
+        style: 'solid',
       },
     },
     card: {
@@ -119,6 +131,7 @@ myTheme.colors.primary.hue = 10;
       minWidth: '10rem',
       bullet: {
         size: '1.5rem',
+        outline: '0.5rem',
         shadow: '0 0.1rem 0.2rem grey',
       },
       label: {
@@ -126,10 +139,27 @@ myTheme.colors.primary.hue = 10;
         offset: '-1.5rem',
       },
     },
+    skeleton: {
+      animation: {
+        duration: 2,
+        accentWidth: '2rem',
+      },
+      colors: {
+        deSaturation: -30,
+        lightness: 90,
+        accentLightnessOffset: 5,
+      },
+      paragraph: {
+        gap: '0.5rem',
+        lastRowTrunc: '10%',
+      },
+    },
     surface: {
       base: 'hsl(0 0% 99%)',
       middle: 'hsl(0 0% 97%)',
       top: 'hsl(0 0% 95%)',
+      paper: 'hsl(0 0% 100%)',
+      disabledPaper: 'hsl(0 0% 96%)',
     },
   },
 }
