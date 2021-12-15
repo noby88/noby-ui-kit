@@ -4,6 +4,12 @@ export interface IColor {
   lightness: number;
 }
 
+export interface IColorPartial {
+  hue?: number;
+  saturation?: number;
+  lightness?: number;
+}
+
 export type IVariant =
   | 'primary'
   | 'secondary'
@@ -61,6 +67,17 @@ export interface ITheme {
       label: {
         fontSize: string;
         offset: string;
+      };
+    };
+    skeleton: {
+      animation: {
+        duration: number;
+        accentWidth: string;
+      };
+      colors: {
+        deSaturation: number;
+        lightness: number;
+        accentLightnessOffset: number;
       };
     };
     surface: {
@@ -160,6 +177,17 @@ export const theme: ITheme = {
       label: {
         fontSize: '1rem',
         offset: '-1.5rem',
+      },
+    },
+    skeleton: {
+      animation: {
+        duration: 2,
+        accentWidth: '2rem',
+      },
+      colors: {
+        deSaturation: -30,
+        lightness: 90,
+        accentLightnessOffset: 5,
       },
     },
     surface: {
