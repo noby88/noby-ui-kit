@@ -28,6 +28,7 @@ const Button = ({
       {...rest}
       disabled={rest.disabled || loading}
       type={'button'}
+      aria-live={'polite'}
       aria-busy={loading}
       aria-disabled={rest.disabled || loading}
       aria-label={children?.toString()}
