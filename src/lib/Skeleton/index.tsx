@@ -13,6 +13,14 @@ interface IProps {
   lines?: number;
 }
 
+/**
+ *
+ * @param type The general shape. Default: block.
+ * @param variant The color variant. Default: dark.
+ * @param height The height value. In case of Circle it is the diameter. In case of Paragraph it is the height of one line. Default: 1.5rem.
+ * @param width The width value. In case of Circle it is ignored. In case of Paragraph is the the width of the longest row. Default: 100%.
+ * @param lines Only has effect if Paragraph. The number of lines. Default: 2.
+ */
 const Skeleton: FC<IProps> = (props) => {
   const {
     type = 'block',
