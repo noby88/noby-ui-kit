@@ -3,8 +3,8 @@ import { IColor, ITheme, IVariant } from '../theme';
 import { getHSL } from '../utils';
 
 const loadingAnimation = keyframes`
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%) }
+  0% { transform: translateX(var(--fromPosition)); }
+  100% { transform: translateX(var(--toPosition)) }
 `;
 
 const baseBackgroundColor = (
@@ -27,11 +27,15 @@ const baseBackgroundColor = (
 export const AnimatedGradient = styled.div<{
   theme: ITheme;
   variant: IVariant;
+  left: number;
 }>`
   animation-name: ${loadingAnimation};
   animation-iteration-count: infinite;
   height: 100%;
   ${(props) => `
+    --fromPosition: calc(-${props.left}px - 100%);
+    --toPosition: calc(100vw - ${props.left}px + 100%);
+    width: calc(${props.theme.layout.skeleton.animation.accentWidth} * 2);
     background-image: linear-gradient(
       90deg,
       transparent 0%,

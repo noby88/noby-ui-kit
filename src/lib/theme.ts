@@ -185,7 +185,7 @@ export const theme: ITheme = {
     },
     skeleton: {
       animation: {
-        duration: 2,
+        duration: 3,
         accentWidth: '2rem',
       },
       colors: {
