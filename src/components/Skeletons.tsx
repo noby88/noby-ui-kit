@@ -1,7 +1,10 @@
 import Card from '../lib/Card';
+import Skeleton from '../lib/Skeleton';
 import { ShowInline, variants } from './Layout';
 
 const Skeletons = () => {
+  const blockSpinners = variants.map((variant) => <Skeleton key={variant} />);
+
   const usage = (
     <Card size={'lg'}>
       {
@@ -12,12 +15,12 @@ const Skeletons = () => {
 
   return (
     <section>
-      <h2>Spinners</h2>
+      <h2>Skeletons</h2>
       <article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
-        <ShowInline>{}</ShowInline>
+        <ShowInline>{blockSpinners}</ShowInline>
       </article>
     </section>
   );
