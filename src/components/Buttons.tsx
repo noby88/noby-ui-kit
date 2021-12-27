@@ -43,9 +43,9 @@ const Buttons = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <Card>
       {
-        'import Button from "noby-ui-kit/Button"\n...\n<Button variant={"success"} onClick={handleOnclick}>\n\tText\n</Button>'
+        'import Button from "noby-ui-kit/Button"\n...\n<Button\n\tvariant={"success"}\n\tonClick={handleOnclick}\n>\n\tText\n</Button>'
       }
     </Card>
   );
