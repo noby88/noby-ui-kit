@@ -181,10 +181,15 @@ const Slider = (props: IProps) => {
     <SliderContainer
       theme={theme}
       role={'slider'}
-      aria-label="slider"
+      aria-label={'slider'}
       {...ariaProps}
     >
-      <Track ref={ref} variant={variant} theme={theme} />
+      <Track
+        ref={ref}
+        variant={variant}
+        theme={theme}
+        aria-label={'slider-track'}
+      />
       {stepValues}
       {stepBullets}
       <Bullet
@@ -196,6 +201,8 @@ const Slider = (props: IProps) => {
         variant={variant}
         tabIndex={0}
         isDragged={!!dragging}
+        role={'option'}
+        aria-label={'slider-knob'}
       />
     </SliderContainer>
   );
