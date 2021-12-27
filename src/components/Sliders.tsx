@@ -7,7 +7,7 @@ const Sliders = () => {
   const [selected, setSelected] = useState(2);
 
   const usage = (
-    <Card>
+    <Card size={'lg'}>
       {
         'import Slider from "noby-ui-kit/Slider"\n...\n<Slider\n\tvalues={[1, 2, 3, 4, 5]}\n\tselected={selected}\n\tonChange={setSelected}\n/>'
       }
@@ -61,7 +61,7 @@ const Sliders = () => {
           values={[1, 2, 3, 4, 5]}
           selected={selected}
           onChange={setSelected}
-          labelTransform={(value) => `Option ${value}`}
+          labelTransform={(value) => `Opt. ${value}`}
         />
       </article>
     </section>

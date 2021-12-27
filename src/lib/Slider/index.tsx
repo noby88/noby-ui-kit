@@ -60,7 +60,7 @@ const Slider = (props: IProps) => {
   const [maxWidth, setMaxWidth] = useState(0);
 
   const selectedIndex = useRef(0);
-  const touchStartOffset = useRef(0);
+  const touchPrevOffset = useRef(0);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -113,20 +113,24 @@ const Slider = (props: IProps) => {
   };
 
   const handleTouchMove = useCallback((data: TouchEvent) => {
+    data.stopPropagation?.();
+    data.preventDefault?.();
     setDragging(
-      (prev) => prev + touchStartOffset.current - data.touches[0].screenX
+      (prev) => prev + data.touches[0].screenX - touchPrevOffset.current
     );
+    touchPrevOffset.current = data.touches[0].screenX;
   }, []);
 
   const handleTouchStart: TouchEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation?.();
     event.preventDefault?.();
-    touchStartOffset.current = event.touches[0].screenX;
+    touchPrevOffset.current = event.touches[0].screenX;
     document.addEventListener('touchmove', handleTouchMove);
   };
 
   const handleTouchEnd = () => {
-    touchStartOffset.current = 0;
+    touchPrevOffset.current = 0;
+    setDragging(0);
     document.removeEventListener('touchmove', handleTouchMove);
   };
 

@@ -21,7 +21,7 @@ const Inputs = () => {
   ));
 
   const usage = (
-    <Card>
+    <Card size={'lg'}>
       {
         'import Input from "noby-ui-kit/Input"\n...\n<Input\n\tvariant={\'success\'}\n\tonChange={\n\t\t(event) => setValue(event.target.value)\n\t}\n/>'
       }
