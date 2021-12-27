@@ -51,7 +51,8 @@ const Slider = (props: IProps) => {
   const [dragging, setDragging] = useState(0);
   const [step, setStep] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const selectedIndex = useRef(0);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -62,19 +63,19 @@ const Slider = (props: IProps) => {
 
   useEffect(() => {
     if (dragging > step / 2) {
-      onChange(values[selectedIndex + 1] as never);
+      onChange(values[selectedIndex.current + 1] as never);
       setDragging((prev) => prev - step);
     }
     if (dragging < step / -2) {
-      onChange(values[selectedIndex - 1] as never);
+      onChange(values[selectedIndex.current - 1] as never);
       setDragging((prev) => prev + step);
     }
-    setBulletOffset(withinBounds(selectedIndex * step + dragging));
+    setBulletOffset(withinBounds(selectedIndex.current * step + dragging));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dragging]);
 
   useEffect(() => {
-    setSelectedIndex(values.indexOf(selected));
+    selectedIndex.current = values.indexOf(selected);
     setBulletOffset(withinBounds(values.indexOf(selected) * step + dragging));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, values, maxWidth]);
@@ -101,6 +102,28 @@ const Slider = (props: IProps) => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   };
+
+  const handleKeyPressed = (event: KeyboardEvent) => {
+    if (event.key === 'ArrowLeft') {
+      const newIndex =
+        selectedIndex.current > 0 ? selectedIndex.current - 1 : 0;
+      onChange(values[newIndex] as never);
+    }
+    if (event.key === 'ArrowRight') {
+      const lastIndex = values.length - 1;
+      const newIndex =
+        selectedIndex.current < lastIndex
+          ? selectedIndex.current + 1
+          : lastIndex;
+      onChange(values[newIndex] as never);
+    }
+  };
+
+  const handleOnFocus = () =>
+    document.addEventListener('keydown', handleKeyPressed);
+
+  const handleOnBlur = () =>
+    document.removeEventListener('keydown', handleKeyPressed);
 
   const stepBullets = showStepBullets && (
     <StepContainer theme={theme}>
@@ -167,8 +190,12 @@ const Slider = (props: IProps) => {
       <Bullet
         offset={bulletOffset}
         onMouseDown={handleClick}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         theme={theme}
         variant={variant}
+        tabIndex={0}
+        isDragged={!!dragging}
       />
     </SliderContainer>
   );
