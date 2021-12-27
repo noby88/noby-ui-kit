@@ -44,11 +44,21 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
 }>`
   position: absolute;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   grid-row: 1;
   grid-column: 1;
   align-self: center;
   ${(props) => {
     const attributes = props.theme.layout.slider;
+    const outline = `${attributes.bullet.outline} solid ${getHSLWithOpacity(
+      props.theme.colors[props.variant],
+      25,
+      {
+        hue: 0,
+        saturation: -50,
+        lightness: 0,
+      }
+    )}`;
     return `border-radius: ${attributes.bullet.size}; height: ${
       attributes.bullet.size
     }; width: ${attributes.bullet.size}; background-color: ${getHSL(
@@ -59,12 +69,8 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
         : `transition: transform ${props.theme.transitionsTime}ms;`
     }\
     &:hover, &:focus-visible {
-      outline: ${attributes.bullet.outline} solid
-        ${getHSLWithOpacity(props.theme.colors[props.variant], 25, {
-          hue: 0,
-          saturation: -50,
-          lightness: 0,
-        })};`;
+      touch-outline: ${outline};
+      outline: ${outline};`;
   }}
 `;
 

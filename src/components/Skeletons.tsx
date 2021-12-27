@@ -8,7 +8,7 @@ const Skeletons = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <Card>
       {
         'import Skeleton from "noby-ui-kit/Skeleton"\n...\n<Skeleton variant={"success"} />'
       }
@@ -29,10 +29,12 @@ const Skeletons = () => {
         <h4>Circle</h4>
         <Skeleton type={'circle'} height={'7rem'} />
         <h4>Block</h4>
-        <Skeleton type={'block'} height={'5rem'} width={'25rem'} />
+        <Skeleton type={'block'} height={'5rem'} />
         <h4>Paragraph</h4>
-        <Card size={'lg'}>
-          {'<Skeleton type={"paragraph"} height={"1rem"} lines={3} />'}
+        <Card>
+          {
+            '<Skeleton\n\ttype={"paragraph"}\n\theight={"1rem"}\n\tlines={3}\n/>'
+          }
         </Card>
         <br />
         <Skeleton type={'paragraph'} height={'1rem'} lines={3} />

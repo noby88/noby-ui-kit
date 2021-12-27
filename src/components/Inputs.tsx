@@ -21,16 +21,16 @@ const Inputs = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <Card>
       {
-        'import Input from "noby-ui-kit/Input"\n...\n<Input variant={\'success\'} onChange={(event) => setValue(event.target.value)} />'
+        'import Input from "noby-ui-kit/Input"\n...\n<Input\n\tvariant={\'success\'}\n\tonChange={\n\t\t(event) => setValue(event.target.value)\n\t}\n/>'
       }
     </Card>
   );
 
   return (
     <section>
-      <h2>Buttons</h2>
+      <h2>Inputs</h2>
       <article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
