@@ -38,11 +38,15 @@ export const StyledButton = styled.button<{
 
   ${(props) => {
     const offsetLightness = hoverOffset(props.theme.colors[props.variant]);
+    const outline = `0.1rem solid ${getHSL(
+      props.theme.colors[props.variant],
+      offsetLightness
+    )}`;
     return props.disabled
       ? ''
       : `&:hover, &:focus-visible {
-    touch-outline: 0.1rem solid
-      ${getHSL(props.theme.colors[props.variant], offsetLightness)};
+    outline: ${outline};
+    touch-outline: ${outline};
     background-color: ${getHSL(
       props.theme.colors[props.variant],
       offsetLightness
