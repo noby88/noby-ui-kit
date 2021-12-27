@@ -34,12 +34,13 @@ export const Track = styled.div<{ theme: ITheme; variant: IVariant }>`
 
 export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
   style: {
-    left: offset + 'px',
+    transform: `translateX(${offset}px)`,
   },
 }))<{
   theme: ITheme;
   variant: IVariant;
   offset: number;
+  isDragged: boolean;
 }>`
   position: absolute;
   cursor: pointer;
@@ -52,7 +53,11 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
       attributes.bullet.size
     }; width: ${attributes.bullet.size}; background-color: ${getHSL(
       props.theme.colors[props.variant]
-    )}; box-shadow: ${attributes.bullet.shadow};\
+    )}; box-shadow: ${attributes.bullet.shadow}; ${
+      props.isDragged
+        ? ''
+        : `transition: transform ${props.theme.transitionsTime}ms;`
+    }\
     &:hover, &:focus-visible {
       outline: ${attributes.bullet.outline} solid
         ${getHSLWithOpacity(props.theme.colors[props.variant], 25, {
