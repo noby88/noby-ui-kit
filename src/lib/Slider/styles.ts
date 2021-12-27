@@ -54,7 +54,7 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
     }; width: ${attributes.bullet.size}; background-color: ${getHSL(
       props.theme.colors[props.variant]
     )}; box-shadow: ${attributes.bullet.shadow}; ${
-      props.isDragged
+      props.isDragged && props.theme.transitionsTime
         ? ''
         : `transition: transform ${props.theme.transitionsTime}ms;`
     }\
