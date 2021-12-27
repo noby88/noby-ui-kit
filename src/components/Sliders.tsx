@@ -61,7 +61,7 @@ const Sliders = () => {
           values={[1, 2, 3, 4, 5]}
           selected={selected}
           onChange={setSelected}
-          labelTransform={(value) => `Option ${value}`}
+          labelTransform={(value) => `Opt. ${value}`}
         />
       </article>
     </section>
