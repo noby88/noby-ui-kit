@@ -1,4 +1,10 @@
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 
@@ -96,6 +102,7 @@ const Slider = (props: IProps) => {
 
     const handleMouseUp = () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
       setDragging(0);
     };
 
@@ -103,7 +110,7 @@ const Slider = (props: IProps) => {
     document.addEventListener('mouseup', handleMouseUp);
   };
 
-  const handleKeyPressed = (event: KeyboardEvent) => {
+  const handleKeyPressed = useCallback((event: KeyboardEvent) => {
     if (event.key === 'ArrowLeft') {
       const newIndex =
         selectedIndex.current > 0 ? selectedIndex.current - 1 : 0;
@@ -117,7 +124,8 @@ const Slider = (props: IProps) => {
           : lastIndex;
       onChange(values[newIndex] as never);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleOnFocus = () =>
     document.addEventListener('keydown', handleKeyPressed);
