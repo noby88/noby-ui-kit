@@ -12,6 +12,7 @@ export const StyledCard = styled.div<{
   size: ISize;
 }>`
   box-sizing: border-box;
+  max-width: 100%;
   ${(props) =>
     `border-radius: ${props.theme.layout.corners};
     border: ${props.theme.border || 'none'};

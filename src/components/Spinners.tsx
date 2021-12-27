@@ -8,7 +8,7 @@ const Spinners = () => {
   ));
 
   const usage = (
-    <Card>
+    <Card size={'lg'}>
       {
         'import Spinner from "noby-ui-kit/Spinner"\n...\n<Spinner variant={"success"} />'
       }
