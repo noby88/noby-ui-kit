@@ -1,5 +1,6 @@
 import {
   MouseEventHandler,
+  TouchEventHandler,
   useCallback,
   useEffect,
   useRef,
@@ -59,6 +60,7 @@ const Slider = (props: IProps) => {
   const [maxWidth, setMaxWidth] = useState(0);
 
   const selectedIndex = useRef(0);
+  const touchStartOffset = useRef(0);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -108,6 +110,24 @@ const Slider = (props: IProps) => {
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleTouchMove = useCallback((data: TouchEvent) => {
+    setDragging(
+      (prev) => prev + touchStartOffset.current - data.touches[0].screenX
+    );
+  }, []);
+
+  const handleTouchStart: TouchEventHandler<HTMLDivElement> = (event) => {
+    event.stopPropagation?.();
+    event.preventDefault?.();
+    touchStartOffset.current = event.touches[0].screenX;
+    document.addEventListener('touchmove', handleTouchMove);
+  };
+
+  const handleTouchEnd = () => {
+    touchStartOffset.current = 0;
+    document.removeEventListener('touchmove', handleTouchMove);
   };
 
   const handleKeyPressed = useCallback((event: KeyboardEvent) => {
@@ -205,6 +225,9 @@ const Slider = (props: IProps) => {
         onMouseDown={handleClick}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
         theme={theme}
         variant={variant}
         tabIndex={0}
