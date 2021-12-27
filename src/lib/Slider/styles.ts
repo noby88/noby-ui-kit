@@ -48,6 +48,7 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
   grid-row: 1;
   grid-column: 1;
   align-self: center;
+  touch-action: none;
   ${(props) => {
     const attributes = props.theme.layout.slider;
     const outline = `${attributes.bullet.outline} solid ${getHSLWithOpacity(
