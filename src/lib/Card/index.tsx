@@ -34,6 +34,7 @@ const Card: FC<IProps> = ({
       shadowVariant={shadowVariant}
       size={size}
       role={'contentinfo'}
+      aria-label={'card'}
       {...rest}
     >
       {children}

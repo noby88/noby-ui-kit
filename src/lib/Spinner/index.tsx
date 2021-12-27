@@ -22,6 +22,7 @@ const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
       size={size}
       aria-busy={'true'}
       role={'status'}
+      aria-label={'spinner'}
     />
   );
 };
