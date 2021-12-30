@@ -14,38 +14,108 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 
 1. Import the Theme context and the default theme
 
-```javascript
-import ThemeContext from 'noby-ui-kit/ThemeContext';
-import { theme } from 'noby-ui-kit/theme';
-```
+   ```javascript
+   import ThemeContext from 'noby-ui-kit/ThemeContext';
+   import { theme } from 'noby-ui-kit/theme';
+   ```
 
 2. Modify all the you need
 
-```javascript
-const myTheme = theme;
-myTheme.colors.primary.hue = 10;
-```
+   ```javascript
+   const myTheme = theme;
+   myTheme.colors.primary.hue = 10;
+   ```
 
 3. Wrap you content in with the new theme object
 
-```JSX
-<ThemeContext.Provider value={myTheme}>
-  // your content
-</ThemeContext.Provider>
-```
+   ```JSX
+   <ThemeContext.Provider value={myTheme}>
+     // your content
+   </ThemeContext.Provider>
+   ```
 
 ## Available components
 
-| Component | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Button    | Can receive the following props:<br /><br />**variant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />**loading**: true \| false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Input     | Can receive the following props:<br /><br />**variant**: color for the border - 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**label**: string to be displayed as label<br />**labelVairant**: color for the label - 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**textVariant**: color for the input text - 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**placeholderVariant**: color for the placeholder text - 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**orientation**: the direction the label and input element relate - 'stack' \| 'inline' |
-| Spinner   | Can receive the following props:<br /><br />**variant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />**size**: \<number\>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Slider    | Can receive the following props:<br /><br />**variant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />**values**: array\<string \| number ><br />**selected**: the selected value from the _values_ array<br />**onChange**: function receiving as argument the new value from the _values_ array<br />**showStepBullets**: boolean<br />**showLabels**: boolean<br />**labelVariant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**labelTransform**: function taking the values as arguments                                                                                                                                                |
-| Card      | Can receive the following props:<br /><br />**elevation**: 0 \| 1 \| 2 \| 3 \| 4<br />**shadowVariant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light' <br />**interactive**: true \| false<br />**size**: 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'full'                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Page      | A standard <strong>main</strong> HTML element with teh aria role also as <strong>main</strong>. Additionally, it's padding can be configured with though the theme.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Group     | Can receive the following props:<br /><br />**direction**: 'vertical' \| 'horizontal' <br /><br />A simple flex container that removes any margins, any rounded corners from the children and adds them only to the 4 newly formed corners from the group. Also adds a small gap for separation of the elements. Recommended to use for grouping: Buttons, Cards                                                                                                                                                                                                                                                                                                                                                                         |
-| Skleton   | Can receive the following props:<br /><br />**type**: 'block' \| 'circle' \| 'paragraph'<br />**shadowVariant**: 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'<br />**height**: \<string> - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph.<br />**width**: \<string> - The widht in case of type Blocke. The with of the long lines in case of type Paragraph.<br />**lines**: \<number> - Has effect only if of type Paragraph.                                                                                                                                                                                           |
+### **Button**
+
+> The base of this component is an actual HTML Button element. None of that fancy DIVs masquerading as buttons thing. This means the browsers will know exactly what to do with it without the need for special aria labels (from the accessability point of view).
+
+| Prop    | Expected value                                                                                                                                                                                             |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| variant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the button. The text color will change between _white_ and _black_ to ensure contrast for readability |
+| loading | `boolean` - will display the spinner component instead of the text and the button will be also disabled                                                                                                    |
+
+### **Input**
+
+> An basic input component with some default formatting to adhere to the general design trend.
+
+| Prop               | Expected value                                                                                                         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| variant            | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the border           |
+| label              | `<string>` - to be displayed as label                                                                                  |
+| labelVariant       | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the label            |
+| textVariant        | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the input text       |
+| placeholderVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the placeholder text |
+| orientation        | `'stack' \| 'inline'` - the direction the label and input element relate                                               |
+
+### **Spinner**
+
+> A simple spinning object intended to use as a buffering indicator.
+
+| Prop    | Expected value                                                                                                   |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| variant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the element |
+| size    | `<number>` - relate to the root font size                                                                        |
+
+### **Slider**
+
+> A slider with predefined steps. Could be a good alternative for a dropdown list with ew options.
+
+| Prop            | Expected value                                                                                                               |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| variant         | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the rail and knob       |
+| values          | `array<string \| number >` - the values for the steps                                                                        |
+| selected        | `<string \| number>` - the _selected value_ from the _values_ array                                                          |
+| onChange        | `(value: string \| number) => void` - function receiving as argument the _new value_ from the _values_ array                 |
+| showStepBullets | `<boolean>` - have a visual indicator where the steps are on the rail                                                        |
+| showLabels      | `<boolean>` - to show the labels above the steps                                                                             |
+| labelVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
+| labelTransform  | `(value: string \| number) => any` - function taking the _values_ as arguments                                               |
+
+### **Card**
+
+> A component to group small amount of related content.
+
+| Prop          | Expected value                                                                                                 |
+| ------------- | -------------------------------------------------------------------------------------------------------------- |
+| elevation     | `0 \| 1 \| 2 \| 3 \| 4` - determines the amount of shadow under the element                                    |
+| shadowVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the tint of the shadow |
+| interactive   | `<boolean>` - on hover will increase the shadow, giving it illusion of shifting closer                         |
+| size          | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'full'` - the expected with of the element                           |
+
+### **Page**
+
+> A standard <strong>main</strong> HTML element with teh aria role also as <strong>main</strong>. Additionally, it's padding can be configured with though the theme.
+
+### **Group**
+
+> A simple flex container that removes any margins, any rounded corners from the children and adds them only to the 4 newly formed corners from the group. Also adds a small gap for separation of the elements. Recommended to use for grouping: Buttons, Cards.
+
+| Prop      | Expected value               |
+| --------- | ---------------------------- |
+| direction | `'vertical' \| 'horizontal'` |
+
+### **Skleton**
+
+> Intended to be used as a placeholder while data is being loaded.
+
+| Prop          | Expected value                                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| type          | `'block' \| 'circle' \| 'paragraph'`                                                                                                |
+| shadowVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'`                                               |
+| height        | `<string>` - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph. |
+| width         | `<string>` - The widht in case of type Blocke. The with of the long lines in case of type Paragraph.                                |
+| lines         | `<number>` - Has effect only if of type Paragraph.                                                                                  |
 
 ## Default Theme object
 
@@ -141,7 +211,7 @@ myTheme.colors.primary.hue = 10;
     },
     skeleton: {
       animation: {
-        duration: 2,
+        duration: 3,
         accentWidth: '2rem',
       },
       colors: {
