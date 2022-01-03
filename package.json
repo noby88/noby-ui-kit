@@ -1,10 +1,11 @@
 {
   "homepage": "http://noby88.github.io/noby-ui-kit",
   "name": "noby-ui-kit",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "keywords": [
     "react",
     "components",
+    "noby",
     "ui",
     "ui-kit",
     "typescript",
@@ -13,11 +14,11 @@
   "description": "An accessible React UI kit",
   "author": "noby88",
   "private": false,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "core/index.js",
+  "module": "core/index.js",
+  "types": "core/index.d.ts",
   "files": [
-    "dist",
+    "core",
     "README.md"
   ],
   "repository": {
@@ -33,12 +34,12 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files && tsc -p tsconfig-build-lib.json",
-    "build-lib-win": "rm -rf dist && babel src/lib --out-dir dist --copy-files && tsc -p tsconfig-build-lib.json",
+    "build-lib": "rm -rf core && NODE_ENV=production babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json",
+    "build-lib-win": "rm -rf core && babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "do-all": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish",
-    "do-all-win": "rm -rf dist && babel src/lib --out-dir dist --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish"
+    "do-all": "rm -rf core && NODE_ENV=production babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish",
+    "do-all-win": "rm -rf core && babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish"
   },
   "eslintConfig": {
     "extends": [
