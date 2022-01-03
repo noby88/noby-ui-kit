@@ -15,7 +15,7 @@
   "author": "noby88",
   "private": false,
   "main": "core/index.js",
-  "module": "core/index.js",
+  "module": "core/index.m.js",
   "types": "core/index.d.ts",
   "files": [
     "core",
@@ -30,11 +30,12 @@
     "styled-components": "^5.3.1"
   },
   "scripts": {
+    "tmp": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "rm -rf core && NODE_ENV=production babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json",
+    "build-lib": "rm -rf core && rollup -c",
     "build-lib-win": "rm -rf core && babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -75,6 +76,11 @@
     "gh-pages": "^3.2.3",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "rollup": "^2.62.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.31.1",
     "typescript": "^4.4.2",
     "web-vitals": "^1.1.2"
   }
