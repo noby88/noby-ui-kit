@@ -1,7 +1,7 @@
 {
   "homepage": "http://noby88.github.io/noby-ui-kit",
   "name": "noby-ui-kit",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "keywords": [
     "react",
     "components",
@@ -35,12 +35,10 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "rm -rf core && rollup -c",
-    "build-lib-win": "rm -rf core && babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json",
+    "build-lib": "rm -rf core && tsc -p tsconfig-build-lib.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "do-all": "rm -rf core && NODE_ENV=production babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish",
-    "do-all-win": "rm -rf core && babel src/lib --out-dir core --copy-files && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish"
+    "do-all": "rm -rf core && tsc -p tsconfig-build-lib.json && npm run build && gh-pages -d build && npm publish"
   },
   "eslintConfig": {
     "extends": [
