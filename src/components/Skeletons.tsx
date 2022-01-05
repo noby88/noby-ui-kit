@@ -10,7 +10,7 @@ const Skeletons = () => {
   const usage = (
     <Card size={'lg'}>
       {
-        'import Skeleton from "noby-ui-kit/Skeleton"\n...\n<Skeleton variant={"success"} />'
+        'import { Skeleton } from "noby-ui-kit"\n...\n<Skeleton variant={"success"} />'
       }
     </Card>
   );

@@ -29,7 +29,7 @@ const Groups = () => {
   const usage = (
     <Card size={'lg'}>
       {
-        'import Group from "noby-ui-kit/Group"\n...\n<Group>\n\t<Button>Button 1</Button>\n\t<Button>Button 2</Button>\n\t<Button>Button 3</Button>\n</Group>'
+        'import { Group } from "noby-ui-kit"\n...\n<Group>\n\t<Button>Button 1</Button>\n\t<Button>Button 2</Button>\n\t<Button>Button 3</Button>\n</Group>'
       }
     </Card>
   );

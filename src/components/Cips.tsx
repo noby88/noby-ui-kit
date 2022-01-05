@@ -1,11 +1,8 @@
-import Spinner from '../lib/Spinner';
 import Card from '../lib/Card';
 import { ShowInline, variants } from './Layout';
 
-const Spinners = () => {
-  const defaultSpinners = variants.map((variant) => (
-    <Spinner variant={variant} key={variant} />
-  ));
+const Cips = () => {
+  const defaultSpinners = variants.map((variant) => <></>);
 
   const usage = (
     <Card size={'lg'}>
@@ -17,7 +14,7 @@ const Spinners = () => {
 
   return (
     <section>
-      <h2>Spinners</h2>
+      <h2>Cips</h2>
       <article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
@@ -28,4 +25,4 @@ const Spinners = () => {
   );
 };
 
-export default Spinners;
+export default Cips;

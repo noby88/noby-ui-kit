@@ -59,7 +59,7 @@ const Cards = () => {
   const usage = (
     <Card size={'lg'}>
       {
-        'import Card from "noby-ui-kit/Card"\n...\n<Card elevation={2}>\n\t<Content />\n</Card>'
+        'import { Card } from "noby-ui-kit"\n...\n<Card elevation={2}>\n\t<Content />\n</Card>'
       }
     </Card>
   );
