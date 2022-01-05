@@ -1,7 +1,7 @@
 import Card from '../lib/Card';
 import { ShowInline, variants } from './Layout';
 
-const Cips = () => {
+const Chips = () => {
   const defaultSpinners = variants.map((variant) => <></>);
 
   const usage = (
@@ -14,7 +14,7 @@ const Cips = () => {
 
   return (
     <section>
-      <h2>Cips</h2>
+      <h2>Chips</h2>
       <article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
@@ -25,4 +25,4 @@ const Cips = () => {
   );
 };
 
-export default Cips;
+export default Chips;

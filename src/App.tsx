@@ -8,6 +8,7 @@ import Page from './lib/Page';
 import Groups from './components/Groups';
 import Sliders from './components/Sliders';
 import Skeletons from './components/Skeletons';
+import Chips from './components/Chips';
 
 const App = () => (
   <ThemeContext.Provider value={theme}>
@@ -16,6 +17,7 @@ const App = () => (
       <Buttons />
       <Inputs />
       <Spinners />
+      <Chips />
       <Sliders />
       <Cards />
       <Groups />
