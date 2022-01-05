@@ -55,7 +55,10 @@ export interface ITheme {
     chip: {
       padding: string;
       borderWidth: string;
-      outlineWidth: string;
+      hover: {
+        outlineWidth: string;
+        boxShadow: string;
+      };
     };
     page: {
       padding: string;
@@ -108,9 +111,9 @@ export const theme: ITheme = {
       lightness: 30,
     },
     secondary: {
-      hue: 300,
-      saturation: 70,
-      lightness: 45,
+      hue: 0,
+      saturation: 0,
+      lightness: 60,
     },
     success: {
       hue: 100,
@@ -146,7 +149,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0.1rem 0.2rem grey',
+        boxShadow: '0 0 0 0.1rem grey',
       },
     },
     input: {
@@ -174,7 +177,10 @@ export const theme: ITheme = {
     chip: {
       padding: '0.5rem 1rem',
       borderWidth: '0.2rem',
-      outlineWidth: '0.4rem',
+      hover: {
+        outlineWidth: '0.2rem',
+        boxShadow: '0 0 0 0.1rem grey',
+      },
     },
     page: {
       padding: '1rem',

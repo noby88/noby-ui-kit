@@ -51,7 +51,7 @@ const Sliders = () => {
         />
         <h4>Different color labels</h4>
         <Slider
-          labelVariant={'secondary'}
+          labelVariant={'danger'}
           values={[1, 2, 3, 4, 5]}
           selected={selected}
           onChange={setSelected}
