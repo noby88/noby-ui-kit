@@ -52,6 +52,11 @@ export interface ITheme {
       border: string;
       size: { [key in ISize]: string };
     };
+    chip: {
+      padding: string;
+      borderWidth: string;
+      outlineWidth: string;
+    };
     page: {
       padding: string;
       maxWidth: string;
@@ -165,6 +170,11 @@ export const theme: ITheme = {
         xxl: '80rem',
         full: '100%',
       },
+    },
+    chip: {
+      padding: '0.5rem 1rem',
+      borderWidth: '0.2rem',
+      outlineWidth: '0.4rem',
     },
     page: {
       padding: '1rem',
