@@ -10,10 +10,29 @@ const Chips = () => {
 
   const defaultChips = variants.map((variant) => (
     <Chip
+      key={variant}
       variant={variant}
       text={variant}
       interactive={isInteractive}
       active={isActive}
+    />
+  ));
+
+  const preChips = variants.map((variant) => (
+    <Chip
+      key={variant}
+      variant={variant}
+      text={variant}
+      preComponent={<span>&#10084;</span>}
+    />
+  ));
+
+  const postChips = variants.map((variant) => (
+    <Chip
+      key={variant}
+      variant={variant}
+      text={variant}
+      postComponent={<span>&#10006;</span>}
     />
   ));
 
@@ -56,6 +75,10 @@ const Chips = () => {
         </ShowInline>
         <br />
         <ShowInline>{defaultChips}</ShowInline>
+        <h4>With pre component:</h4>
+        <ShowInline>{preChips}</ShowInline>
+        <h4>With post component:</h4>
+        <ShowInline>{postChips}</ShowInline>
       </article>
     </section>
   );

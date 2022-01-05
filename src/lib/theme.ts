@@ -55,6 +55,7 @@ export interface ITheme {
     chip: {
       padding: string;
       borderWidth: string;
+      gap: string;
       hover: {
         outlineWidth: string;
         boxShadow: string;
@@ -181,8 +182,9 @@ export const theme: ITheme = {
       },
     },
     chip: {
-      padding: '0.5rem 1rem',
+      padding: '0.3rem 0.7rem',
       borderWidth: '0.2rem',
+      gap: '0.5rem',
       hover: {
         outlineWidth: '0.2rem',
         boxShadow: '0 0 0 0.1rem grey',

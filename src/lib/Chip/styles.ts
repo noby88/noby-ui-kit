@@ -15,6 +15,10 @@ interface IProps {
 export const Container = styled.div<IProps>`
   width: max-content;
   cursor: default;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  align-items: center;
   -webkit-backface-visibility: hidden;
   ${(props) => {
     const mainOffset =
@@ -26,6 +30,7 @@ export const Container = styled.div<IProps>`
         props.active ? 'active' : 'inactive'
       ];
     return `
+      gap: ${props.theme.layout.chip.gap};
       ${generateCSSAttribute('padding', props.theme.layout.chip.padding)}
       ${generateCSSAttribute(
         'border-width',
@@ -61,7 +66,7 @@ export const Container = styled.div<IProps>`
           : ''
       }
 
-      &>span { color: ${getHSL(props.theme.colors[props.variant], mainOffset)};}
+      &>* { color: ${getHSL(props.theme.colors[props.variant], mainOffset)};}
     `;
   }};
 `;
