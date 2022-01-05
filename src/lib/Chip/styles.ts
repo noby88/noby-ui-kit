@@ -17,18 +17,14 @@ export const Container = styled.div<IProps>`
   cursor: default;
   -webkit-backface-visibility: hidden;
   ${(props) => {
-    const mainOffset = props.active
-      ? undefined
-      : {
-          hue: 0,
-          saturation: -50,
-          lightness: 25,
-        };
-    const secondaryOffset = {
-      hue: 0,
-      saturation: -20,
-      lightness: props.active ? 45 : 50,
-    };
+    const mainOffset =
+      props.theme.layout.chip.colorOffset.foreground[
+        props.active ? 'active' : 'inactive'
+      ];
+    const secondaryOffset =
+      props.theme.layout.chip.colorOffset.background[
+        props.active ? 'active' : 'inactive'
+      ];
     return `
       ${generateCSSAttribute('padding', props.theme.layout.chip.padding)}
       ${generateCSSAttribute(

@@ -59,6 +59,12 @@ export interface ITheme {
         outlineWidth: string;
         boxShadow: string;
       };
+      colorOffset: {
+        [key in 'foreground' | 'background']: {
+          active?: IColor;
+          inactive?: IColor;
+        };
+      };
     };
     page: {
       padding: string;
@@ -180,6 +186,28 @@ export const theme: ITheme = {
       hover: {
         outlineWidth: '0.2rem',
         boxShadow: '0 0 0 0.1rem grey',
+      },
+      colorOffset: {
+        foreground: {
+          active: undefined,
+          inactive: {
+            hue: 0,
+            saturation: -50,
+            lightness: 25,
+          },
+        },
+        background: {
+          active: {
+            hue: 0,
+            saturation: -20,
+            lightness: 45,
+          },
+          inactive: {
+            hue: 0,
+            saturation: -20,
+            lightness: 50,
+          },
+        },
       },
     },
     page: {
