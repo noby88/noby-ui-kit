@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Input from '../lib/Input';
-import Card from '../lib/Card';
-import { ShowInline, variants } from './Layout';
+import { ShowInline, UsageCard, variants } from './Layout';
 
 const Inputs = () => {
   const [value, setValue] = useState('');
@@ -21,11 +20,11 @@ const Inputs = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
         'import { Input } from "noby-ui-kit"\n...\n<Input\n\tvariant={\'success\'}\n\tonChange={\n\t\t(event) => setValue(event.target.value)\n\t}\n/>'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (

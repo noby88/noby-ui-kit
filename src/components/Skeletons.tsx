@@ -1,6 +1,5 @@
-import Card from '../lib/Card';
 import Skeleton from '../lib/Skeleton';
-import { ShowInline, variants } from './Layout';
+import { ShowInline, UsageCard, variants } from './Layout';
 
 const Skeletons = () => {
   const blockSpinners = variants.map((variant) => (
@@ -8,11 +7,11 @@ const Skeletons = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
         'import { Skeleton } from "noby-ui-kit"\n...\n<Skeleton variant={"success"} />'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (
@@ -31,11 +30,11 @@ const Skeletons = () => {
         <h4>Block</h4>
         <Skeleton type={'block'} height={'5rem'} />
         <h4>Paragraph</h4>
-        <Card size={'lg'}>
+        <UsageCard size={'lg'}>
           {
             '<Skeleton\n\ttype={"paragraph"}\n\theight={"1rem"}\n\tlines={3}\n/>'
           }
-        </Card>
+        </UsageCard>
         <br />
         <Skeleton type={'paragraph'} height={'1rem'} lines={3} />
       </article>

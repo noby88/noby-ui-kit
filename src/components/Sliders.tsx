@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import Card from '../lib/Card';
 import Slider from '../lib/Slider';
-import { ShowInline, variants } from './Layout';
+import { ShowInline, UsageCard, variants } from './Layout';
 
 const Sliders = () => {
   const [selected, setSelected] = useState(2);
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
         'import { Slider } from "noby-ui-kit"\n...\n<Slider\n\tvalues={[1, 2, 3, 4, 5]}\n\tselected={selected}\n\tonChange={setSelected}\n/>'
       }
-    </Card>
+    </UsageCard>
   );
 
   const sliders = variants.map((variant) => (

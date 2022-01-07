@@ -1,7 +1,7 @@
-import React from 'react';
 import Button from '../lib/Button';
 import Card from '../lib/Card';
 import Group from '../lib/Group';
+import { UsageCard } from './Layout';
 
 const Groups = () => {
   const groupedButtons = (
@@ -27,11 +27,11 @@ const Groups = () => {
   );
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
         'import { Group } from "noby-ui-kit"\n...\n<Group>\n\t<Button>Button 1</Button>\n\t<Button>Button 2</Button>\n\t<Button>Button 3</Button>\n</Group>'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (

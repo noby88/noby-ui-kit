@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Button from '../lib/Button';
-import Card from '../lib/Card';
 import Chip from '../lib/Chip';
-import { ShowInline, variants } from './Layout';
+import { ShowInline, UsageCard, variants } from './Layout';
 
 const Chips = () => {
   const [isActive, setIsActive] = useState(true);
@@ -48,9 +47,9 @@ const Chips = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {'import { Chip } from "noby-ui-kit"\n...\n<Chip text={"Pringles"} />'}
-    </Card>
+    </UsageCard>
   );
 
   const interactiveToggle = (

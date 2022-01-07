@@ -1,6 +1,5 @@
 import Button from '../lib/Button';
-import Card from '../lib/Card';
-import { ShowInline, variants } from './Layout';
+import { ShowInline, UsageCard, variants } from './Layout';
 
 const Buttons = () => {
   const onPress = (button: string) =>
@@ -43,11 +42,11 @@ const Buttons = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
         'import { Button } from "noby-ui-kit"\n...\n<Button\n\tvariant={"success"}\n\tonClick={handleOnclick}\n>\n\tText\n</Button>'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (
