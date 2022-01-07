@@ -24,7 +24,7 @@ interface IProps {
  * @param preComponent A component to be placed at the start of the chip.
  * @param postComponent A component to be placed at the end of the chip.
  */
-const Cip = ({
+const Chip = ({
   variant = 'primary',
   backgroundVariant,
   text,
@@ -44,6 +44,8 @@ const Cip = ({
       nonPill={nonPill}
       interactive={interactive}
       active={active}
+      role={'option'}
+      aria-checked={active}
     >
       {preComponent}
       <span>{text}</span>
@@ -52,4 +54,4 @@ const Cip = ({
   );
 };
 
-export default Cip;
+export default Chip;
