@@ -20,6 +20,7 @@ export const Container = styled.div<IProps>`
   justify-content: flex-start;
   align-items: center;
   -webkit-backface-visibility: hidden;
+  user-select: none;
   ${(props) => {
     const mainOffset =
       props.theme.layout.chip.colorOffset.foreground[
@@ -29,6 +30,18 @@ export const Container = styled.div<IProps>`
       props.theme.layout.chip.colorOffset.background[
         props.active ? 'active' : 'inactive'
       ];
+    const blownOut =
+      mainOffset &&
+      props.theme.colors[props.variant].lightness + mainOffset.lightness > 90;
+    const mainColor = getHSL(
+      props.theme.colors[props.variant],
+      mainOffset,
+      blownOut ? { lightness: 90 } : undefined
+    );
+    const secondaryColor = getHSL(
+      props.theme.colors[props.variant],
+      secondaryOffset
+    );
     return `
       gap: ${props.theme.layout.chip.gap};
       ${generateCSSAttribute('padding', props.theme.layout.chip.padding)}
@@ -37,16 +50,13 @@ export const Container = styled.div<IProps>`
         props.theme.layout.chip.borderWidth
       )}
       border-style: solid;
-      border-color: ${getHSL(props.theme.colors[props.variant], mainOffset)};
+      border-color: ${mainColor};
       ${
         props.nonPill
           ? generateCSSAttribute('border-radius', props.theme.layout.corners)
           : `border-radius: 100vh;`
       }
-      background-color: ${getHSL(
-        props.theme.colors[props.backgroundVariant],
-        secondaryOffset
-      )};
+      background-color: ${secondaryColor};
 
       ${
         props.interactive
@@ -54,19 +64,23 @@ export const Container = styled.div<IProps>`
               cursor: pointer;
               outline-style: solid;
               outline-offset: -2px;
-              outline-color: ${getHSL(
-                props.theme.colors[props.variant],
-                mainOffset
-              )};
+              outline-color: ${mainColor};
               ${generateCSSAttribute(
                 'outline-width',
                 props.theme.layout.chip.hover.outlineWidth
               )}
+              ${generateCSSAttribute(
+                'box-shadow',
+                `0 0 0 ${props.theme.layout.chip.hover.boxShadowSpread} ${mainColor}`
+              )};
+            }
+            &:active {
+              box-shadow: none;
             }`
           : ''
       }
 
-      &>* { color: ${getHSL(props.theme.colors[props.variant], mainOffset)};}
+      &>* { color: ${mainColor};}
     `;
   }};
 `;

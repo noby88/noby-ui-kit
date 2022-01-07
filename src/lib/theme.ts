@@ -34,7 +34,7 @@ export interface ITheme {
       padding: string;
       width: string;
       hover: {
-        boxShadow: string;
+        boxShadowSpread: string;
       };
     };
     input: {
@@ -58,12 +58,12 @@ export interface ITheme {
       gap: string;
       hover: {
         outlineWidth: string;
-        boxShadow: string;
+        boxShadowSpread: string;
       };
       colorOffset: {
         [key in 'foreground' | 'background']: {
-          active?: IColor;
-          inactive?: IColor;
+          active: IColor;
+          inactive: IColor;
         };
       };
     };
@@ -156,7 +156,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0 0 0.1rem grey',
+        boxShadowSpread: '0.1rem',
       },
     },
     input: {
@@ -187,11 +187,15 @@ export const theme: ITheme = {
       gap: '0.5rem',
       hover: {
         outlineWidth: '0.2rem',
-        boxShadow: '0 0 0 0.1rem grey',
+        boxShadowSpread: '0.1rem',
       },
       colorOffset: {
         foreground: {
-          active: undefined,
+          active: {
+            hue: 0,
+            saturation: 0,
+            lightness: 0,
+          },
           inactive: {
             hue: 0,
             saturation: -50,

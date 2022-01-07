@@ -23,6 +23,8 @@ const Chips = () => {
       key={variant}
       variant={variant}
       text={variant}
+      interactive={isInteractive}
+      active={isActive}
       preComponent={<span>&#10084;</span>}
     />
   ));
@@ -32,6 +34,8 @@ const Chips = () => {
       key={variant}
       variant={variant}
       text={variant}
+      interactive={isInteractive}
+      active={isActive}
       postComponent={<span>&#10006;</span>}
     />
   ));
