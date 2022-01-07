@@ -41,7 +41,7 @@ const Cards = () => {
     <Slider
       values={elevations}
       selected={cardElevation}
-      onChange={setCardElevation}
+      onValueChange={setCardElevation}
     />
   );
 
@@ -49,7 +49,7 @@ const Cards = () => {
     <Slider
       values={sizes}
       selected={cardsSize}
-      onChange={setCardsSize}
+      onValueChange={setCardsSize}
       labelTransform={(value: string) => value.toUpperCase()}
     />
   );
