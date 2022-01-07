@@ -1,5 +1,5 @@
 import Spinner from '../lib/Spinner';
-import { ShowInline, UsageCard, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Spinners = () => {
   const defaultSpinners = variants.map((variant) => (
@@ -17,12 +17,12 @@ const Spinners = () => {
   return (
     <section>
       <h2>Spinners</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
         <ShowInline>{defaultSpinners}</ShowInline>
-      </article>
+      </Article>
     </section>
   );
 };

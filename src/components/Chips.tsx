@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../lib/Button';
 import Chip from '../lib/Chip';
-import { ShowInline, UsageCard, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Chips = () => {
   const [isActive, setIsActive] = useState(true);
@@ -70,7 +70,7 @@ const Chips = () => {
   return (
     <section>
       <h2>Chips</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -89,7 +89,7 @@ const Chips = () => {
         <ShowInline>{preChips}</ShowInline>
         <h4>With post component:</h4>
         <ShowInline>{postChips}</ShowInline>
-      </article>
+      </Article>
     </section>
   );
 };

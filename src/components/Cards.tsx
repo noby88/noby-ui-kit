@@ -10,6 +10,7 @@ import {
   ShowGrid,
   ShowInline,
   UsageCard,
+  Article,
 } from './Layout';
 
 const elevations: IElevation[] = [0, 1, 2, 3, 4];
@@ -73,7 +74,7 @@ const Cards = () => {
   return (
     <section>
       <h2>Cards</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -91,7 +92,7 @@ const Cards = () => {
         </ShowInline>
         <br />
         {cards}
-      </article>
+      </Article>
     </section>
   );
 };

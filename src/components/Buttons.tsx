@@ -1,5 +1,5 @@
 import Button from '../lib/Button';
-import { ShowInline, UsageCard, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Buttons = () => {
   const onPress = (button: string) =>
@@ -52,7 +52,7 @@ const Buttons = () => {
   return (
     <section>
       <h2>Buttons</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Default</h3>
@@ -61,7 +61,7 @@ const Buttons = () => {
         <ShowInline>{disabledButtons}</ShowInline>
         <h3>Loading</h3>
         <ShowInline>{loadingButtons}</ShowInline>
-      </article>
+      </Article>
     </section>
   );
 };

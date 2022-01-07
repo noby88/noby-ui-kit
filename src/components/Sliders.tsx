@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Slider from '../lib/Slider';
-import { ShowInline, UsageCard, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Sliders = () => {
   const [selected, setSelected] = useState(2);
@@ -28,7 +28,7 @@ const Sliders = () => {
   return (
     <section>
       <h2>Spinners</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -62,7 +62,7 @@ const Sliders = () => {
           onChange={setSelected}
           labelTransform={(value) => `Opt. ${value}`}
         />
-      </article>
+      </Article>
     </section>
   );
 };

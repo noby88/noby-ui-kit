@@ -1,5 +1,5 @@
 import Skeleton from '../lib/Skeleton';
-import { ShowInline, UsageCard, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Skeletons = () => {
   const blockSpinners = variants.map((variant) => (
@@ -17,7 +17,7 @@ const Skeletons = () => {
   return (
     <section>
       <h2>Skeletons</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -37,7 +37,7 @@ const Skeletons = () => {
         </UsageCard>
         <br />
         <Skeleton type={'paragraph'} height={'1rem'} lines={3} />
-      </article>
+      </Article>
     </section>
   );
 };

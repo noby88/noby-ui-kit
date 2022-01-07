@@ -78,6 +78,10 @@ export const UsageCard = styled(Card)`
   background-blend-mode: overlay, overlay, overlay, normal;
 `;
 
+export const Article = styled.article`
+  padding-left: 1rem;
+`;
+
 export const variants: IVariant[] = [
   'primary',
   'secondary',

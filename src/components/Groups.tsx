@@ -1,7 +1,7 @@
 import Button from '../lib/Button';
 import Card from '../lib/Card';
 import Group from '../lib/Group';
-import { UsageCard } from './Layout';
+import { Article, UsageCard } from './Layout';
 
 const Groups = () => {
   const groupedButtons = (
@@ -37,7 +37,7 @@ const Groups = () => {
   return (
     <section>
       <h2>Grouping</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -45,7 +45,7 @@ const Groups = () => {
         {groupedButtons}
         <h4>Grouped Cards</h4>
         {groupedCards}
-      </article>
+      </Article>
     </section>
   );
 };
