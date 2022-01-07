@@ -34,7 +34,7 @@ export interface ITheme {
       padding: string;
       width: string;
       hover: {
-        boxShadowSpread: string;
+        outlineWidth: string;
       };
     };
     input: {
@@ -58,7 +58,6 @@ export interface ITheme {
       gap: string;
       hover: {
         outlineWidth: string;
-        boxShadowSpread: string;
       };
       colorOffset: {
         [key in 'foreground' | 'background']: {
@@ -156,7 +155,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadowSpread: '0.1rem',
+        outlineWidth: '0.15rem',
       },
     },
     input: {
@@ -187,7 +186,6 @@ export const theme: ITheme = {
       gap: '0.5rem',
       hover: {
         outlineWidth: '0.2rem',
-        boxShadowSpread: '0.1rem',
       },
       colorOffset: {
         foreground: {
