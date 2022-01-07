@@ -1,7 +1,7 @@
 import React, { FC, useRef } from 'react';
-import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 import { randomId } from '../utils';
+import { IVariant } from '../theme';
 import { Container, IOrientation, StyledInput, StyledLabel } from './styles';
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {

@@ -1,4 +1,5 @@
 import {
+  FC,
   MouseEventHandler,
   TouchEventHandler,
   useCallback,
@@ -8,7 +9,6 @@ import {
 } from 'react';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
-
 import {
   Bullet,
   SliderContainer,
@@ -21,11 +21,11 @@ import {
 
 type IElement = string | number;
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: IVariant;
   values: IElement[];
   selected: IElement;
-  onChange: ((value: string) => void) | ((value: number) => void);
+  onValueChange: ((value: string) => void) | ((value: number) => void);
   showStepBullets?: boolean;
   showLabels?: boolean;
   labelVariant?: IVariant;
@@ -37,23 +37,22 @@ interface IProps {
  * @param variant Overall color variant.
  * @param values The values for the steps. The index in the array drives the indexes in the slider.
  * @param selected The currently selected value. A value from the values array.
- * @param onChange Function that receives the new value as parameter.
+ * @param onValueChange Function that receives the new value as parameter.
  * @param showLabels Flag to show of hide the labels.
  * @param labelVariant Color variant. Affects the step labels.
  * @param labelTransform A function to process the values and return as result the label to be displayed.
  */
-const Slider = (props: IProps) => {
-  const {
-    variant = 'primary',
-    values,
-    selected,
-    onChange,
-    showStepBullets = false,
-    showLabels = true,
-    labelVariant,
-    labelTransform = (value: string | number) => value,
-  } = props;
-
+const Slider: FC<IProps> = ({
+  variant = 'primary',
+  values,
+  selected,
+  onValueChange,
+  showStepBullets = false,
+  showLabels = true,
+  labelVariant,
+  labelTransform = (value: string | number) => value,
+  ...rest
+}) => {
   const [bulletOffset, setBulletOffset] = useState(0);
   const [dragging, setDragging] = useState(0);
   const [step, setStep] = useState(0);
@@ -71,11 +70,11 @@ const Slider = (props: IProps) => {
 
   useEffect(() => {
     if (dragging > step / 2) {
-      onChange(values[selectedIndex.current + 1] as never);
+      onValueChange(values[selectedIndex.current + 1] as never);
       setDragging((prev) => prev - step);
     }
     if (dragging < step / -2) {
-      onChange(values[selectedIndex.current - 1] as never);
+      onValueChange(values[selectedIndex.current - 1] as never);
       setDragging((prev) => prev + step);
     }
     setBulletOffset(withinBounds(selectedIndex.current * step + dragging));
@@ -138,7 +137,7 @@ const Slider = (props: IProps) => {
     if (event.key === 'ArrowLeft') {
       const newIndex =
         selectedIndex.current > 0 ? selectedIndex.current - 1 : 0;
-      onChange(values[newIndex] as never);
+      onValueChange(values[newIndex] as never);
     }
     if (event.key === 'ArrowRight') {
       const lastIndex = values.length - 1;
@@ -146,7 +145,7 @@ const Slider = (props: IProps) => {
         selectedIndex.current < lastIndex
           ? selectedIndex.current + 1
           : lastIndex;
-      onChange(values[newIndex] as never);
+      onValueChange(values[newIndex] as never);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -164,7 +163,7 @@ const Slider = (props: IProps) => {
           key={index}
           theme={theme}
           variant={variant}
-          onClick={() => onChange(value as never)}
+          onClick={() => onValueChange(value as never)}
         />
       ))}
     </StepContainer>
@@ -215,6 +214,7 @@ const Slider = (props: IProps) => {
       role={'slider'}
       aria-label={'slider'}
       {...ariaProps}
+      {...rest}
     >
       <Track
         ref={ref}

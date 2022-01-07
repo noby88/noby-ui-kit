@@ -76,7 +76,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | variant         | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the rail and knob       |
 | values          | `array<string \| number >` - the values for the steps                                                                        |
 | selected        | `<string \| number>` - the _selected value_ from the _values_ array                                                          |
-| onChange        | `(value: string \| number) => void` - function receiving as argument the _new value_ from the _values_ array                 |
+| onValueChange   | `(value: string \| number) => void` - function receiving as argument the _new value_ from the _values_ array                 |
 | showStepBullets | `<boolean>` - have a visual indicator where the steps are on the rail                                                        |
 | showLabels      | `<boolean>` - to show the labels above the steps                                                                             |
 | labelVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
@@ -129,9 +129,9 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
       lightness: 30,
     },
     secondary: {
-      hue: 300,
-      saturation: 70,
-      lightness: 45,
+      hue: 0,
+      saturation: 0,
+      lightness: 60,
     },
     success: {
       hue: 100,
@@ -167,7 +167,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0.1rem 0.2rem grey',
+        outlineWidth: '0.15rem',
       },
     },
     input: {
@@ -190,6 +190,40 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
         xl: '60rem',
         xxl: '80rem',
         full: '100%',
+      },
+    },
+    chip: {
+      padding: '0.3rem 0.7rem',
+      borderWidth: '0.2rem',
+      gap: '0.5rem',
+      hover: {
+        outlineWidth: '0.2rem',
+      },
+      colorOffset: {
+        foreground: {
+          active: {
+            hue: 0,
+            saturation: 0,
+            lightness: 0,
+          },
+          inactive: {
+            hue: 0,
+            saturation: -50,
+            lightness: 25,
+          },
+        },
+        background: {
+          active: {
+            hue: 0,
+            saturation: -20,
+            lightness: 45,
+          },
+          inactive: {
+            hue: 0,
+            saturation: -20,
+            lightness: 50,
+          },
+        },
       },
     },
     page: {

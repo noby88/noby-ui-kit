@@ -42,22 +42,17 @@ export const StyledButton = styled.button<{
       props.theme.colors[props.variant],
       offsetLightness
     );
-    const outline = `0.1rem solid ${offsetColor}`;
+    const outlineWidth = props.theme.layout.buttons.hover.outlineWidth;
+    const outline = `${outlineWidth} solid ${offsetColor}`;
     return props.disabled
       ? ''
       : `&:hover, &:focus-visible {
           outline: ${outline};
           touch-outline: ${outline};
           background-color: ${offsetColor};
-          ${generateCSSAttribute(
-            'box-shadow',
-            `0 0 0 ${props.theme.layout.buttons.hover.boxShadowSpread} ${getHSL(
-              props.theme.colors[props.variant]
-            )}`
-          )};
         }
         &:active {
-          box-shadow: none;
+          outline-width: calc(${outlineWidth} / 2);
         }`;
   }}
 `;

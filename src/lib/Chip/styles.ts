@@ -69,13 +69,9 @@ export const Container = styled.div<IProps>`
                 'outline-width',
                 props.theme.layout.chip.hover.outlineWidth
               )}
-              ${generateCSSAttribute(
-                'box-shadow',
-                `0 0 0 ${props.theme.layout.chip.hover.boxShadowSpread} ${mainColor}`
-              )};
             }
             &:active {
-              box-shadow: none;
+              outline: calc(${props.theme.layout.chip.hover.outlineWidth}/2);
             }`
           : ''
       }

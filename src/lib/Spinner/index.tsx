@@ -1,9 +1,9 @@
+import { FC } from 'react';
 import { useThemeContext } from '../ThemeContext';
-
 import { IVariant } from '../theme';
 import { StyledSpinner } from './styles';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: IVariant;
   size?: number;
 }
@@ -13,7 +13,7 @@ interface IProps {
  * @param variant Color variant for the spinner.
  * @param size The size of the spinner.
  */
-const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
+const Spinner: FC<IProps> = ({ variant = 'primary', size = 30, ...rest }) => {
   const theme = useThemeContext();
   return (
     <StyledSpinner
@@ -23,6 +23,7 @@ const Spinner = ({ variant = 'primary', size = 30 }: IProps) => {
       aria-busy={'true'}
       role={'status'}
       aria-label={'spinner'}
+      {...rest}
     />
   );
 };

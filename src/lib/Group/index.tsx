@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useThemeContext } from '../ThemeContext';
 import { IDirection, StyledGroup } from './styles';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   direction?: IDirection;
 }
 
@@ -10,10 +10,10 @@ interface IProps {
  *
  * @param direction Control the flow direction of the items within.
  */
-const Group: FC<IProps> = ({ children, direction = 'horizontal' }) => {
+const Group: FC<IProps> = ({ children, direction = 'horizontal', ...rest }) => {
   const theme = useThemeContext();
   return (
-    <StyledGroup theme={theme} direction={direction} role={'group'}>
+    <StyledGroup theme={theme} direction={direction} role={'group'} {...rest}>
       {children}
     </StyledGroup>
   );
