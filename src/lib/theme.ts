@@ -34,7 +34,7 @@ export interface ITheme {
       padding: string;
       width: string;
       hover: {
-        boxShadow: string;
+        boxShadowSpread: string;
       };
     };
     input: {
@@ -51,6 +51,21 @@ export interface ITheme {
       padding: string;
       border: string;
       size: { [key in ISize]: string };
+    };
+    chip: {
+      padding: string;
+      borderWidth: string;
+      gap: string;
+      hover: {
+        outlineWidth: string;
+        boxShadowSpread: string;
+      };
+      colorOffset: {
+        [key in 'foreground' | 'background']: {
+          active: IColor;
+          inactive: IColor;
+        };
+      };
     };
     page: {
       padding: string;
@@ -103,9 +118,9 @@ export const theme: ITheme = {
       lightness: 30,
     },
     secondary: {
-      hue: 300,
-      saturation: 70,
-      lightness: 45,
+      hue: 0,
+      saturation: 0,
+      lightness: 60,
     },
     success: {
       hue: 100,
@@ -141,7 +156,7 @@ export const theme: ITheme = {
       boxShadow: '',
       width: '',
       hover: {
-        boxShadow: '0 0.1rem 0.2rem grey',
+        boxShadowSpread: '0.1rem',
       },
     },
     input: {
@@ -164,6 +179,41 @@ export const theme: ITheme = {
         xl: '60rem',
         xxl: '80rem',
         full: '100%',
+      },
+    },
+    chip: {
+      padding: '0.3rem 0.7rem',
+      borderWidth: '0.2rem',
+      gap: '0.5rem',
+      hover: {
+        outlineWidth: '0.2rem',
+        boxShadowSpread: '0.1rem',
+      },
+      colorOffset: {
+        foreground: {
+          active: {
+            hue: 0,
+            saturation: 0,
+            lightness: 0,
+          },
+          inactive: {
+            hue: 0,
+            saturation: -50,
+            lightness: 25,
+          },
+        },
+        background: {
+          active: {
+            hue: 0,
+            saturation: -20,
+            lightness: 45,
+          },
+          inactive: {
+            hue: 0,
+            saturation: -20,
+            lightness: 50,
+          },
+        },
       },
     },
     page: {

@@ -51,8 +51,8 @@ export const hoverOffset = (value: IColor) => ({
 
 export const disabledOffset = (value: IColor) => ({
   hue: 0,
-  saturation: -30,
-  lightness: value.lightness < 65 ? 35 : -5,
+  saturation: -40,
+  lightness: value.lightness < 65 ? 25 : -5,
 });
 
 export const randomId = (length = 5) => {

@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import Card from '../lib/Card';
 import Slider from '../lib/Slider';
-import { ShowInline, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Sliders = () => {
   const [selected, setSelected] = useState(2);
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
-        'import Slider from "noby-ui-kit/Slider"\n...\n<Slider\n\tvalues={[1, 2, 3, 4, 5]}\n\tselected={selected}\n\tonChange={setSelected}\n/>'
+        'import { Slider } from "noby-ui-kit"\n...\n<Slider\n\tvalues={[1, 2, 3, 4, 5]}\n\tselected={selected}\n\tonChange={setSelected}\n/>'
       }
-    </Card>
+    </UsageCard>
   );
 
   const sliders = variants.map((variant) => (
@@ -29,7 +28,7 @@ const Sliders = () => {
   return (
     <section>
       <h2>Spinners</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -51,7 +50,7 @@ const Sliders = () => {
         />
         <h4>Different color labels</h4>
         <Slider
-          labelVariant={'secondary'}
+          labelVariant={'danger'}
           values={[1, 2, 3, 4, 5]}
           selected={selected}
           onChange={setSelected}
@@ -63,7 +62,7 @@ const Sliders = () => {
           onChange={setSelected}
           labelTransform={(value) => `Opt. ${value}`}
         />
-      </article>
+      </Article>
     </section>
   );
 };

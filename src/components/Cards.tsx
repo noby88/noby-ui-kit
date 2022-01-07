@@ -4,7 +4,14 @@ import Button from '../lib/Button';
 import Card from '../lib/Card';
 import Slider from '../lib/Slider';
 import { IElevation, ISize } from '../lib/theme';
-import { CenterText, variants, ShowGrid, ShowInline } from './Layout';
+import {
+  CenterText,
+  variants,
+  ShowGrid,
+  ShowInline,
+  UsageCard,
+  Article,
+} from './Layout';
 
 const elevations: IElevation[] = [0, 1, 2, 3, 4];
 const sizes: ISize[] = ['sm', 'md', 'lg', 'xl', 'xxl', 'full'];
@@ -57,17 +64,17 @@ const Cards = () => {
   );
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
-        'import Card from "noby-ui-kit/Card"\n...\n<Card elevation={2}>\n\t<Content />\n</Card>'
+        'import { Card } from "noby-ui-kit"\n...\n<Card elevation={2}>\n\t<Content />\n</Card>'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (
     <section>
       <h2>Cards</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
@@ -85,7 +92,7 @@ const Cards = () => {
         </ShowInline>
         <br />
         {cards}
-      </article>
+      </Article>
     </section>
   );
 };

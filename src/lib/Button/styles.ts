@@ -38,23 +38,26 @@ export const StyledButton = styled.button<{
 
   ${(props) => {
     const offsetLightness = hoverOffset(props.theme.colors[props.variant]);
-    const outline = `0.1rem solid ${getHSL(
+    const offsetColor = getHSL(
       props.theme.colors[props.variant],
       offsetLightness
-    )}`;
+    );
+    const outline = `0.1rem solid ${offsetColor}`;
     return props.disabled
       ? ''
       : `&:hover, &:focus-visible {
-    outline: ${outline};
-    touch-outline: ${outline};
-    background-color: ${getHSL(
-      props.theme.colors[props.variant],
-      offsetLightness
-    )};
-    ${generateCSSAttribute(
-      'box-shadow',
-      props.theme.layout.buttons.hover.boxShadow
-    )};
-  }`;
+          outline: ${outline};
+          touch-outline: ${outline};
+          background-color: ${offsetColor};
+          ${generateCSSAttribute(
+            'box-shadow',
+            `0 0 0 ${props.theme.layout.buttons.hover.boxShadowSpread} ${getHSL(
+              props.theme.colors[props.variant]
+            )}`
+          )};
+        }
+        &:active {
+          box-shadow: none;
+        }`;
   }}
 `;

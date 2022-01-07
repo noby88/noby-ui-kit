@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { useThemeContext } from '../ThemeContext';
 import { StyledPage } from './styled';
 
-const Page: FC = ({ children }) => {
+const Page: FC<HTMLElement & any> = ({ className, children }) => {
   const theme = useThemeContext();
 
   return (
-    <StyledPage theme={theme} role={'main'}>
+    <StyledPage theme={theme} role={'main'} className={className}>
       {children}
     </StyledPage>
   );

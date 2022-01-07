@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Input from '../lib/Input';
-import Card from '../lib/Card';
-import { ShowInline, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Inputs = () => {
   const [value, setValue] = useState('');
@@ -21,17 +20,17 @@ const Inputs = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
-        'import Input from "noby-ui-kit/Input"\n...\n<Input\n\tvariant={\'success\'}\n\tonChange={\n\t\t(event) => setValue(event.target.value)\n\t}\n/>'
+        'import { Input } from "noby-ui-kit"\n...\n<Input\n\tvariant={\'success\'}\n\tonChange={\n\t\t(event) => setValue(event.target.value)\n\t}\n/>'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (
     <section>
       <h2>Inputs</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Default</h3>
@@ -40,11 +39,11 @@ const Inputs = () => {
           value={value}
           onChange={(event) => setValue(event.target.value)}
         />
-        <h3>Full colored</h3>
-        <ShowInline min={'15rem'}>{colorInputs}</ShowInline>
         <h3>Disabled</h3>
         <Input label={'Disabled'} value={value} disabled={true} />
-      </article>
+        <h3>Full colored</h3>
+        <ShowInline min={'15rem'}>{colorInputs}</ShowInline>
+      </Article>
     </section>
   );
 };

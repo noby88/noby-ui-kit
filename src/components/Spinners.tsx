@@ -1,6 +1,5 @@
 import Spinner from '../lib/Spinner';
-import Card from '../lib/Card';
-import { ShowInline, variants } from './Layout';
+import { Article, ShowInline, UsageCard, variants } from './Layout';
 
 const Spinners = () => {
   const defaultSpinners = variants.map((variant) => (
@@ -8,22 +7,22 @@ const Spinners = () => {
   ));
 
   const usage = (
-    <Card size={'lg'}>
+    <UsageCard size={'lg'}>
       {
-        'import Spinner from "noby-ui-kit/Spinner"\n...\n<Spinner variant={"success"} />'
+        'import { Spinner } from "noby-ui-kit"\n...\n<Spinner variant={"success"} />'
       }
-    </Card>
+    </UsageCard>
   );
 
   return (
     <section>
       <h2>Spinners</h2>
-      <article>
+      <Article>
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Examples</h3>
         <ShowInline>{defaultSpinners}</ShowInline>
-      </article>
+      </Article>
     </section>
   );
 };
