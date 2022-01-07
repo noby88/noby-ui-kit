@@ -20,7 +20,7 @@ const Sliders = () => {
         variant={variant}
         values={[1, 2, 3, 4, 5]}
         selected={selected}
-        onChange={setSelected}
+        onValueChange={setSelected}
       />
     </div>
   ));
@@ -39,27 +39,27 @@ const Sliders = () => {
           showStepBullets={true}
           values={[1, 2, 3, 4, 5]}
           selected={selected}
-          onChange={setSelected}
+          onValueChange={setSelected}
         />
         <h4>Without labels</h4>
         <Slider
           showLabels={false}
           values={[1, 2, 3, 4, 5]}
           selected={selected}
-          onChange={setSelected}
+          onValueChange={setSelected}
         />
         <h4>Different color labels</h4>
         <Slider
           labelVariant={'danger'}
           values={[1, 2, 3, 4, 5]}
           selected={selected}
-          onChange={setSelected}
+          onValueChange={setSelected}
         />
         <h4>With transformed labels</h4>
         <Slider
           values={[1, 2, 3, 4, 5]}
           selected={selected}
-          onChange={setSelected}
+          onValueChange={setSelected}
           labelTransform={(value) => `Opt. ${value}`}
         />
       </Article>

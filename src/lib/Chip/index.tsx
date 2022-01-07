@@ -1,8 +1,9 @@
-import { IVariant } from '../theme';
+import { FC } from 'react';
 import { useThemeContext } from '../ThemeContext';
+import { IVariant } from '../theme';
 import { Container } from './styles';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: IVariant;
   backgroundVariant?: IVariant;
   text?: string;
@@ -25,7 +26,7 @@ interface IProps {
  * @param preComponent A component to be placed at the start of the chip.
  * @param postComponent A component to be placed at the end of the chip.
  */
-const Chip = ({
+const Chip: FC<IProps> = ({
   variant = 'primary',
   backgroundVariant,
   text,
@@ -35,7 +36,8 @@ const Chip = ({
   onClick,
   preComponent,
   postComponent,
-}: IProps) => {
+  ...rest
+}) => {
   const theme = useThemeContext();
 
   return (
@@ -49,6 +51,7 @@ const Chip = ({
       onClick={onClick}
       role={'option'}
       aria-checked={active}
+      {...rest}
     >
       {preComponent}
       <span>{text}</span>

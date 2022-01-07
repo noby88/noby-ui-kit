@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
-import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
+import { IVariant } from '../theme';
 import { AnimatedGradient, Block, Circle, ParagraphContainer } from './styles';
 
 type IType = 'block' | 'circle' | 'paragraph';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: IType;
   variant?: IVariant;
   height?: string;
@@ -28,6 +28,7 @@ const Skeleton: FC<IProps> = (props) => {
     height = '1.5rem',
     width = '100%',
     lines = 2,
+    ...rest
   } = props;
   const theme = useThemeContext();
   const [left, setLeft] = useState(0);
@@ -40,7 +41,12 @@ const Skeleton: FC<IProps> = (props) => {
   );
 
   return type === 'paragraph' ? (
-    <ParagraphContainer ref={setLeftFromRef} theme={theme} aria-busy={'true'}>
+    <ParagraphContainer
+      ref={setLeftFromRef}
+      theme={theme}
+      aria-busy={'true'}
+      {...rest}
+    >
       {Array(Math.max(lines, 1))
         .fill(1)
         .map((_, index) => (
