@@ -9,6 +9,7 @@ interface IProps {
   nonPill?: boolean;
   interactive?: boolean;
   active?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   preComponent?: React.ReactElement;
   postComponent?: React.ReactElement;
 }
@@ -31,6 +32,7 @@ const Chip = ({
   nonPill = false,
   interactive = false,
   active = true,
+  onClick,
   preComponent,
   postComponent,
 }: IProps) => {
@@ -44,6 +46,7 @@ const Chip = ({
       nonPill={nonPill}
       interactive={interactive}
       active={active}
+      onClick={onClick}
       role={'option'}
       aria-checked={active}
     >

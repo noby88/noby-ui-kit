@@ -6,7 +6,7 @@ import { ShowInline, variants } from './Layout';
 
 const Chips = () => {
   const [isActive, setIsActive] = useState(true);
-  const [isInteractive, setIsInteractive] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(true);
 
   const defaultChips = variants.map((variant) => (
     <Chip
@@ -15,6 +15,7 @@ const Chips = () => {
       text={variant}
       interactive={isInteractive}
       active={isActive}
+      onClick={() => console.log(`Clicked a ${variant} chip`)}
     />
   ));
 
@@ -26,6 +27,9 @@ const Chips = () => {
       interactive={isInteractive}
       active={isActive}
       preComponent={<span>&#10084;</span>}
+      onClick={() =>
+        console.log(`Clicked a ${variant} chip with an icon at the start`)
+      }
     />
   ));
 
@@ -37,6 +41,9 @@ const Chips = () => {
       interactive={isInteractive}
       active={isActive}
       postComponent={<span>&#10006;</span>}
+      onClick={() =>
+        console.log(`Clicked a ${variant} chip with icon on the end`)
+      }
     />
   ));
 
