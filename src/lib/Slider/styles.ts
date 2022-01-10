@@ -2,18 +2,15 @@ import styled from 'styled-components';
 import { IColor, ISliderTheme } from '../theme';
 import { getHSL, getHSLWithOpacity } from '../utils';
 
-export const SliderContainer = styled.div<{
-  sliderTheme: ISliderTheme;
-  fixedWidth?: string;
-}>`
+export const SliderContainer = styled.div<{ sliderTheme: ISliderTheme }>`
   position: relative;
   display: grid;
   ${(props) => {
     const offset = props.sliderTheme.label.offset;
     const margin = offset[0] === '-' ? `calc(${offset} * -1)` : offset;
     return `${
-      props.fixedWidth
-        ? `width: ${props.fixedWidth}`
+      props.sliderTheme.fixedWidth
+        ? `width: ${props.sliderTheme.fixedWidth}`
         : `min-width: ${props.sliderTheme.minWidth}`
     }; margin: ${margin} 0;`;
   }}
@@ -46,34 +43,44 @@ export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
   transitionsTime: number;
   offset: number;
   isDragged: boolean;
+  disabled?: boolean;
 }>`
   position: absolute;
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   grid-row: 1;
   grid-column: 1;
   align-self: center;
   touch-action: none;
   ${(props) => {
-    const outline = `${
-      props.sliderTheme.bullet.outline
-    } solid ${getHSLWithOpacity(props.variant, 25, {
-      hue: 0,
-      saturation: -50,
-      lightness: 0,
-    })}`;
-    return `border-radius: ${props.sliderTheme.bullet.size}; height: ${
+    const outline = props.disabled
+      ? 'none'
+      : `${props.sliderTheme.bullet.outline} solid ${getHSLWithOpacity(
+          props.variant,
+          25,
+          {
+            hue: 0,
+            saturation: -50,
+            lightness: 0,
+          },
+          {
+            lightness: 50,
+          }
+        )}`;
+    return `${props.disabled ? '' : 'cursor: pointer;'} border-radius: ${
       props.sliderTheme.bullet.size
-    }; width: ${props.sliderTheme.bullet.size}; background-color: ${getHSL(
-      props.variant
-    )}; box-shadow: ${props.sliderTheme.bullet.shadow}; ${
+    }; height: ${props.sliderTheme.bullet.size}; width: ${
+      props.sliderTheme.bullet.size
+    }; background-color: ${getHSL(props.variant)}; box-shadow: ${
+      props.sliderTheme.bullet.shadow
+    }; ${
       props.isDragged && props.transitionsTime
         ? ''
         : `transition: transform ${props.transitionsTime}ms;`
     }\
     &:hover, &:focus-visible {
       touch-outline: ${outline};
-      outline: ${outline};`;
+      outline: ${outline};
+    }`;
   }}
 `;
 

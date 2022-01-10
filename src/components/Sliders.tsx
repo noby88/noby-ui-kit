@@ -48,6 +48,13 @@ const Sliders = () => {
           selected={selected}
           onValueChange={setSelected}
         />
+        <h4>Different rail color</h4>
+        <Slider
+          trackVariant={'success'}
+          values={[1, 2, 3, 4, 5]}
+          selected={selected}
+          onValueChange={setSelected}
+        />
         <h4>Different color labels</h4>
         <Slider
           labelVariant={'danger'}
@@ -61,6 +68,13 @@ const Sliders = () => {
           selected={selected}
           onValueChange={setSelected}
           labelTransform={(value) => `Opt. ${value}`}
+        />
+        <h4>Disabled</h4>
+        <Slider
+          values={[1, 2, 3, 4, 5]}
+          selected={selected}
+          onValueChange={setSelected}
+          disabled={true}
         />
       </Article>
     </section>

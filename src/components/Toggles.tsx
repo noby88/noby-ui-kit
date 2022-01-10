@@ -15,6 +15,28 @@ const Toggles = () => {
     />
   ));
 
+  const coloredLabelToggles = variants.map((variant) => (
+    <Toggle
+      value={isOn}
+      onValueChange={setIsOn}
+      variant={variant}
+      labelVariant={variant}
+      label={variant}
+      key={variant}
+    />
+  ));
+
+  const disabledToggles = variants.map((variant) => (
+    <Toggle
+      value={isOn}
+      onValueChange={setIsOn}
+      variant={variant}
+      label={variant}
+      disabled={true}
+      key={variant}
+    />
+  ));
+
   const usage = (
     <UsageCard size={'lg'}>
       {
@@ -31,6 +53,10 @@ const Toggles = () => {
         <pre>{usage}</pre>
         <h3>Examples</h3>
         <ShowInline>{defaultToggles}</ShowInline>
+        <h3>Colored label</h3>
+        <ShowInline>{coloredLabelToggles}</ShowInline>
+        <h3>Disabled</h3>
+        <ShowInline>{disabledToggles}</ShowInline>
       </Article>
     </section>
   );

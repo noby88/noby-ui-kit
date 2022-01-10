@@ -72,6 +72,7 @@ export interface IPageTheme {
 export interface ISliderTheme {
   height: string;
   minWidth: string;
+  fixedWidth: string;
   track: {
     height: string;
     deSaturation: IColor;
@@ -141,9 +142,9 @@ export const theme: ITheme = {
       lightness: 30,
     },
     secondary: {
-      hue: 0,
-      saturation: 0,
-      lightness: 60,
+      hue: 180,
+      saturation: 70,
+      lightness: 40,
     },
     success: {
       hue: 100,
@@ -244,7 +245,8 @@ export const theme: ITheme = {
     },
     toggle: {
       height: '0.5rem',
-      minWidth: '5rem',
+      minWidth: '',
+      fixedWidth: '2.5rem',
       track: {
         height: '0.25rem',
         deSaturation: { hue: 0, saturation: -25, lightness: 15 },
@@ -264,7 +266,8 @@ export const theme: ITheme = {
     },
     slider: {
       height: '0.5rem',
-      minWidth: '10rem',
+      minWidth: '5rem',
+      fixedWidth: '',
       track: {
         height: '0.25rem',
         deSaturation: { hue: 0, saturation: -25, lightness: 15 },
