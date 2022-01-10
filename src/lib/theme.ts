@@ -72,6 +72,13 @@ export interface IPageTheme {
 export interface ISliderTheme {
   height: string;
   minWidth: string;
+  track: {
+    height: string;
+    deSaturation: IColor;
+  };
+  step: {
+    size: string;
+  };
   bullet: {
     size: string;
     shadow: string;
@@ -237,6 +244,13 @@ export const theme: ITheme = {
     slider: {
       height: '0.5rem',
       minWidth: '10rem',
+      track: {
+        height: '0.25rem',
+        deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+      },
+      step: {
+        size: '1rem',
+      },
       bullet: {
         size: '1.5rem',
         outline: '0.5rem',

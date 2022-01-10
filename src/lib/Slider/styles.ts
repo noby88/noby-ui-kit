@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { IColor, ISliderTheme } from '../theme';
 import { getHSL, getHSLWithOpacity } from '../utils';
 
-const deSaturationObject = { hue: 0, saturation: -25, lightness: 15 };
-
 export const SliderContainer = styled.div<{ sliderTheme: ISliderTheme }>`
   position: relative;
   display: grid;
@@ -22,12 +20,13 @@ export const Track = styled.div<{
   grid-row: 1;
   grid-column: 1;
   align-self: center;
-  ${(props) => {
-    const margin = `calc(${props.sliderTheme.bullet.size} / 2)`;
-    return `border-radius: ${props.corners}; margin: 0 ${margin}; height: ${
-      props.sliderTheme.height
-    }; background-color: ${getHSL(props.variant, deSaturationObject)};`;
-  }}
+  ${(props) =>
+    `border-radius: ${props.corners}; margin: 0 ${
+      props.sliderTheme.track.height
+    }; height: ${props.sliderTheme.height}; background-color: ${getHSL(
+      props.variant,
+      props.sliderTheme.track.deSaturation
+    )};`}
 `;
 
 export const Bullet = styled.div.attrs(({ offset }: { offset: number }) => ({
@@ -91,20 +90,17 @@ export const StepBullet = styled.div<{
 }>`
   cursor: pointer;
   ${(props) => {
-    const size = `calc(${props.sliderTheme.bullet.size} / 1.25)`;
+    const size = props.sliderTheme.step.size;
     return `border-radius: ${size}; height: ${size}; width: ${size}; background-color: ${getHSL(
       props.variant,
-      deSaturationObject
+      props.sliderTheme.track.deSaturation
     )};`;
   }}
 `;
 
 export const StepValueContainer = styled.div<{ sliderTheme: ISliderTheme }>`
   display: grid;
-  ${(props) => {
-    const size = `calc(${props.sliderTheme.bullet.size} / 1.25)`;
-    return `width: ${size};`;
-  }}
+  ${(props) => `width: ${props.sliderTheme.step.size};`}
 `;
 
 export const StepValue = styled.span<{
