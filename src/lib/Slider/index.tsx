@@ -62,6 +62,7 @@ const Slider: FC<IProps> = ({
   const touchPrevOffset = useRef(0);
 
   const ref = useRef<HTMLDivElement>(null);
+  const bulletRef = useRef<HTMLDivElement>(null);
 
   const theme = useThemeContext();
 
@@ -89,10 +90,13 @@ const Slider: FC<IProps> = ({
 
   useEffect(() => {
     const maxLength = Math.ceil(ref.current?.offsetWidth || 0);
-    const stepLength = Math.ceil((maxLength || 0) / (values.length - 1));
+    const stepLength = Math.ceil(
+      (maxLength - Math.ceil(bulletRef.current?.offsetWidth || 0) / 1.5) /
+        (values.length - 1)
+    );
     setStep(stepLength);
     setMaxWidth(maxLength);
-  }, [ref, values]);
+  }, [ref, bulletRef, values]);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation?.();
@@ -226,6 +230,7 @@ const Slider: FC<IProps> = ({
       {stepValues}
       {stepBullets}
       <Bullet
+        ref={bulletRef}
         offset={bulletOffset}
         onMouseDown={handleClick}
         onFocus={handleOnFocus}

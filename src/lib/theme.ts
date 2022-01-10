@@ -118,16 +118,17 @@ export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
   layout: {
-    corners: string;
-    gap: string;
     button: IButtonTheme;
-    input: IInputTheme;
     card: ICardTheme;
     chip: IChipTheme;
+    corners: string;
+    gap: string;
+    input: IInputTheme;
     page: IPageTheme;
-    slider: ISliderTheme;
     skeleton: ISkeletonTheme;
+    slider: ISliderTheme;
     surface: ISurfaceTheme;
+    toggle: ISliderTheme;
   };
 }
 
@@ -240,6 +241,26 @@ export const theme: ITheme = {
     page: {
       padding: '1rem',
       maxWidth: '70rem',
+    },
+    toggle: {
+      height: '0.5rem',
+      minWidth: '5rem',
+      track: {
+        height: '0.25rem',
+        deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+      },
+      step: {
+        size: '1rem',
+      },
+      bullet: {
+        size: '1.5rem',
+        outline: '0.5rem',
+        shadow: '0 0.1rem 0.2rem grey',
+      },
+      label: {
+        fontSize: '',
+        offset: '',
+      },
     },
     slider: {
       height: '0.5rem',

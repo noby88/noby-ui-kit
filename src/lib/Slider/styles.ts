@@ -2,13 +2,20 @@ import styled from 'styled-components';
 import { IColor, ISliderTheme } from '../theme';
 import { getHSL, getHSLWithOpacity } from '../utils';
 
-export const SliderContainer = styled.div<{ sliderTheme: ISliderTheme }>`
+export const SliderContainer = styled.div<{
+  sliderTheme: ISliderTheme;
+  fixedWidth?: string;
+}>`
   position: relative;
   display: grid;
   ${(props) => {
     const offset = props.sliderTheme.label.offset;
     const margin = offset[0] === '-' ? `calc(${offset} * -1)` : offset;
-    return `min-width: ${props.sliderTheme.minWidth}; margin: ${margin} 0;`;
+    return `${
+      props.fixedWidth
+        ? `width: ${props.fixedWidth}`
+        : `min-width: ${props.sliderTheme.minWidth}`
+    }; margin: ${margin} 0;`;
   }}
 `;
 
