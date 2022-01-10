@@ -12,11 +12,12 @@ export const StyledCard = styled.div<{
   shadowVariant: IColor;
   transitionsTime: number;
   size: ISize;
+  corners: string;
 }>`
   box-sizing: border-box;
   max-width: 100%;
   ${(props) =>
-    `border-radius: ${props.theme.layout.corners};
+    `border-radius: ${props.corners};
     border: ${props.cardTheme.border || 'none'};
     background-color: ${props.surface};
     ${generateCSSAttribute('padding', props.cardTheme.padding)}

@@ -36,7 +36,7 @@ const Input: FC<IProps> = ({
   const theme = useThemeContext();
 
   return (
-    <Container orientation={orientation} theme={theme}>
+    <Container orientation={orientation} gap={theme.layout.gap}>
       {label && (
         <StyledLabel
           variant={theme.colors[labelVariant]}
@@ -51,6 +51,8 @@ const Input: FC<IProps> = ({
         textVariant={theme.colors[textVariant]}
         placeholderVariant={theme.colors[placeholderVariant || textVariant]}
         corners={theme.layout.corners}
+        surface={theme.layout.surface.paper}
+        disabledSurface={theme.layout.surface.disabledPaper}
         id={inputID.current}
         name={rest.placeholder || 'input'}
         aria-label={label || 'unlabeled input'}

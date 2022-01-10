@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IColor, IInputTheme, ITheme } from '../theme';
+import { IColor, IInputTheme } from '../theme';
 import {
   disabledOffset,
   generateCSSAttribute,
@@ -10,14 +10,14 @@ import {
 export type IOrientation = 'stack' | 'inline';
 
 export const Container = styled.div<{
-  theme: ITheme;
   orientation: IOrientation;
+  gap: string;
 }>`
   display: flex;
   ${(props) =>
     props.orientation === 'stack'
       ? 'flex-direction: column; gap: 0.3rem;'
-      : `gap: ${props.theme.layout.gap}; align-items: center;`}
+      : `gap: ${props.gap}; align-items: center;`}
 `;
 
 export const StyledInput = styled.input<{
@@ -26,16 +26,15 @@ export const StyledInput = styled.input<{
   textVariant: IColor;
   placeholderVariant?: IColor;
   corners: string;
+  surface: string;
+  disabledSurface: string;
 }>`
   ${(props) =>
     `width: ${props.width || props.inputTheme.width || 'auto'};
     padding: ${props.inputTheme.padding};
     border-radius: ${props.corners};
     ${props.textVariant ? `color: ${getHSL(props.textVariant)};` : ''}
-    ${generateCSSAttribute(
-      'background-color',
-      props.theme.layout.surface.paper
-    )}
+    ${generateCSSAttribute('background-color', props.surface)}
     ${generateCSSAttribute('box-shadow', props.inputTheme.boxShadow)}
     ${generateCSSAttribute('font-size', props.inputTheme.fontSize)}
     ${generateCSSAttribute('border-width', props.inputTheme.border.width)}
@@ -49,10 +48,7 @@ export const StyledInput = styled.input<{
       )}
     }
     &:disabled {
-      ${generateCSSAttribute(
-        'background-color',
-        props.theme.layout.surface.disabledPaper
-      )}
+      ${generateCSSAttribute('background-color', props.disabledSurface)}
       ${generateCSSAttribute(
         'border-color',
         getHSL(props.variant, disabledOffset(props.variant))
@@ -72,6 +68,6 @@ export const StyledInput = styled.input<{
     }`}
 `;
 
-export const StyledLabel = styled.label<{ theme: ITheme; variant?: IColor }>`
+export const StyledLabel = styled.label<{ variant?: IColor }>`
   ${(props) => (props.variant ? `color: ${getHSL(props.variant)};` : '')}
 `;

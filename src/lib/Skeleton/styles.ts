@@ -70,13 +70,12 @@ export const Block = styled.div<{
   variant: IColor;
   height: string;
   width: string;
+  corners: string;
   lastLine?: boolean;
 }>`
   overflow: hidden;
   ${(props) =>
-    `border-radius: ${props.theme.layout.corners}; height: ${
-      props.height
-    }; width: ${
+    `border-radius: ${props.corners}; height: ${props.height}; width: ${
       props.lastLine
         ? `calc(${props.width} - ${props.skeletonTheme.paragraph.lastRowTrunc})`
         : props.width

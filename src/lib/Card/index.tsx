@@ -34,6 +34,7 @@ const Card: FC<IProps> = ({
       surface={theme.layout.surface.middle}
       shadowVariant={theme.colors[shadowVariant]}
       transitionsTime={theme.transitionsTime}
+      corners={theme.layout.corners}
       size={size}
       role={'contentinfo'}
       aria-label={'card'}
