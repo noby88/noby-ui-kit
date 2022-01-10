@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ICardTheme, IColor, ISize, ISurfaceTheme } from '../theme';
+import { ICardTheme, IColor, ISize } from '../theme';
 import { generateCSSAttribute, getHSLWithOpacity } from '../utils';
 
 const boxShadowOffset = '0 0.1rem';
@@ -8,7 +8,7 @@ export const StyledCard = styled.div<{
   elevation: number;
   interactive: boolean;
   cardTheme: ICardTheme;
-  surfaceTheme: ISurfaceTheme;
+  surface: string;
   shadowVariant: IColor;
   transitionsTime: number;
   size: ISize;
@@ -18,7 +18,7 @@ export const StyledCard = styled.div<{
   ${(props) =>
     `border-radius: ${props.theme.layout.corners};
     border: ${props.cardTheme.border || 'none'};
-    background-color: ${props.surfaceTheme.middle};
+    background-color: ${props.surface};
     ${generateCSSAttribute('padding', props.cardTheme.padding)}
     width: ${props.cardTheme.size[props.size]};`}
   box-shadow: ${(props) =>

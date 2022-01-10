@@ -8,7 +8,12 @@ const Page: FC<IProps> = ({ children, ...rest }) => {
   const theme = useThemeContext();
 
   return (
-    <StyledPage theme={theme} role={'main'} {...rest}>
+    <StyledPage
+      pageTheme={theme.layout.page}
+      surface={theme.layout.surface.base}
+      role={'main'}
+      {...rest}
+    >
       {children}
     </StyledPage>
   );

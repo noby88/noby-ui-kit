@@ -1,11 +1,14 @@
 import styled from 'styled-components';
-import { ITheme } from '../theme';
+import { IPageTheme } from '../theme';
 
-export const StyledPage = styled.main<{ theme: ITheme }>`
+export const StyledPage = styled.main<{
+  pageTheme: IPageTheme;
+  surface: string;
+}>`
   ${(props) => `
-    background-color: ${props.theme.layout.surface.base};
-    padding: ${props.theme.layout.page.padding};
-    max-width: ${props.theme.layout.page.maxWidth};
+    background-color: ${props.surface};
+    padding: ${props.pageTheme.padding};
+    max-width: ${props.pageTheme.maxWidth};
     margin-left: auto;
     margin-right: auto;
   `}
