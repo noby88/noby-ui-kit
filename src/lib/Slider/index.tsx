@@ -157,12 +157,12 @@ const Slider: FC<IProps> = ({
     document.removeEventListener('keydown', handleKeyPressed);
 
   const stepBullets = showStepBullets && (
-    <StepContainer theme={theme}>
+    <StepContainer sliderTheme={theme.layout.slider}>
       {values.map((value, index) => (
         <StepBullet
           key={index}
-          theme={theme}
-          variant={variant}
+          sliderTheme={theme.layout.slider}
+          variant={theme.colors[variant]}
           onClick={() => onValueChange(value as never)}
         />
       ))}
@@ -170,13 +170,13 @@ const Slider: FC<IProps> = ({
   );
 
   const stepValues = showLabels && (
-    <StepContainer theme={theme}>
+    <StepContainer sliderTheme={theme.layout.slider}>
       {values.map((value, index) => (
-        <StepValueContainer key={index} theme={theme}>
+        <StepValueContainer key={index} sliderTheme={theme.layout.slider}>
           <StepValue
             selected={value === selected}
-            theme={theme}
-            variant={labelVariant || variant}
+            sliderTheme={theme.layout.slider}
+            variant={theme.colors[labelVariant || variant]}
           >
             {labelTransform(value as never)}
           </StepValue>
@@ -210,7 +210,7 @@ const Slider: FC<IProps> = ({
 
   return (
     <SliderContainer
-      theme={theme}
+      sliderTheme={theme.layout.slider}
       role={'slider'}
       aria-label={'slider'}
       {...ariaProps}
@@ -218,8 +218,9 @@ const Slider: FC<IProps> = ({
     >
       <Track
         ref={ref}
-        variant={variant}
-        theme={theme}
+        variant={theme.colors[variant]}
+        sliderTheme={theme.layout.slider}
+        corners={theme.layout.corners}
         aria-label={'slider-track'}
       />
       {stepValues}
@@ -232,8 +233,9 @@ const Slider: FC<IProps> = ({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchEnd}
-        theme={theme}
-        variant={variant}
+        sliderTheme={theme.layout.slider}
+        variant={theme.colors[variant]}
+        transitionsTime={theme.transitionsTime}
         tabIndex={0}
         isDragged={!!dragging}
         role={'option'}
