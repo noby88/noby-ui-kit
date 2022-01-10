@@ -37,13 +37,18 @@ const Skeleton: FC<IProps> = (props) => {
     setLeft(ref?.getBoundingClientRect().x || 0);
 
   const animation = (
-    <AnimatedGradient variant={variant} theme={theme} left={left} />
+    <AnimatedGradient
+      skeletonTheme={theme.layout.skeleton}
+      variant={theme.colors[variant]}
+      theme={theme}
+      left={left}
+    />
   );
 
   return type === 'paragraph' ? (
     <ParagraphContainer
       ref={setLeftFromRef}
-      theme={theme}
+      skeletonTheme={theme.layout.skeleton}
       aria-busy={'true'}
       {...rest}
     >
@@ -52,10 +57,11 @@ const Skeleton: FC<IProps> = (props) => {
         .map((_, index) => (
           <Block
             key={index}
-            variant={variant}
+            variant={theme.colors[variant]}
             height={height}
             width={width}
-            theme={theme}
+            corners={theme.layout.corners}
+            skeletonTheme={theme.layout.skeleton}
             lastLine={index === lines - 1}
           >
             {animation}
@@ -65,10 +71,10 @@ const Skeleton: FC<IProps> = (props) => {
   ) : type === 'circle' ? (
     <Circle
       ref={setLeftFromRef}
-      variant={variant}
+      variant={theme.colors[variant]}
       height={height}
       width={width}
-      theme={theme}
+      skeletonTheme={theme.layout.skeleton}
       aria-busy={'true'}
     >
       {animation}
@@ -76,10 +82,11 @@ const Skeleton: FC<IProps> = (props) => {
   ) : (
     <Block
       ref={setLeftFromRef}
-      variant={variant}
+      variant={theme.colors[variant]}
       height={height}
       width={width}
-      theme={theme}
+      corners={theme.layout.corners}
+      skeletonTheme={theme.layout.skeleton}
       aria-busy={'true'}
     >
       {animation}

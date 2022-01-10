@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ITheme, IVariant } from '../theme';
+import { IButtonTheme, IColor } from '../theme';
 import {
   disabledOffset,
   generateCSSAttribute,
@@ -9,8 +9,9 @@ import {
 } from '../utils';
 
 export const StyledButton = styled.button<{
-  theme: ITheme;
-  variant: IVariant;
+  buttonTheme: IButtonTheme;
+  variant: IColor;
+  corners: string;
   disabled?: boolean;
   loading?: boolean;
   width?: string;
@@ -20,29 +21,21 @@ export const StyledButton = styled.button<{
   border: none;
   font-size: 1rem;
   ${(props) =>
-    `width: ${props.width || props.theme.layout.buttons.width || 'auto'};
+    `width: ${props.width || props.buttonTheme.width || 'auto'};
     background-color: ${
       props.disabled
-        ? getHSL(
-            props.theme.colors[props.variant],
-            disabledOffset(props.theme.colors[props.variant])
-          )
-        : getHSL(props.theme.colors[props.variant])
+        ? getHSL(props.variant, disabledOffset(props.variant))
+        : getHSL(props.variant)
     };
-    ${generateCSSAttribute('padding', props.theme.layout.buttons.padding)}
-    ${generateCSSAttribute('border-radius', props.theme.layout.corners)}
-    ${generateCSSAttribute('box-shadow', props.theme.layout.buttons.boxShadow)}
-    color: ${
-      props.theme.colors[props.variant].lightness > 60 ? 'black' : 'white'
-    };`}
+    ${generateCSSAttribute('padding', props.buttonTheme.padding)}
+    ${generateCSSAttribute('border-radius', props.corners)}
+    ${generateCSSAttribute('box-shadow', props.buttonTheme.boxShadow)}
+    color: ${props.variant.lightness > 60 ? 'black' : 'white'};`}
 
   ${(props) => {
-    const offsetLightness = hoverOffset(props.theme.colors[props.variant]);
-    const offsetColor = getHSL(
-      props.theme.colors[props.variant],
-      offsetLightness
-    );
-    const outlineWidth = props.theme.layout.buttons.hover.outlineWidth;
+    const offsetLightness = hoverOffset(props.variant);
+    const offsetColor = getHSL(props.variant, offsetLightness);
+    const outlineWidth = props.buttonTheme.hover.outlineWidth;
     const outline = `${outlineWidth} solid ${offsetColor}`;
     return props.disabled
       ? ''

@@ -30,6 +30,8 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   showLabels?: boolean;
   labelVariant?: IVariant;
   labelTransform?: ((value: string) => any) | ((value: number) => any);
+  trackVariant?: IVariant;
+  disabled?: boolean;
 }
 
 /**
@@ -41,6 +43,8 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
  * @param showLabels Flag to show of hide the labels.
  * @param labelVariant Color variant. Affects the step labels.
  * @param labelTransform A function to process the values and return as result the label to be displayed.
+ * @param trackVariant The color variant of the track if different from the main color variant.
+ * @param disabled Flag to render the component as disabled.
  */
 const Slider: FC<IProps> = ({
   variant = 'primary',
@@ -51,6 +55,8 @@ const Slider: FC<IProps> = ({
   showLabels = true,
   labelVariant,
   labelTransform = (value: string | number) => value,
+  trackVariant,
+  disabled,
   ...rest
 }) => {
   const [bulletOffset, setBulletOffset] = useState(0);
@@ -62,6 +68,7 @@ const Slider: FC<IProps> = ({
   const touchPrevOffset = useRef(0);
 
   const ref = useRef<HTMLDivElement>(null);
+  const bulletRef = useRef<HTMLDivElement>(null);
 
   const theme = useThemeContext();
 
@@ -89,10 +96,13 @@ const Slider: FC<IProps> = ({
 
   useEffect(() => {
     const maxLength = Math.ceil(ref.current?.offsetWidth || 0);
-    const stepLength = Math.ceil((maxLength || 0) / (values.length - 1));
+    const stepLength = Math.ceil(
+      (maxLength - Math.ceil(bulletRef.current?.offsetWidth || 0) / 1.5) /
+        (values.length - 1)
+    );
     setStep(stepLength);
     setMaxWidth(maxLength);
-  }, [ref, values]);
+  }, [ref, bulletRef, values]);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation?.();
@@ -157,26 +167,26 @@ const Slider: FC<IProps> = ({
     document.removeEventListener('keydown', handleKeyPressed);
 
   const stepBullets = showStepBullets && (
-    <StepContainer theme={theme}>
+    <StepContainer sliderTheme={theme.layout.slider}>
       {values.map((value, index) => (
         <StepBullet
           key={index}
-          theme={theme}
-          variant={variant}
-          onClick={() => onValueChange(value as never)}
+          sliderTheme={theme.layout.slider}
+          variant={theme.colors[variant]}
+          onClick={disabled ? undefined : () => onValueChange(value as never)}
         />
       ))}
     </StepContainer>
   );
 
   const stepValues = showLabels && (
-    <StepContainer theme={theme}>
+    <StepContainer sliderTheme={theme.layout.slider}>
       {values.map((value, index) => (
-        <StepValueContainer key={index} theme={theme}>
+        <StepValueContainer key={index} sliderTheme={theme.layout.slider}>
           <StepValue
             selected={value === selected}
-            theme={theme}
-            variant={labelVariant || variant}
+            sliderTheme={theme.layout.slider}
+            variant={theme.colors[labelVariant || variant]}
           >
             {labelTransform(value as never)}
           </StepValue>
@@ -208,9 +218,19 @@ const Slider: FC<IProps> = ({
     'aria-valuetext': string;
   };
 
+  const colorVariant = {
+    hue: theme.colors[variant].hue,
+    saturation: disabled ? 0 : theme.colors[variant].saturation,
+    lightness: disabled ? 80 : theme.colors[variant].lightness,
+  };
+
+  const trackColor = disabled
+    ? { hue: 0, saturation: 0, lightness: 75 }
+    : theme.colors[trackVariant || variant];
+
   return (
     <SliderContainer
-      theme={theme}
+      sliderTheme={theme.layout.slider}
       role={'slider'}
       aria-label={'slider'}
       {...ariaProps}
@@ -218,24 +238,28 @@ const Slider: FC<IProps> = ({
     >
       <Track
         ref={ref}
-        variant={variant}
-        theme={theme}
+        variant={trackColor}
+        sliderTheme={theme.layout.slider}
+        corners={theme.layout.corners}
         aria-label={'slider-track'}
       />
       {stepValues}
       {stepBullets}
       <Bullet
+        ref={bulletRef}
         offset={bulletOffset}
-        onMouseDown={handleClick}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onTouchCancel={handleTouchEnd}
-        theme={theme}
-        variant={variant}
+        onMouseDown={disabled ? undefined : handleClick}
+        onFocus={disabled ? undefined : handleOnFocus}
+        onBlur={disabled ? undefined : handleOnBlur}
+        onTouchStart={disabled ? undefined : handleTouchStart}
+        onTouchEnd={disabled ? undefined : handleTouchEnd}
+        onTouchCancel={disabled ? undefined : handleTouchEnd}
+        sliderTheme={theme.layout.slider}
+        variant={colorVariant}
+        transitionsTime={theme.transitionsTime}
         tabIndex={0}
         isDragged={!!dragging}
+        disabled={disabled}
         role={'option'}
         aria-label={'slider-knob'}
       />

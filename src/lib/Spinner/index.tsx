@@ -17,8 +17,7 @@ const Spinner: FC<IProps> = ({ variant = 'primary', size = 30, ...rest }) => {
   const theme = useThemeContext();
   return (
     <StyledSpinner
-      theme={theme}
-      variant={variant}
+      variant={theme.colors[variant]}
       size={size}
       aria-busy={'true'}
       role={'status'}

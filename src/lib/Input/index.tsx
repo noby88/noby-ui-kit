@@ -17,16 +17,16 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
  *
  * @param variant Color variant. Effects the border.
  * @param textVariant Color variant. Effects the input text.
- * @param labe String to be displayed as the label.
- * @param labeVariant Color variant. Effects the text in the label.
+ * @param label String to be displayed as the label.
+ * @param labelVariant Color variant. Effects the text in the label.
  * @param placeholderVariant Color variant. Effects the placeholder text.
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
  */
 const Input: FC<IProps> = ({
   variant = 'primary',
-  textVariant,
+  textVariant = 'dark',
   label,
-  labelVariant,
+  labelVariant = 'dark',
   placeholderVariant,
   orientation = 'stack',
   id,
@@ -36,23 +36,25 @@ const Input: FC<IProps> = ({
   const theme = useThemeContext();
 
   return (
-    <Container orientation={orientation} theme={theme}>
+    <Container orientation={orientation} gap={theme.layout.gap}>
       {label && (
         <StyledLabel
-          variant={labelVariant}
-          theme={theme}
+          variant={theme.colors[labelVariant]}
           htmlFor={inputID.current}
         >
           {label}
         </StyledLabel>
       )}
       <StyledInput
-        variant={variant}
-        textVariant={textVariant}
-        placeholderVariant={placeholderVariant}
+        inputTheme={theme.layout.input}
+        variant={theme.colors[variant]}
+        textVariant={theme.colors[textVariant]}
+        placeholderVariant={theme.colors[placeholderVariant || textVariant]}
+        corners={theme.layout.corners}
+        surface={theme.layout.surface.paper}
+        disabledSurface={theme.layout.surface.disabledPaper}
         id={inputID.current}
         name={rest.placeholder || 'input'}
-        theme={theme}
         aria-label={label || 'unlabeled input'}
         aria-disabled={rest.disabled}
         {...rest}

@@ -11,6 +11,7 @@ import Groups from './components/Groups';
 import Sliders from './components/Sliders';
 import Skeletons from './components/Skeletons';
 import Chips from './components/Chips';
+import Toggles from './components/Toggles';
 
 const Container = styled(Page)`
   background-color: hsl(0 0% 99% / 0.5);
@@ -23,6 +24,7 @@ const App = () => (
       <Buttons />
       <Inputs />
       <Spinners />
+      <Toggles />
       <Chips />
       <Sliders />
       <Cards />

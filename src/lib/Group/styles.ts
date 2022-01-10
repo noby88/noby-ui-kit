@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { ITheme } from '../theme';
 
 export type IDirection = 'vertical' | 'horizontal';
 
 export const StyledGroup = styled.div<{
-  theme: ITheme;
+  corners: string;
   direction: IDirection;
 }>`
   display: flex;
@@ -12,15 +11,13 @@ export const StyledGroup = styled.div<{
   width: fit-content;
   ${(props) =>
     `flex-direction: ${props.direction === 'horizontal' ? 'row' : 'column'};
-    & > *:first-child { border-radius: ${props.theme.layout.corners} ${
-      props.direction === 'horizontal' ? '0' : props.theme.layout.corners
-    } 0 ${
-      props.direction === 'horizontal' ? props.theme.layout.corners : '0'
-    } };
+    & > *:first-child { border-radius: ${props.corners} ${
+      props.direction === 'horizontal' ? '0' : props.corners
+    } 0 ${props.direction === 'horizontal' ? props.corners : '0'} };
     & > *:last-child { border-radius: 0 ${
-      props.direction === 'horizontal' ? props.theme.layout.corners : '0'
-    } ${props.theme.layout.corners} ${
-      props.direction === 'horizontal' ? '0' : props.theme.layout.corners
+      props.direction === 'horizontal' ? props.corners : '0'
+    } ${props.corners} ${
+      props.direction === 'horizontal' ? '0' : props.corners
     } };`}
 
   & > * {

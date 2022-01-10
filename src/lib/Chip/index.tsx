@@ -42,9 +42,10 @@ const Chip: FC<IProps> = ({
 
   return (
     <Container
-      theme={theme}
-      variant={variant}
-      backgroundVariant={backgroundVariant || variant}
+      chipTheme={theme.layout.chip}
+      variant={theme.colors[variant]}
+      backgroundVariant={theme.colors[backgroundVariant || variant]}
+      corners={theme.layout.corners}
       nonPill={nonPill}
       interactive={interactive}
       active={active}

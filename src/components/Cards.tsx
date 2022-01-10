@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Button from '../lib/Button';
 
 import Card from '../lib/Card';
 import Slider from '../lib/Slider';
 import { IElevation, ISize } from '../lib/theme';
+import Toggle from '../lib/Toggle';
 import {
   CenterText,
   variants,
@@ -54,15 +54,6 @@ const Cards = () => {
     />
   );
 
-  const interactiveToggle = (
-    <Button
-      title={'toggle interactive'}
-      onClick={() => setIsInteractive(!isInteractive)}
-    >
-      {isInteractive ? 'Interactive' : 'Not interactive'}
-    </Button>
-  );
-
   const usage = (
     <UsageCard size={'lg'}>
       {
@@ -79,17 +70,18 @@ const Cards = () => {
         <pre>{usage}</pre>
         <h3>Examples</h3>
         <ShowInline min={'15rem'}>
-          <h4>Elevation:</h4>
+          <h4>Elevation</h4>
           {elevationsSelector}
         </ShowInline>
         <ShowInline min={'15rem'}>
-          <h4>Card size:</h4>
+          <h4>Card size</h4>
           {sizeSelector}
         </ShowInline>
-        <ShowInline min={'15rem'}>
-          <h4>Animate on hover:</h4>
-          {interactiveToggle}
-        </ShowInline>
+        <Toggle
+          label={'Animate on hover'}
+          value={isInteractive}
+          onValueChange={setIsInteractive}
+        />
         <br />
         {cards}
       </Article>
