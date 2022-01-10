@@ -13,7 +13,12 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 const Group: FC<IProps> = ({ children, direction = 'horizontal', ...rest }) => {
   const theme = useThemeContext();
   return (
-    <StyledGroup theme={theme} direction={direction} role={'group'} {...rest}>
+    <StyledGroup
+      corners={theme.layout.corners}
+      direction={direction}
+      role={'group'}
+      {...rest}
+    >
       {children}
     </StyledGroup>
   );
