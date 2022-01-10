@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { ITheme, IVariant } from '../theme';
+import { IColor } from '../theme';
 import { getHSL } from '../utils';
 
 const animation = keyframes`
@@ -11,8 +11,7 @@ const animation = keyframes`
 `;
 
 export const StyledSpinner = styled.div<{
-  theme: ITheme;
-  variant: IVariant;
+  variant: IColor;
   size: number;
 }>`
   box-sizing: border-box;
@@ -23,7 +22,5 @@ export const StyledSpinner = styled.div<{
     `width: ${props.size / 10}rem;
     height: ${props.size / 10}rem;
     border: ${props.size / 100}rem solid transparent;
-    border-top: ${props.size / 100}rem solid ${getHSL(
-      props.theme.colors[props.variant]
-    )};`}
+    border-top: ${props.size / 100}rem solid ${getHSL(props.variant)};`}
 `;
