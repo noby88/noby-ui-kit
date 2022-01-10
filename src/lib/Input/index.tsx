@@ -24,9 +24,9 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
  */
 const Input: FC<IProps> = ({
   variant = 'primary',
-  textVariant,
+  textVariant = 'dark',
   label,
-  labelVariant,
+  labelVariant = 'dark',
   placeholderVariant,
   orientation = 'stack',
   id,
@@ -39,20 +39,20 @@ const Input: FC<IProps> = ({
     <Container orientation={orientation} theme={theme}>
       {label && (
         <StyledLabel
-          variant={labelVariant}
-          theme={theme}
+          variant={theme.colors[labelVariant]}
           htmlFor={inputID.current}
         >
           {label}
         </StyledLabel>
       )}
       <StyledInput
-        variant={variant}
-        textVariant={textVariant}
-        placeholderVariant={placeholderVariant}
+        inputTheme={theme.layout.input}
+        variant={theme.colors[variant]}
+        textVariant={theme.colors[textVariant]}
+        placeholderVariant={theme.colors[placeholderVariant || textVariant]}
+        corners={theme.layout.corners}
         id={inputID.current}
         name={rest.placeholder || 'input'}
-        theme={theme}
         aria-label={label || 'unlabeled input'}
         aria-disabled={rest.disabled}
         {...rest}
