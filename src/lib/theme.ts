@@ -23,88 +23,104 @@ export type IElevation = 0 | 1 | 2 | 3 | 4;
 
 export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 
+export interface IButtonTheme {
+  boxShadow: string;
+  padding: string;
+  width: string;
+  hover: {
+    outlineWidth: string;
+  };
+}
+
+export interface IInputTheme {
+  boxShadow: string;
+  padding: string;
+  width: string;
+  fontSize: string;
+  border: {
+    width: string;
+    style: string;
+  };
+}
+
+export interface ICardTheme {
+  padding: string;
+  border: string;
+  size: { [key in ISize]: string };
+}
+
+export interface IChipTheme {
+  padding: string;
+  borderWidth: string;
+  gap: string;
+  hover: {
+    outlineWidth: string;
+  };
+  colorOffset: {
+    [key in 'foreground' | 'background']: {
+      active: IColor;
+      inactive: IColor;
+    };
+  };
+}
+
+export interface IPageTheme {
+  padding: string;
+  maxWidth: string;
+}
+
+export interface ISliderTheme {
+  height: string;
+  minWidth: string;
+  bullet: {
+    size: string;
+    shadow: string;
+    outline: string;
+  };
+  label: {
+    fontSize: string;
+    offset: string;
+  };
+}
+
+export interface ISkeletonTheme {
+  animation: {
+    duration: number;
+    accentWidth: string;
+  };
+  colors: {
+    deSaturation: number;
+    lightness: number;
+    accentLightnessOffset: number;
+  };
+  paragraph: {
+    gap: string;
+    lastRowTrunc: string;
+  };
+}
+
+export interface ISurfaceTheme {
+  base: string;
+  middle: string;
+  top: string;
+  paper: string;
+  disabledPaper: string;
+}
+
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
   layout: {
     corners: string;
     gap: string;
-    buttons: {
-      boxShadow: string;
-      padding: string;
-      width: string;
-      hover: {
-        outlineWidth: string;
-      };
-    };
-    input: {
-      boxShadow: string;
-      padding: string;
-      width: string;
-      fontSize: string;
-      border: {
-        width: string;
-        style: string;
-      };
-    };
-    card: {
-      padding: string;
-      border: string;
-      size: { [key in ISize]: string };
-    };
-    chip: {
-      padding: string;
-      borderWidth: string;
-      gap: string;
-      hover: {
-        outlineWidth: string;
-      };
-      colorOffset: {
-        [key in 'foreground' | 'background']: {
-          active: IColor;
-          inactive: IColor;
-        };
-      };
-    };
-    page: {
-      padding: string;
-      maxWidth: string;
-    };
-    slider: {
-      height: string;
-      minWidth: string;
-      bullet: {
-        size: string;
-        shadow: string;
-        outline: string;
-      };
-      label: {
-        fontSize: string;
-        offset: string;
-      };
-    };
-    skeleton: {
-      animation: {
-        duration: number;
-        accentWidth: string;
-      };
-      colors: {
-        deSaturation: number;
-        lightness: number;
-        accentLightnessOffset: number;
-      };
-      paragraph: {
-        gap: string;
-        lastRowTrunc: string;
-      };
-    };
-    surface: {
-      base: string;
-      middle: string;
-      top: string;
-      paper: string;
-      disabledPaper: string;
-    };
+    button: IButtonTheme;
+    input: IInputTheme;
+    card: ICardTheme;
+    chip: IChipTheme;
+    page: IPageTheme;
+    slider: ISliderTheme;
+    skeleton: ISkeletonTheme;
+    surface: ISurfaceTheme;
   };
 }
 
@@ -150,7 +166,7 @@ export const theme: ITheme = {
   layout: {
     corners: '0.5rem',
     gap: '1rem',
-    buttons: {
+    button: {
       padding: '0.7rem 1rem',
       boxShadow: '',
       width: '',
