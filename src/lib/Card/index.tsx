@@ -30,8 +30,10 @@ const Card: FC<IProps> = ({
     <StyledCard
       elevation={elevation}
       interactive={interactive}
-      theme={theme}
-      shadowVariant={shadowVariant}
+      cardTheme={theme.layout.card}
+      surfaceTheme={theme.layout.surface}
+      shadowVariant={theme.colors[shadowVariant]}
+      transitionsTime={theme.transitionsTime}
       size={size}
       role={'contentinfo'}
       aria-label={'card'}
