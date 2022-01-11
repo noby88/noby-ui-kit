@@ -218,14 +218,12 @@ const Slider: FC<IProps> = ({
     'aria-valuetext': string;
   };
 
-  const colorVariant = {
-    hue: theme.colors[variant].hue,
-    saturation: disabled ? 0 : theme.colors[variant].saturation,
-    lightness: disabled ? 80 : theme.colors[variant].lightness,
-  };
+  const colorVariant = disabled
+    ? theme.layout.slider.bullet.disabled
+    : theme.colors[variant];
 
   const trackColor = disabled
-    ? { hue: 0, saturation: 0, lightness: 75 }
+    ? theme.layout.slider.track.disabled
     : theme.colors[trackVariant || variant];
 
   return (

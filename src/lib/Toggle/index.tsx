@@ -92,14 +92,16 @@ const Toggle: FC<IProps> = ({
   const handleOnBlur = () =>
     document.removeEventListener('keydown', handleKeyPressed);
 
-  const colorVariant = {
-    hue: theme.colors[variant].hue,
-    saturation: disabled ? 0 : value ? theme.colors[variant].saturation : 10,
-    lightness: disabled ? 80 : value ? theme.colors[variant].lightness : 90,
-  };
+  const colorVariant = disabled
+    ? theme.layout.toggle.bullet.disabled
+    : {
+        hue: theme.colors[variant].hue,
+        saturation: value ? theme.colors[variant].saturation : 10,
+        lightness: value ? theme.colors[variant].lightness : 90,
+      };
 
   const trackColor = disabled
-    ? { hue: 0, saturation: 0, lightness: 75 }
+    ? theme.layout.toggle.track.disabled
     : theme.colors[trackVariant || variant];
 
   return (
