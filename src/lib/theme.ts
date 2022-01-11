@@ -76,6 +76,7 @@ export interface ISliderTheme {
   track: {
     height: string;
     deSaturation: IColor;
+    disabled: IColor;
   };
   step: {
     size: string;
@@ -84,6 +85,7 @@ export interface ISliderTheme {
     size: string;
     shadow: string;
     outline: string;
+    disabled: IColor;
   };
   label: {
     fontSize: string;
@@ -250,6 +252,7 @@ export const theme: ITheme = {
       track: {
         height: '0.25rem',
         deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
       },
       step: {
         size: '1rem',
@@ -258,6 +261,7 @@ export const theme: ITheme = {
         size: '1.5rem',
         outline: '0.5rem',
         shadow: '0 0.1rem 0.2rem grey',
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
       },
       label: {
         fontSize: '',
@@ -271,6 +275,7 @@ export const theme: ITheme = {
       track: {
         height: '0.25rem',
         deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
       },
       step: {
         size: '1rem',
@@ -279,6 +284,7 @@ export const theme: ITheme = {
         size: '1.5rem',
         outline: '0.5rem',
         shadow: '0 0.1rem 0.2rem grey',
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
       },
       label: {
         fontSize: '1rem',
