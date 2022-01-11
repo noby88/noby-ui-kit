@@ -1,10 +1,22 @@
-# This is not ready to be used!
+# More updates to be expected!
 
-## Accessability and customization is the main focus
+## What this package IS
 
-All components by default with aria props.
+Accessability and customization is the main focus. All components by default with aria props.
 
 Any of the styling can be overwritten (recommended with Styled Components). None of the headaches when needing to change the styling juts a bit. One of the motives behind this package are the frustration with other UI kits like Material UI when it comes to adding your unique twist.
+
+The styling is bland and generic on purpure. It is meant to be more of a base which you can expend upon. Components are both mouse, keyboard and touch friendly.
+
+On of focus points it for the package to be light weight, both in performance impact and in the package size it self.
+
+## What this package IS NOT
+
+It is not intended to be a fit for any need.
+
+No complex and fancy animations.
+
+The default `onClick`, `onChange` and similar props can be still accessibly to be used as you wish, they are not overwritten or hidden by the components.
 
 ## Example
 
@@ -67,6 +79,20 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | variant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the element |
 | size    | `<number>` - relate to the root font size                                                                        |
 
+### **Toggle**
+
+> A toggle or switch. Could be a good alternative for a checkbox.
+
+| Prop          | Expected value                                                                                                               |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| variant       | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the rail and knob       |
+| value         | `<boolean>` - the values to be represented                                                                                   |
+| onValueChange | `(value: boolean) => void` - function receiving as argument the _new value_                                                  |
+| label         | `<string>` - the text to be shown as the label                                                                               |
+| labelVariant  | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
+| trackVariant  | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the track can have a different color |
+| disabled      | `<boolean>` - the component will not react or trigger the onValueChange function                                             |
+
 ### **Slider**
 
 > A slider with predefined steps. Could be a good alternative for a dropdown list with ew options.
@@ -81,6 +107,8 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | showLabels      | `<boolean>` - to show the labels above the steps                                                                             |
 | labelVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
 | labelTransform  | `(value: string \| number) => any` - function taking the _values_ as arguments                                               |
+| trackVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the track can have a different color |
+| disabled        | `<boolean>` - the component will not react or trigger the onValueChange function                                             |
 
 ### **Card**
 
@@ -109,13 +137,13 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 
 > Intended to be used as a placeholder while data is being loaded.
 
-| Prop          | Expected value                                                                                                                      |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| type          | `'block' \| 'circle' \| 'paragraph'`                                                                                                |
-| shadowVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'`                                               |
-| height        | `<string>` - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph. |
-| width         | `<string>` - The widht in case of type Blocke. The with of the long lines in case of type Paragraph.                                |
-| lines         | `<number>` - Has effect only if of type Paragraph.                                                                                  |
+| Prop          | Expected value                                                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| type          | `'block' \| 'circle' \| 'paragraph'`                                                                                               |
+| shadowVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'`                                              |
+| height        | `<string>` - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph |
+| width         | `<string>` - The width in case of type Block. The with of the long lines in case of type Paragraph                                 |
+| lines         | `<number>` - Has effect only if of type Paragraph                                                                                  |
 
 ## Default Theme object
 
@@ -129,9 +157,9 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
       lightness: 30,
     },
     secondary: {
-      hue: 0,
-      saturation: 0,
-      lightness: 60,
+      hue: 180,
+      saturation: 70,
+      lightness: 40,
     },
     success: {
       hue: 100,
@@ -162,7 +190,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
   layout: {
     corners: '0.5rem',
     gap: '1rem',
-    buttons: {
+    button: {
       padding: '0.7rem 1rem',
       boxShadow: '',
       width: '',
@@ -230,13 +258,46 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
       padding: '1rem',
       maxWidth: '70rem',
     },
-    slider: {
+    toggle: {
       height: '0.5rem',
-      minWidth: '10rem',
+      minWidth: '',
+      fixedWidth: '2.5rem',
+      track: {
+        height: '0.25rem',
+        deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
+      },
+      step: {
+        size: '1rem',
+      },
       bullet: {
         size: '1.5rem',
         outline: '0.5rem',
         shadow: '0 0.1rem 0.2rem grey',
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
+      },
+      label: {
+        fontSize: '',
+        offset: '',
+      },
+    },
+    slider: {
+      height: '0.5rem',
+      minWidth: '5rem',
+      fixedWidth: '',
+      track: {
+        height: '0.25rem',
+        deSaturation: { hue: 0, saturation: -25, lightness: 15 },
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
+      },
+      step: {
+        size: '1rem',
+      },
+      bullet: {
+        size: '1.5rem',
+        outline: '0.5rem',
+        shadow: '0 0.1rem 0.2rem grey',
+        disabled: { hue: 0, saturation: 0, lightness: 80 },
       },
       label: {
         fontSize: '1rem',
