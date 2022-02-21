@@ -10,7 +10,7 @@ const Page: FC<IProps> = ({ children, ...rest }) => {
   return (
     <StyledPage
       pageTheme={theme.layout.page}
-      surface={theme.layout.surface.base}
+      surface={theme.surface[theme.layout.page.background]}
       role={'main'}
       {...rest}
     >

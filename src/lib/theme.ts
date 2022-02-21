@@ -124,17 +124,17 @@ export interface ISkeletonTheme {
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
+  surface: ISurfaceTheme;
+  corners: string;
+  gap: string;
   layout: {
     button: IButtonTheme;
     card: ICardTheme;
     chip: IChipTheme;
-    corners: string;
-    gap: string;
     input: IInputTheme;
     page: IPageTheme;
     skeleton: ISkeletonTheme;
     slider: ISliderTheme;
-    surface: ISurfaceTheme;
     toggle: ISliderTheme;
   };
 }
@@ -178,9 +178,17 @@ export const theme: ITheme = {
       lightness: 95,
     },
   },
+  surface: {
+    base: 'hsl(0 0% 99%)',
+    middle: 'hsl(0 0% 97%)',
+    high: 'hsl(0 0% 96%)',
+    top: 'hsl(0 0% 95%)',
+    paper: 'hsl(0 0% 100%)',
+    disabledPaper: 'hsl(0 0% 96%)',
+  },
+  corners: '0.5rem',
+  gap: '1rem',
   layout: {
-    corners: '0.5rem',
-    gap: '1rem',
     button: {
       padding: '0.7rem 1rem',
       boxShadow: '',
@@ -313,14 +321,6 @@ export const theme: ITheme = {
         gap: '0.5rem',
         lastRowTrunc: '10%',
       },
-    },
-    surface: {
-      base: 'hsl(0 0% 99%)',
-      middle: 'hsl(0 0% 97%)',
-      high: 'hsl(0 0% 96%)',
-      top: 'hsl(0 0% 95%)',
-      paper: 'hsl(0 0% 100%)',
-      disabledPaper: 'hsl(0 0% 96%)',
     },
   },
 };

@@ -60,7 +60,7 @@ const Skeleton: FC<IProps> = (props) => {
             variant={theme.colors[variant]}
             height={height}
             width={width}
-            corners={theme.layout.corners}
+            corners={theme.corners}
             skeletonTheme={theme.layout.skeleton}
             lastLine={index === lines - 1}
           >
@@ -85,7 +85,7 @@ const Skeleton: FC<IProps> = (props) => {
       variant={theme.colors[variant]}
       height={height}
       width={width}
-      corners={theme.layout.corners}
+      corners={theme.corners}
       skeletonTheme={theme.layout.skeleton}
       aria-busy={'true'}
     >

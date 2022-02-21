@@ -238,7 +238,7 @@ const Slider: FC<IProps> = ({
         ref={ref}
         variant={trackColor}
         sliderTheme={theme.layout.slider}
-        corners={theme.layout.corners}
+        corners={theme.corners}
         aria-label={'slider-track'}
       />
       {stepValues}
