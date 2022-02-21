@@ -23,6 +23,14 @@ export type IElevation = 0 | 1 | 2 | 3 | 4;
 
 export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 
+export interface ISurfaceTheme {
+  base: string;
+  middle: string;
+  high: string;
+  top: string;
+  paper: string;
+  disabledPaper: string;
+}
 export interface IButtonTheme {
   boxShadow: string;
   padding: string;
@@ -41,12 +49,15 @@ export interface IInputTheme {
     width: string;
     style: string;
   };
+  background: keyof ISurfaceTheme;
+  disabledBackground: keyof ISurfaceTheme;
 }
 
 export interface ICardTheme {
   padding: string;
   border: string;
   size: { [key in ISize]: string };
+  background: keyof ISurfaceTheme;
 }
 
 export interface IChipTheme {
@@ -67,6 +78,7 @@ export interface IChipTheme {
 export interface IPageTheme {
   padding: string;
   maxWidth: string;
+  background: keyof ISurfaceTheme;
 }
 
 export interface ISliderTheme {
@@ -107,14 +119,6 @@ export interface ISkeletonTheme {
     gap: string;
     lastRowTrunc: string;
   };
-}
-
-export interface ISurfaceTheme {
-  base: string;
-  middle: string;
-  top: string;
-  paper: string;
-  disabledPaper: string;
 }
 
 export interface ITheme {
@@ -194,6 +198,8 @@ export const theme: ITheme = {
         width: '2px',
         style: 'solid',
       },
+      background: 'paper',
+      disabledBackground: 'disabledPaper',
     },
     card: {
       padding: '0.7rem 1rem',
@@ -206,6 +212,7 @@ export const theme: ITheme = {
         xxl: '80rem',
         full: '100%',
       },
+      background: 'middle',
     },
     chip: {
       padding: '0.3rem 0.7rem',
@@ -244,6 +251,7 @@ export const theme: ITheme = {
     page: {
       padding: '1rem',
       maxWidth: '70rem',
+      background: 'base',
     },
     toggle: {
       height: '0.5rem',
@@ -309,6 +317,7 @@ export const theme: ITheme = {
     surface: {
       base: 'hsl(0 0% 99%)',
       middle: 'hsl(0 0% 97%)',
+      high: 'hsl(0 0% 96%)',
       top: 'hsl(0 0% 95%)',
       paper: 'hsl(0 0% 100%)',
       disabledPaper: 'hsl(0 0% 96%)',
