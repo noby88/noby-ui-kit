@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/noby-ui-kit/static/js/main.ff87b7ea.chunk.js",
+    "main.js.map": "/noby-ui-kit/static/js/main.ff87b7ea.chunk.js.map",
+    "runtime-main.js": "/noby-ui-kit/static/js/runtime-main.648aa6ff.js",
+    "runtime-main.js.map": "/noby-ui-kit/static/js/runtime-main.648aa6ff.js.map",
+    "static/js/2.1148ccbd.chunk.js": "/noby-ui-kit/static/js/2.1148ccbd.chunk.js",
+    "static/js/2.1148ccbd.chunk.js.map": "/noby-ui-kit/static/js/2.1148ccbd.chunk.js.map",
+    "static/js/3.1f6580cd.chunk.js": "/noby-ui-kit/static/js/3.1f6580cd.chunk.js",
+    "static/js/3.1f6580cd.chunk.js.map": "/noby-ui-kit/static/js/3.1f6580cd.chunk.js.map",
+    "index.html": "/noby-ui-kit/index.html",
+    "static/js/2.1148ccbd.chunk.js.LICENSE.txt": "/noby-ui-kit/static/js/2.1148ccbd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.648aa6ff.js",
+    "static/js/2.1148ccbd.chunk.js",
+    "static/js/main.ff87b7ea.chunk.js"
+  ]
+}
