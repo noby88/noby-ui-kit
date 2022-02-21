@@ -51,8 +51,10 @@ const Input: FC<IProps> = ({
         textVariant={theme.colors[textVariant]}
         placeholderVariant={theme.colors[placeholderVariant || textVariant]}
         corners={theme.layout.corners}
-        surface={theme.layout.surface.paper}
-        disabledSurface={theme.layout.surface.disabledPaper}
+        surface={theme.layout.surface[theme.layout.input.background]}
+        disabledSurface={
+          theme.layout.surface[theme.layout.input.disabledBackground]
+        }
         id={inputID.current}
         name={rest.placeholder || 'input'}
         aria-label={label || 'unlabeled input'}
