@@ -105,7 +105,7 @@ const Toggle: FC<IProps> = ({
     : theme.colors[trackVariant || variant];
 
   return (
-    <Container gap={theme.layout.gap}>
+    <Container gap={theme.gap}>
       {label && (
         <StyledLabel
           htmlFor={inputID.current}
@@ -126,7 +126,7 @@ const Toggle: FC<IProps> = ({
           ref={ref}
           variant={trackColor}
           sliderTheme={theme.layout.toggle}
-          corners={theme.layout.corners}
+          corners={theme.corners}
           aria-label={'toggle-track'}
         />
         <Bullet

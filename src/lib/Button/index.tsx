@@ -25,7 +25,7 @@ const Button: FC<IProps> = ({
     <StyledButton
       buttonTheme={theme.layout.button}
       variant={theme.colors[variant]}
-      corners={theme.layout.corners}
+      corners={theme.corners}
       disabled={rest.disabled || loading}
       type={'button'}
       aria-live={'polite'}

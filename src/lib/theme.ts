@@ -23,6 +23,14 @@ export type IElevation = 0 | 1 | 2 | 3 | 4;
 
 export type ISize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'full';
 
+export interface ISurfaceTheme {
+  base: string;
+  middle: string;
+  high: string;
+  top: string;
+  paper: string;
+  disabledPaper: string;
+}
 export interface IButtonTheme {
   boxShadow: string;
   padding: string;
@@ -41,12 +49,15 @@ export interface IInputTheme {
     width: string;
     style: string;
   };
+  background: keyof ISurfaceTheme;
+  disabledBackground: keyof ISurfaceTheme;
 }
 
 export interface ICardTheme {
   padding: string;
   border: string;
   size: { [key in ISize]: string };
+  background: keyof ISurfaceTheme;
 }
 
 export interface IChipTheme {
@@ -67,6 +78,7 @@ export interface IChipTheme {
 export interface IPageTheme {
   padding: string;
   maxWidth: string;
+  background: keyof ISurfaceTheme;
 }
 
 export interface ISliderTheme {
@@ -109,28 +121,20 @@ export interface ISkeletonTheme {
   };
 }
 
-export interface ISurfaceTheme {
-  base: string;
-  middle: string;
-  top: string;
-  paper: string;
-  disabledPaper: string;
-}
-
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
+  surface: ISurfaceTheme;
+  corners: string;
+  gap: string;
   layout: {
     button: IButtonTheme;
     card: ICardTheme;
     chip: IChipTheme;
-    corners: string;
-    gap: string;
     input: IInputTheme;
     page: IPageTheme;
     skeleton: ISkeletonTheme;
     slider: ISliderTheme;
-    surface: ISurfaceTheme;
     toggle: ISliderTheme;
   };
 }
@@ -174,9 +178,17 @@ export const theme: ITheme = {
       lightness: 95,
     },
   },
+  surface: {
+    base: 'hsl(0 0% 99%)',
+    middle: 'hsl(0 0% 97%)',
+    high: 'hsl(0 0% 96%)',
+    top: 'hsl(0 0% 95%)',
+    paper: 'hsl(0 0% 100%)',
+    disabledPaper: 'hsl(0 0% 96%)',
+  },
+  corners: '0.5rem',
+  gap: '1rem',
   layout: {
-    corners: '0.5rem',
-    gap: '1rem',
     button: {
       padding: '0.7rem 1rem',
       boxShadow: '',
@@ -194,6 +206,8 @@ export const theme: ITheme = {
         width: '2px',
         style: 'solid',
       },
+      background: 'paper',
+      disabledBackground: 'disabledPaper',
     },
     card: {
       padding: '0.7rem 1rem',
@@ -206,6 +220,7 @@ export const theme: ITheme = {
         xxl: '80rem',
         full: '100%',
       },
+      background: 'middle',
     },
     chip: {
       padding: '0.3rem 0.7rem',
@@ -244,6 +259,7 @@ export const theme: ITheme = {
     page: {
       padding: '1rem',
       maxWidth: '70rem',
+      background: 'base',
     },
     toggle: {
       height: '0.5rem',
@@ -305,13 +321,6 @@ export const theme: ITheme = {
         gap: '0.5rem',
         lastRowTrunc: '10%',
       },
-    },
-    surface: {
-      base: 'hsl(0 0% 99%)',
-      middle: 'hsl(0 0% 97%)',
-      top: 'hsl(0 0% 95%)',
-      paper: 'hsl(0 0% 100%)',
-      disabledPaper: 'hsl(0 0% 96%)',
     },
   },
 };

@@ -4,7 +4,7 @@
 
 Accessability and customization is the main focus. All components by default with aria props.
 
-Any of the styling can be overwritten (recommended with Styled Components). None of the headaches when needing to change the styling juts a bit. One of the motives behind this package are the frustration with other UI kits like Material UI when it comes to adding your unique twist.
+Non-opinionated by design! Any of the styling can be overwritten (recommended with Styled Components). None of the headaches when needing to change the styling juts a bit. One of the motives behind this package are the frustration with other UI kits like Material UI when it comes to adding your unique twist.
 
 The styling is bland and generic on purpure. It is meant to be more of a base which you can expend upon. Components are both mouse, keyboard and touch friendly.
 
@@ -207,6 +207,8 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
         width: '2px',
         style: 'solid',
       },
+      background: 'paper',
+      disabledBackground: 'disabledPaper',
     },
     card: {
       padding: '0.7rem 1rem',
@@ -219,6 +221,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
         xxl: '80rem',
         full: '100%',
       },
+      background: 'middle',
     },
     chip: {
       padding: '0.3rem 0.7rem',
@@ -257,6 +260,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
     page: {
       padding: '1rem',
       maxWidth: '70rem',
+      background: 'base',
     },
     toggle: {
       height: '0.5rem',
@@ -322,6 +326,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
     surface: {
       base: 'hsl(0 0% 99%)',
       middle: 'hsl(0 0% 97%)',
+      high: 'hsl(0 0% 96%)',
       top: 'hsl(0 0% 95%)',
       paper: 'hsl(0 0% 100%)',
       disabledPaper: 'hsl(0 0% 96%)',

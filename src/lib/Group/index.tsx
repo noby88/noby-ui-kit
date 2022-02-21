@@ -14,7 +14,7 @@ const Group: FC<IProps> = ({ children, direction = 'horizontal', ...rest }) => {
   const theme = useThemeContext();
   return (
     <StyledGroup
-      corners={theme.layout.corners}
+      corners={theme.corners}
       direction={direction}
       role={'group'}
       {...rest}
