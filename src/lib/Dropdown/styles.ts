@@ -22,7 +22,9 @@ export const Options = styled.div<{
   max-height: 0;
   overflow: hidden;
   ${(props) =>
-    `transition: max-height ${props.duration}ms ease-in;
+    `transition: max-height ${props.duration}ms ease-in, box-shadow ${
+      props.duration
+    }ms ease-in;
     ${generateCSSAttribute('background-color', props.background)}
     ${generateCSSAttribute('top', props.offset)}
     ${generateCSSAttribute('border-radius', props.corners)}}

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Input from '../Input';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
@@ -36,14 +36,47 @@ interface IProps {
  * @param placeholderVariant Color variant. Effects the placeholder text.
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
  * @param chevron A component to be rendered as the chevron.
+ * @param options An array of options. { value: string | number, content: React.ReactNode}[].
  */
 const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
   const theme = useThemeContext();
   const mainContainerRef = useRef<HTMLDivElement>(null);
+  const dropdownContainerRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const checkOutsideClick = (event: PointerEvent) => {
+    if (
+      dropdownContainerRef.current &&
+      !dropdownContainerRef.current?.contains((event as any)?.target)
+    ) {
+      hideDropdownContent();
+    }
+  };
+
+  const hideDropdownContent = () => {
+    setIsOpen(false);
+    document.removeEventListener('pointerdown', checkOutsideClick);
+  };
+
+  const showDropdownContent = () => {
+    setIsOpen(true);
+    document.addEventListener('pointerdown', checkOutsideClick);
+  };
+
+  const toggleOpen = () =>
+    isOpen ? hideDropdownContent() : showDropdownContent();
+
+  const selectOption = (value: string | number) => {
+    console.log('selected', value);
+    hideDropdownContent();
+  };
+
+  useEffect(
+    () => document.removeEventListener('pointerdown', checkOutsideClick),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const chevronTheme = theme.layout.dropdown.chevron;
   const chevronContent = chevron || chevronTheme.content;
@@ -53,7 +86,7 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
   const offset = `calc(${optionsTheme.offset} + ${mainContainerRef.current?.clientHeight}px)`;
 
   return (
-    <DropdownContainer>
+    <DropdownContainer ref={dropdownContainerRef}>
       <MainContainer
         ref={mainContainerRef}
         onClick={toggleOpen}
@@ -82,12 +115,15 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
         boxShadow={optionsTheme.boxShadow}
         zIndex={optionsTheme.zIndex}
         className={isOpen ? 'show' : undefined}
+        aria-hidden={!isOpen}
       >
         {options.map((option) => (
           <Option
             key={option.value}
             hoverBackground={theme.surface.high}
             gap={optionsTheme.gap}
+            onClick={() => selectOption(option.value)}
+            role={'option'}
           >
             {option.content}
           </Option>
