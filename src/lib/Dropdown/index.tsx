@@ -1,8 +1,19 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import Input from '../Input';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
-import { MainContainer, RotatingChevron } from './styles';
+import {
+  DropdownContainer,
+  MainContainer,
+  Option,
+  Options,
+  RotatingChevron,
+} from './styles';
+
+interface IOption {
+  value: string | number;
+  content: React.ReactNode;
+}
 
 interface IProps {
   variant?: IVariant;
@@ -12,6 +23,7 @@ interface IProps {
   placeholder?: string;
   placeholderVariant?: IVariant;
   chevron?: React.ReactNode;
+  options: IOption[];
 }
 
 /**
@@ -25,37 +37,63 @@ interface IProps {
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
  * @param chevron A component to be rendered as the chevron.
  */
-const Dropdown: FC<IProps> = ({ chevron, ...rest }) => {
+const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
   const theme = useThemeContext();
+  const mainContainerRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
   const chevronTheme = theme.layout.dropdown.chevron;
-
   const chevronContent = chevron || chevronTheme.content;
-
   const colorVariant = theme.colors[rest.variant || 'primary'];
 
+  const optionsTheme = theme.layout.dropdown.options;
+  const offset = `calc(${optionsTheme.offset} + ${mainContainerRef.current?.clientHeight}px)`;
+
   return (
-    <div>
+    <DropdownContainer>
       <MainContainer
+        ref={mainContainerRef}
         onClick={toggleOpen}
         variant={colorVariant}
         theme={theme.layout.button}
         corners={theme.corners || 'none'}
+        role={'listbox'}
       >
         <Input {...rest} />
         <RotatingChevron
           isOpen={isOpen}
           rotation={chevronTheme.rotation}
+          axis={chevronTheme.rotationAxis}
           chevronColor={colorVariant}
+          duration={theme.transitionsTime}
         >
           {chevronContent}
         </RotatingChevron>
       </MainContainer>
-    </div>
+      <Options
+        isOpen={isOpen}
+        background={theme.surface.middle}
+        corners={theme.corners}
+        offset={offset}
+        duration={theme.transitionsTime}
+        boxShadow={optionsTheme.boxShadow}
+        zIndex={optionsTheme.zIndex}
+        className={isOpen ? 'show' : undefined}
+      >
+        {options.map((option) => (
+          <Option
+            key={option.value}
+            hoverBackground={theme.surface.high}
+            gap={optionsTheme.gap}
+          >
+            {option.content}
+          </Option>
+        ))}
+      </Options>
+    </DropdownContainer>
   );
 };
 

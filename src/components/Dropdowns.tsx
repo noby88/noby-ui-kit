@@ -7,11 +7,18 @@ const Dropdowns = () => {
 
   const placeholderText = 'Select an options';
 
+  const options = [
+    { value: 1, content: 'First' },
+    { value: 2, content: 'Second' },
+    { value: 3, content: 'Third' },
+  ];
+
   const colorDropdowns = variants.map((variant) => (
     <Dropdown
       variant={variant}
       placeholder={placeholderText}
       placeholderVariant={variant}
+      options={options}
     />
   ));
 
@@ -36,10 +43,14 @@ const Dropdowns = () => {
         <h3>Usage</h3>
         <pre>{usage}</pre>
         <h3>Default</h3>
-        <Dropdown placeholder={placeholderText} />
+        <Dropdown placeholder={placeholderText} options={options} />
         <h3>Custom chevron</h3>
         <pre>{customChevronUsage}</pre>
-        <Dropdown placeholder={placeholderText} chevron={<div>◒</div>} />
+        <Dropdown
+          placeholder={placeholderText}
+          chevron={<div>◒</div>}
+          options={options}
+        />
         <h3>Colors</h3>
         <ShowInline>{colorDropdowns}</ShowInline>
       </Article>
