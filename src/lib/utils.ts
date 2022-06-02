@@ -1,4 +1,4 @@
-import { IColor, IColorPartial } from './theme';
+import { IColor } from './theme';
 
 const capNumberToRange = (
   number: number,
@@ -8,7 +8,7 @@ const capNumberToRange = (
 const getHSLValues = (
   color: IColor,
   offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
-  hardSet?: IColorPartial
+  hardSet?: Partial<IColor>
 ) =>
   `${capNumberToRange(hardSet?.hue || color.hue + offset.hue, {
     from: 0,
@@ -30,14 +30,14 @@ const getHSLValues = (
 export const getHSL = (
   color: IColor,
   offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
-  hardSet?: IColorPartial
+  hardSet?: Partial<IColor>
 ) => `hsl(${getHSLValues(color, offset, hardSet)})`;
 
 export const getHSLWithOpacity = (
   color: IColor,
   opacity: number = 0,
   offset: IColor = { hue: 0, saturation: 0, lightness: 0 },
-  hardSet?: IColorPartial
+  hardSet?: Partial<IColor>
 ) => `hsla(${getHSLValues(color, offset, hardSet)} / ${opacity}%)`;
 
 export const generateCSSAttribute = (attribute: string, value: string) =>

@@ -4,12 +4,6 @@ export interface IColor {
   lightness: number;
 }
 
-export interface IColorPartial {
-  hue?: number;
-  saturation?: number;
-  lightness?: number;
-}
-
 export type IVariant =
   | 'primary'
   | 'secondary'
@@ -121,6 +115,14 @@ export interface ISkeletonTheme {
   };
 }
 
+export interface IDropdownTheme {
+  chevron: {
+    rightOffset: string;
+    content: string;
+    rotation: 'clockwise' | 'counter-clockwise';
+  };
+}
+
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
@@ -132,6 +134,7 @@ export interface ITheme {
     card: ICardTheme;
     chip: IChipTheme;
     input: IInputTheme;
+    dropdown: IDropdownTheme;
     page: IPageTheme;
     skeleton: ISkeletonTheme;
     slider: ISliderTheme;
@@ -254,6 +257,13 @@ export const theme: ITheme = {
             lightness: 50,
           },
         },
+      },
+    },
+    dropdown: {
+      chevron: {
+        rightOffset: '0.5rem',
+        content: '▼',
+        rotation: 'clockwise',
       },
     },
     page: {
