@@ -1,4 +1,12 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Input from '../Input';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
@@ -10,12 +18,13 @@ import {
   Options,
   RotatingChevron,
 } from './styles';
+import { containsAllWords } from './utils';
 
 type IValue = string | number;
 
 interface IOption {
   value: IValue;
-  content: React.ReactNode;
+  content: ReactElement | string | number;
 }
 
 interface IProps {
@@ -29,6 +38,7 @@ interface IProps {
   options: IOption[];
   selectedValue: IValue;
   onSelect?: (value: IValue) => void;
+  searchable?: boolean;
   disabled?: boolean;
 }
 
@@ -45,6 +55,7 @@ interface IProps {
  * @param options An array of options. { value: string | number, content: React.ReactNode}[].
  * @param selectedValue The selected value from the options.
  * @param onSelect A function receiving the selected items value.
+ * @param searchable Flag for the main element to act as a search input.
  * @param disabled Flag to render a disabled dropdown.
  */
 const Dropdown: FC<IProps> = ({
@@ -52,14 +63,17 @@ const Dropdown: FC<IProps> = ({
   options,
   selectedValue,
   onSelect,
+  searchable = false,
   ...rest
 }) => {
   const theme = useThemeContext();
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState<string>('');
 
   const checkOutsideClick = (event: PointerEvent) => {
     if (
@@ -72,6 +86,7 @@ const Dropdown: FC<IProps> = ({
 
   const hideDropdownContent = () => {
     setIsOpen(false);
+    setSearch('');
     document.removeEventListener('pointerdown', checkOutsideClick);
   };
 
@@ -94,15 +109,27 @@ const Dropdown: FC<IProps> = ({
     hideDropdownContent();
   };
 
+  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearch(event.target.value);
+  };
+
   useEffect(
     () => document.removeEventListener('pointerdown', checkOutsideClick),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
+  useEffect(() => {
+    if (searchable && inputRef && isOpen) {
+      inputRef.current?.focus();
+    } else {
+      inputRef.current?.blur();
+    }
+  }, [searchable, isOpen, inputRef]);
+
   const handleKeyPressed = useCallback((event: KeyboardEvent) => {
     if ([' ', 'Enter', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
-      event.preventDefault();
+      document.activeElement === inputRef.current || event.preventDefault();
       showDropdownContent();
     }
     const selectedIndex = optionsRef.current.findIndex(
@@ -128,6 +155,9 @@ const Dropdown: FC<IProps> = ({
         hideDropdownContent();
       }
     }
+    if (event.key === 'Escape') {
+      hideDropdownContent();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -147,6 +177,11 @@ const Dropdown: FC<IProps> = ({
 
   const selectedItem = options.find((option) => option.value === selectedValue);
 
+  // Ternary operator to avoid computation if not searchable
+  const filteredOptions = searchable
+    ? options.filter((option) => containsAllWords(option.content, search))
+    : options;
+
   return (
     <DropdownContainer ref={dropdownContainerRef}>
       <MainContainer
@@ -164,10 +199,16 @@ const Dropdown: FC<IProps> = ({
       >
         {['number', 'string', 'undefined'].includes(
           typeof selectedItem?.content
-        ) ? (
+        ) ||
+        (searchable && isOpen) ? (
           <Input
-            value={(selectedItem as IOption)?.content?.toString() || ''}
-            onChange={() => null}
+            ref={inputRef}
+            value={
+              searchable
+                ? search
+                : (selectedItem as IOption)?.content?.toString() || ''
+            }
+            onChange={handleSearch}
             {...rest}
           />
         ) : (
@@ -209,7 +250,7 @@ const Dropdown: FC<IProps> = ({
         className={isOpen ? 'show' : undefined}
         aria-hidden={!isOpen}
       >
-        {options.map((option, index) => (
+        {filteredOptions.map((option, index) => (
           <Option
             key={option.value}
             ref={(element) => {

@@ -63,7 +63,8 @@ export const Options = styled.div<{
     &.show {
       display: grid;
       box-shadow: ${props.boxShadow};
-      max-height: 10rem;
+      max-height: 15rem;
+      overflow-y: auto;
     }`}
 `;
 
@@ -133,7 +134,7 @@ export const MainContainer = styled.div<{
     const outlineWidth = props.theme.hover.outlineWidth;
     const outline = `${outlineWidth} solid ${offsetColor}`;
     return props.disabled
-      ? ''
+      ? `& > * { pointer-events: none; }`
       : `&:hover, &:focus-visible {
           outline: ${outline};
           touch-outline: ${outline};

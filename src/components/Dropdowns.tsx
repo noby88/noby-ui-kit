@@ -70,6 +70,12 @@ const Dropdowns = () => {
     </UsageCard>
   );
 
+  const searchableUsage = (
+    <UsageCard size={'lg'}>
+      {'<Dropdown\n\t...\n\tsearchable={true}\n/>'}
+    </UsageCard>
+  );
+
   return (
     <section>
       <h2>Dropdowns</h2>
@@ -109,6 +115,15 @@ const Dropdowns = () => {
           options={customOptions}
           selectedValue={value}
           onSelect={setValue}
+        />
+        <h3>Searchable</h3>
+        <pre>{searchableUsage}</pre>
+        <Dropdown
+          placeholder={placeholderText}
+          options={customOptions}
+          selectedValue={value}
+          onSelect={setValue}
+          searchable={true}
         />
       </Article>
     </section>
