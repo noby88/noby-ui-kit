@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Button from '../lib/Button';
 import { Article, ShowInline, UsageCard, variants } from './Layout';
 

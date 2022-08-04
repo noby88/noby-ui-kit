@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import { FC, useRef } from 'react';
 import { useThemeContext } from '../ThemeContext';
 import { randomId } from '../utils';
 import { IVariant } from '../theme';

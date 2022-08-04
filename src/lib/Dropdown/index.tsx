@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import Input from '../Input';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 import {
+  CustomContainer,
   DropdownContainer,
   MainContainer,
   Option,
@@ -10,8 +11,10 @@ import {
   RotatingChevron,
 } from './styles';
 
+type IValue = string | number;
+
 interface IOption {
-  value: string | number;
+  value: IValue;
   content: React.ReactNode;
 }
 
@@ -24,6 +27,9 @@ interface IProps {
   placeholderVariant?: IVariant;
   chevron?: React.ReactNode;
   options: IOption[];
+  selectedValue: IValue;
+  onSelect?: (value: IValue) => void;
+  disabled?: boolean;
 }
 
 /**
@@ -37,11 +43,21 @@ interface IProps {
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
  * @param chevron A component to be rendered as the chevron.
  * @param options An array of options. { value: string | number, content: React.ReactNode}[].
+ * @param selectedValue The selected value from the options.
+ * @param onSelect A function receiving the selected items value.
+ * @param disabled Flag to render a disabled dropdown.
  */
-const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
+const Dropdown: FC<IProps> = ({
+  chevron,
+  options,
+  selectedValue,
+  onSelect,
+  ...rest
+}) => {
   const theme = useThemeContext();
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
+  const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,6 +76,9 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
   };
 
   const showDropdownContent = () => {
+    if (rest.disabled) {
+      return;
+    }
     setIsOpen(true);
     document.addEventListener('pointerdown', checkOutsideClick);
   };
@@ -67,8 +86,11 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
   const toggleOpen = () =>
     isOpen ? hideDropdownContent() : showDropdownContent();
 
-  const selectOption = (value: string | number) => {
-    console.log('selected', value);
+  const handleSelect = (value: IValue) => {
+    if (rest.disabled) {
+      return;
+    }
+    onSelect?.(value);
     hideDropdownContent();
   };
 
@@ -78,12 +100,52 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
     []
   );
 
+  const handleKeyPressed = useCallback((event: KeyboardEvent) => {
+    if ([' ', 'Enter', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+      event.preventDefault();
+      showDropdownContent();
+    }
+    const selectedIndex = optionsRef.current.findIndex(
+      (ref) => ref === document.activeElement
+    );
+    if (event.key === 'ArrowDown') {
+      if (selectedIndex < optionsRef.current.length - 1) {
+        optionsRef.current[selectedIndex + 1]?.focus();
+      } else {
+        optionsRef.current[0]?.focus();
+      }
+    }
+    if (event.key === 'ArrowUp') {
+      if (selectedIndex > 0) {
+        optionsRef.current[selectedIndex - 1]?.focus();
+      } else {
+        optionsRef.current[optionsRef.current.length - 1]?.focus();
+      }
+    }
+    if ([' ', 'Enter'].includes(event.key)) {
+      if (selectedIndex > -1) {
+        handleSelect(options[selectedIndex].value);
+        hideDropdownContent();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleOnFocus = () =>
+    document.addEventListener('keydown', handleKeyPressed);
+
+  const handleOnBlur = () => {
+    document.removeEventListener('keydown', handleKeyPressed);
+  };
+
   const chevronTheme = theme.layout.dropdown.chevron;
   const chevronContent = chevron || chevronTheme.content;
   const colorVariant = theme.colors[rest.variant || 'primary'];
 
   const optionsTheme = theme.layout.dropdown.options;
   const offset = `calc(${optionsTheme.offset} + ${mainContainerRef.current?.clientHeight}px)`;
+
+  const selectedItem = options.find((option) => option.value === selectedValue);
 
   return (
     <DropdownContainer ref={dropdownContainerRef}>
@@ -93,15 +155,45 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
         variant={colorVariant}
         theme={theme.layout.button}
         corners={theme.corners || 'none'}
+        disabled={rest.disabled}
         role={'listbox'}
+        aria-disabled={rest.disabled}
+        tabIndex={0}
+        onFocus={rest.disabled ? undefined : handleOnFocus}
+        onBlur={rest.disabled ? undefined : handleOnBlur}
       >
-        <Input {...rest} />
+        {['number', 'string', 'undefined'].includes(
+          typeof selectedItem?.content
+        ) ? (
+          <Input
+            value={(selectedItem as IOption)?.content?.toString() || ''}
+            onChange={() => null}
+            {...rest}
+          />
+        ) : (
+          <CustomContainer
+            inputTheme={theme.layout.input}
+            corners={theme.corners}
+            variant={theme.colors[rest.variant || 'primary']}
+            surface={
+              theme.surface[
+                rest.disabled
+                  ? theme.layout.input.disabledBackground
+                  : theme.layout.input.background
+              ]
+            }
+            disabled={rest.disabled}
+          >
+            {selectedItem?.content}
+          </CustomContainer>
+        )}
         <RotatingChevron
           isOpen={isOpen}
           rotation={chevronTheme.rotation}
           axis={chevronTheme.rotationAxis}
           chevronColor={colorVariant}
           duration={theme.transitionsTime}
+          disabled={rest.disabled}
         >
           {chevronContent}
         </RotatingChevron>
@@ -117,12 +209,18 @@ const Dropdown: FC<IProps> = ({ chevron, options, ...rest }) => {
         className={isOpen ? 'show' : undefined}
         aria-hidden={!isOpen}
       >
-        {options.map((option) => (
+        {options.map((option, index) => (
           <Option
             key={option.value}
+            ref={(element) => {
+              optionsRef.current[index] = element;
+            }}
             hoverBackground={theme.surface.high}
             gap={optionsTheme.gap}
-            onClick={() => selectOption(option.value)}
+            onClick={() => handleSelect(option.value)}
+            tabIndex={0}
+            onFocus={rest.disabled ? undefined : handleOnFocus}
+            onBlur={rest.disabled ? undefined : handleOnBlur}
             role={'option'}
           >
             {option.content}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Button from '../lib/Button';
 import Card from '../lib/Card';
 import Group from '../lib/Group';

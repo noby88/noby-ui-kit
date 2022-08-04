@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Slider from '../lib/Slider';
 import { Article, ShowInline, UsageCard, variants } from './Layout';
 

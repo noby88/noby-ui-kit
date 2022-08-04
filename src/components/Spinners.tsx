@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Spinner from '../lib/Spinner';
 import { Article, ShowInline, UsageCard, variants } from './Layout';
 

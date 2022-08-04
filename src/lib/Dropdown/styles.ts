@@ -1,9 +1,40 @@
 import styled from 'styled-components';
-import { IButtonTheme, IColor } from '../theme';
-import { generateCSSAttribute, getHSL, hoverOffset } from '../utils';
+import { IButtonTheme, IColor, IInputTheme } from '../theme';
+import {
+  disabledOffset,
+  generateCSSAttribute,
+  getHSL,
+  hoverOffset,
+} from '../utils';
 
 export const DropdownContainer = styled.div`
   position: relative;
+`;
+
+export const CustomContainer = styled.div<{
+  inputTheme: IInputTheme;
+  corners: string;
+  variant: IColor;
+  surface: string;
+  disabled?: boolean;
+}>`
+  display: grid;
+  align-content: center;
+  height: 1.125em;
+  box-sizing: content-box;
+  ${(props) => `
+    ${generateCSSAttribute('padding', props.inputTheme.padding)}
+    ${generateCSSAttribute('background-color', props.surface)}
+    ${generateCSSAttribute('border-radius', props.corners)}
+    ${generateCSSAttribute('border-width', props.inputTheme.border.width)}
+    ${generateCSSAttribute('border-style', props.inputTheme.border.style)}
+    ${generateCSSAttribute(
+      'border-color',
+      props.disabled
+        ? getHSL(props.variant, disabledOffset(props.variant))
+        : getHSL(props.variant)
+    )}
+    `}
 `;
 
 export const Options = styled.div<{
@@ -16,7 +47,7 @@ export const Options = styled.div<{
   boxShadow?: string;
 }>`
   position: absolute;
-  display: grid;
+  display: none;
   box-sizing: border-box;
   min-width: 100%;
   max-height: 0;
@@ -30,6 +61,7 @@ export const Options = styled.div<{
     ${generateCSSAttribute('border-radius', props.corners)}}
     ${generateCSSAttribute('z-index', props.zIndex?.toString() || '')}
     &.show {
+      display: grid;
       box-shadow: ${props.boxShadow};
       max-height: 10rem;
     }`}
@@ -45,7 +77,8 @@ export const Option = styled.div<{ hoverBackground: string; gap: string }>`
     )}
     &:first-child {${generateCSSAttribute('padding-top', props.gap)}}
     &:last-child {${generateCSSAttribute('padding-bottom', props.gap)}}`}
-  &:hover {
+  &:hover, &:focus {
+    outline: none;
     ${(props) =>
       generateCSSAttribute('background-color', props.hoverBackground)}
   }
@@ -66,8 +99,13 @@ export const RotatingChevron = styled(Chevron)<{
   axis: 'X' | 'Y' | 'Z';
   chevronColor: IColor;
   duration: number;
+  disabled?: boolean;
 }>`
-  ${(props) => `color: ${getHSL(props.chevronColor)};
+  ${(props) => `color: ${
+    props.disabled
+      ? getHSL(props.chevronColor, disabledOffset(props.chevronColor))
+      : getHSL(props.chevronColor)
+  };
   transition: transform ${props.duration}ms ease-out;`}
   ${(props) =>
     props.isOpen
