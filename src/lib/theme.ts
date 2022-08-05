@@ -4,12 +4,6 @@ export interface IColor {
   lightness: number;
 }
 
-export interface IColorPartial {
-  hue?: number;
-  saturation?: number;
-  lightness?: number;
-}
-
 export type IVariant =
   | 'primary'
   | 'secondary'
@@ -121,6 +115,22 @@ export interface ISkeletonTheme {
   };
 }
 
+export interface IDropdownTheme {
+  chevron: {
+    rightOffset: string;
+    content: string;
+    rotation: 'clockwise' | 'counter-clockwise';
+    rotationAxis: 'X' | 'Y' | 'Z';
+  };
+  options: {
+    padding: string;
+    gap: string;
+    offset: string;
+    zIndex: number;
+    boxShadow: string;
+  };
+}
+
 export interface ITheme {
   transitionsTime: number;
   colors: { [key in IVariant]: IColor };
@@ -132,6 +142,7 @@ export interface ITheme {
     card: ICardTheme;
     chip: IChipTheme;
     input: IInputTheme;
+    dropdown: IDropdownTheme;
     page: IPageTheme;
     skeleton: ISkeletonTheme;
     slider: ISliderTheme;
@@ -179,10 +190,10 @@ export const theme: ITheme = {
     },
   },
   surface: {
-    base: 'hsl(0 0% 99%)',
-    middle: 'hsl(0 0% 97%)',
-    high: 'hsl(0 0% 96%)',
-    top: 'hsl(0 0% 95%)',
+    base: 'hsl(0 0% 95%)',
+    middle: 'hsl(0 0% 96%)',
+    high: 'hsl(0 0% 98%)',
+    top: 'hsl(0 0% 99%)',
     paper: 'hsl(0 0% 100%)',
     disabledPaper: 'hsl(0 0% 96%)',
   },
@@ -254,6 +265,21 @@ export const theme: ITheme = {
             lightness: 50,
           },
         },
+      },
+    },
+    dropdown: {
+      chevron: {
+        rightOffset: '0.5rem',
+        content: '▼',
+        rotation: 'clockwise',
+        rotationAxis: 'X',
+      },
+      options: {
+        padding: '1rem',
+        gap: '1rem',
+        offset: '0.5rem',
+        zIndex: 500,
+        boxShadow: '0 0.1rem 0.2rem 0.01rem hsl(0deg 0% 25% / 30%)',
       },
     },
     page: {

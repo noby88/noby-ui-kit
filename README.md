@@ -55,7 +55,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | Prop    | Expected value                                                                                                                                                                                             |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | variant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the button. The text color will change between _white_ and _black_ to ensure contrast for readability |
-| loading | `boolean` - will display the spinner component instead of the text and the button will be also disabled                                                                                                    |
+| loading | `<boolean>` - will display the spinner component instead of the text and the button will be also disabled                                                                                                  |
 
 ### **Input**
 
@@ -67,8 +67,30 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | label              | `<string>` - to be displayed as label                                                                                  |
 | labelVariant       | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the label            |
 | textVariant        | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the input text       |
+| placeholder        | `<string>` - the text to be used as the placeholder                                                                    |
 | placeholderVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the placeholder text |
 | orientation        | `'stack' \| 'inline'` - the direction the label and input element relate                                               |
+| disabled           | `<boolean>` - a flag to render the component as disabled and block interaction                                         |
+
+### **Dropdown**
+
+> A simple select type component making use of the Input component for it's main element.
+
+| Prop               | Expected value                                                                                                                                                                            |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| variant            | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the border                                                                              |
+| textVariant        | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the input text                                                                          |
+| label              | `<string>` - to be displayed as label                                                                                                                                                     |
+| labelVariant       | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the label                                                                               |
+| placeholder        | `<string>` - the text to be used as the placeholder                                                                                                                                       |
+| placeholderVariant | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - color for the placeholder text                                                                    |
+| orientation        | `'stack' \| 'inline'` - the direction the label and input element relate                                                                                                                  |
+| chevron            | `<ReactElement>` - a react element to be used as the open/close indicator                                                                                                                 |
+| options            | `{ value: <string \| number>, content: <ReactElement> }[]` - an array of objects. **value** is the value to be returned on select. **content** is the content to be displayed in the list |
+| selectedValue      | `<string \| number>` - the selected options value                                                                                                                                         |
+| onSelect           | `(value: <string \| number>) => void` - a callback function that will receive the selected value as argument                                                                              |
+| searchable         | `<boolean>` - a flag to enable the search in the options content functionality                                                                                                            |
+| disabled           | `<boolean>` - a flag to render the component as disabled and block interaction                                                                                                            |
 
 ### **Spinner**
 
@@ -87,7 +109,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | variant       | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the color of the rail and knob       |
 | value         | `<boolean>` - the values to be represented                                                                                   |
-| onValueChange | `(value: boolean) => void` - function receiving as argument the _new value_                                                  |
+| onValueChange | `(value: <boolean>) => void` - function receiving as argument the _new value_                                                |
 | label         | `<string>` - the text to be shown as the label                                                                               |
 | labelVariant  | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
 | trackVariant  | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the track can have a different color |
@@ -106,7 +128,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | showStepBullets | `<boolean>` - have a visual indicator where the steps are on the rail                                                        |
 | showLabels      | `<boolean>` - to show the labels above the steps                                                                             |
 | labelVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the label can have a different color |
-| labelTransform  | `(value: string \| number) => any` - function taking the _values_ as arguments                                               |
+| labelTransform  | `(value: <string \| number>) => any` - function taking the _values_ as arguments                                             |
 | trackVariant    | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'dark' \| 'light'` - the track can have a different color |
 | disabled        | `<boolean>` - the component will not react or trigger the onValueChange function                                             |
 

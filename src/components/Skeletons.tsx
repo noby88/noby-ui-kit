@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Skeleton from '../lib/Skeleton';
 import { Article, ShowInline, UsageCard, variants } from './Layout';
 

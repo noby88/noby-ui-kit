@@ -40,6 +40,7 @@ export const StyledInput = styled.input<{
     ${generateCSSAttribute('border-width', props.inputTheme.border.width)}
     ${generateCSSAttribute('border-style', props.inputTheme.border.style)}
     ${generateCSSAttribute('border-color', getHSL(props.variant))}
+    &[placeholder] { text-overflow: ellipsis; }
     &:focus {
       outline: none;
       ${generateCSSAttribute(
@@ -63,7 +64,7 @@ export const StyledInput = styled.input<{
         ? `&::placeholder { color: ${getHSL(
             props.placeholderVariant,
             disabledOffset(props.placeholderVariant)
-          )}}`
+          )};}`
         : ''
     }`}
 `;

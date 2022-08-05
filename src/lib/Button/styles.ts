@@ -43,6 +43,7 @@ export const StyledButton = styled.button<{
           outline: ${outline};
           touch-outline: ${outline};
           background-color: ${offsetColor};
+          outline-offset: -1px;
         }
         &:active {
           outline-width: calc(${outlineWidth} / 2);
