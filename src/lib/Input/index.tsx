@@ -27,6 +27,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param placeholder The text to be used as the placeholder text.
  * @param placeholderVariant Color variant. Effects the placeholder text.
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
+ * @param disabled Flag to render a disabled input.
  */
 const Input: ForwardRefExoticComponent<
   IProps & RefAttributes<HTMLInputElement>

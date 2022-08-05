@@ -52,7 +52,7 @@ interface IProps {
  * @param placeholderVariant Color variant. Effects the placeholder text.
  * @param orientation Flag to place the label and input inline or stacked on top of each other.
  * @param chevron A component to be rendered as the chevron.
- * @param options An array of options. { value: string | number, content: React.ReactNode}[].
+ * @param options An array of options. { value: string | number, content: ReactElement }[].
  * @param selectedValue The selected value from the options.
  * @param onSelect A function receiving the selected items value.
  * @param searchable Flag for the main element to act as a search input.
