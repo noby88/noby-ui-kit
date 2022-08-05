@@ -68,14 +68,18 @@ export const Options = styled.div<{
     }`}
 `;
 
-export const Option = styled.div<{ hoverBackground: string; gap: string }>`
-  cursor: pointer;
+export const Option = styled.div<{
+  hoverBackground: string;
+  gap: string;
+  dummy?: boolean;
+}>`
   ${(props) =>
     `${generateCSSAttribute('padding-inline', props.gap)}
     ${generateCSSAttribute(
       'padding-block',
       props.gap ? `calc(${props.gap}/2)` : ''
     )}
+    cursor: ${props.dummy ? 'default' : 'pointer'};
     &:first-child {${generateCSSAttribute('padding-top', props.gap)}}
     &:last-child {${generateCSSAttribute('padding-bottom', props.gap)}}`}
   &:hover, &:focus {

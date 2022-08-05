@@ -10,6 +10,7 @@ import {
 import Input from '../Input';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
+import EmptyOption from './EmptyOption';
 import {
   CustomContainer,
   DropdownContainer,
@@ -18,14 +19,7 @@ import {
   Options,
   RotatingChevron,
 } from './styles';
-import { containsAllWords } from './utils';
-
-type IValue = string | number;
-
-interface IOption {
-  value: IValue;
-  content: ReactElement | string | number;
-}
+import { IOption, IValue, keyboardEvent, containsAllWords } from './utils';
 
 interface IProps {
   variant?: IVariant;
@@ -34,11 +28,12 @@ interface IProps {
   labelVariant?: IVariant;
   placeholder?: string;
   placeholderVariant?: IVariant;
-  chevron?: React.ReactNode;
+  chevron?: ReactElement;
   options: IOption[];
   selectedValue: IValue;
   onSelect?: (value: IValue) => void;
   searchable?: boolean;
+  emptyListContent?: ReactElement;
   disabled?: boolean;
 }
 
@@ -56,6 +51,7 @@ interface IProps {
  * @param selectedValue The selected value from the options.
  * @param onSelect A function receiving the selected items value.
  * @param searchable Flag for the main element to act as a search input.
+ * @param emptyListContent A component to be rendered if not options are available.
  * @param disabled Flag to render a disabled dropdown.
  */
 const Dropdown: FC<IProps> = ({
@@ -63,6 +59,7 @@ const Dropdown: FC<IProps> = ({
   options,
   selectedValue,
   onSelect,
+  emptyListContent,
   searchable = false,
   ...rest
 }) => {
@@ -91,9 +88,7 @@ const Dropdown: FC<IProps> = ({
   };
 
   const showDropdownContent = () => {
-    if (rest.disabled) {
-      return;
-    }
+    if (rest.disabled) return;
     setIsOpen(true);
     document.addEventListener('pointerdown', checkOutsideClick);
   };
@@ -102,16 +97,13 @@ const Dropdown: FC<IProps> = ({
     isOpen ? hideDropdownContent() : showDropdownContent();
 
   const handleSelect = (value: IValue) => {
-    if (rest.disabled) {
-      return;
-    }
+    if (rest.disabled) return;
     onSelect?.(value);
     hideDropdownContent();
   };
 
-  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) =>
     setSearch(event.target.value);
-  };
 
   useEffect(
     () => document.removeEventListener('pointerdown', checkOutsideClick),
@@ -127,39 +119,20 @@ const Dropdown: FC<IProps> = ({
     }
   }, [searchable, isOpen, inputRef]);
 
-  const handleKeyPressed = useCallback((event: KeyboardEvent) => {
-    if ([' ', 'Enter', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
-      document.activeElement === inputRef.current || event.preventDefault();
-      showDropdownContent();
-    }
-    const selectedIndex = optionsRef.current.findIndex(
-      (ref) => ref === document.activeElement
-    );
-    if (event.key === 'ArrowDown') {
-      if (selectedIndex < optionsRef.current.length - 1) {
-        optionsRef.current[selectedIndex + 1]?.focus();
-      } else {
-        optionsRef.current[0]?.focus();
-      }
-    }
-    if (event.key === 'ArrowUp') {
-      if (selectedIndex > 0) {
-        optionsRef.current[selectedIndex - 1]?.focus();
-      } else {
-        optionsRef.current[optionsRef.current.length - 1]?.focus();
-      }
-    }
-    if ([' ', 'Enter'].includes(event.key)) {
-      if (selectedIndex > -1) {
-        handleSelect(options[selectedIndex].value);
-        hideDropdownContent();
-      }
-    }
-    if (event.key === 'Escape') {
-      hideDropdownContent();
-    }
+  const handleKeyPressed = useCallback(
+    (event: KeyboardEvent) =>
+      keyboardEvent(
+        event,
+        inputRef,
+        optionsRef,
+        options,
+        handleSelect,
+        showDropdownContent,
+        hideDropdownContent
+      ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   const handleOnFocus = () =>
     document.addEventListener('keydown', handleKeyPressed);
@@ -241,7 +214,7 @@ const Dropdown: FC<IProps> = ({
       </MainContainer>
       <Options
         isOpen={isOpen}
-        background={theme.surface.middle}
+        background={theme.surface[optionsTheme.background]}
         corners={theme.corners}
         offset={offset}
         duration={theme.transitionsTime}
@@ -250,23 +223,27 @@ const Dropdown: FC<IProps> = ({
         className={isOpen ? 'show' : undefined}
         aria-hidden={!isOpen}
       >
-        {filteredOptions.map((option, index) => (
-          <Option
-            key={option.value}
-            ref={(element) => {
-              optionsRef.current[index] = element;
-            }}
-            hoverBackground={theme.surface.high}
-            gap={optionsTheme.gap}
-            onClick={() => handleSelect(option.value)}
-            tabIndex={0}
-            onFocus={rest.disabled ? undefined : handleOnFocus}
-            onBlur={rest.disabled ? undefined : handleOnBlur}
-            role={'option'}
-          >
-            {option.content}
-          </Option>
-        ))}
+        {filteredOptions.length > 0 ? (
+          filteredOptions.map((option, index) => (
+            <Option
+              key={option.value}
+              ref={(element) => {
+                optionsRef.current[index] = element;
+              }}
+              hoverBackground={theme.surface[optionsTheme.hoverBackground]}
+              gap={optionsTheme.gap}
+              onClick={() => handleSelect(option.value)}
+              tabIndex={0}
+              onFocus={rest.disabled ? undefined : handleOnFocus}
+              onBlur={rest.disabled ? undefined : handleOnBlur}
+              role={'option'}
+            >
+              {option.content}
+            </Option>
+          ))
+        ) : (
+          <EmptyOption content={emptyListContent} />
+        )}
       </Options>
     </DropdownContainer>
   );
