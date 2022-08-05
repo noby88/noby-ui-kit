@@ -90,6 +90,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | selectedValue      | `<string \| number>` - the selected options value                                                                                                                                         |
 | onSelect           | `(value: <string \| number>) => void` - a callback function that will receive the selected value as argument                                                                              |
 | searchable         | `<boolean>` - a flag to enable the search in the options content functionality                                                                                                            |
+| emptyListContent   | `<ReactElement>` - a react element to be show when the options list is empty                                                                                                              |
 | disabled           | `<boolean>` - a flag to render the component as disabled and block interaction                                                                                                            |
 
 ### **Spinner**

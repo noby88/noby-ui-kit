@@ -127,7 +127,10 @@ export interface IDropdownTheme {
     gap: string;
     offset: string;
     zIndex: number;
+    background: keyof ISurfaceTheme;
+    hoverBackground: keyof ISurfaceTheme;
     boxShadow: string;
+    emptyListText: string;
   };
 }
 
@@ -279,7 +282,10 @@ export const theme: ITheme = {
         gap: '1rem',
         offset: '0.5rem',
         zIndex: 500,
+        background: 'middle',
+        hoverBackground: 'high',
         boxShadow: '0 0.1rem 0.2rem 0.01rem hsl(0deg 0% 25% / 30%)',
+        emptyListText: 'Out of options',
       },
     },
     page: {
