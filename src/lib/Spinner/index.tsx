@@ -5,7 +5,7 @@ import { StyledSpinner } from './styles';
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: IVariant;
-  size?: number;
+  size?: number | string;
 }
 
 /**
