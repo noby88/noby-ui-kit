@@ -6,8 +6,10 @@ import {
   useEffect,
   useRef,
   useState,
+  useTransition,
 } from 'react';
 import Input from '../Input';
+import Spinner from '../Spinner';
 import { IVariant } from '../theme';
 import { useThemeContext } from '../ThemeContext';
 import EmptyOption from './EmptyOption';
@@ -71,6 +73,8 @@ const Dropdown: FC<IProps> = ({
 
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState<string>('');
+  const [filteredOptions, setFilteredOptions] = useState<IOption[]>(options);
+  const [listPending, startListBuild] = useTransition();
 
   const checkOutsideClick = (event: PointerEvent) => {
     if (
@@ -119,6 +123,17 @@ const Dropdown: FC<IProps> = ({
     }
   }, [searchable, isOpen, inputRef]);
 
+  useEffect(() => {
+    // Ternary operator to avoid computation if not searchable
+    startListBuild(() => {
+      setFilteredOptions(
+        searchable
+          ? options.filter((option) => containsAllWords(option.content, search))
+          : options
+      );
+    });
+  }, [search, searchable, options]);
+
   const handleKeyPressed = useCallback(
     (event: KeyboardEvent) =>
       keyboardEvent(
@@ -142,18 +157,41 @@ const Dropdown: FC<IProps> = ({
   };
 
   const chevronTheme = theme.layout.dropdown.chevron;
-  const chevronContent = chevron || chevronTheme.content;
-  const colorVariant = theme.colors[rest.variant || 'primary'];
+  const chevronColorVariant = rest.variant || 'primary';
+  const colorVariant = theme.colors[chevronColorVariant];
+  const chevronContent = listPending ? (
+    <Spinner variant={chevronColorVariant} size={theme.layout.input.fontSize} />
+  ) : (
+    chevron || chevronTheme.content
+  );
 
   const optionsTheme = theme.layout.dropdown.options;
   const offset = `calc(${optionsTheme.offset} + ${mainContainerRef.current?.clientHeight}px)`;
 
   const selectedItem = options.find((option) => option.value === selectedValue);
 
-  // Ternary operator to avoid computation if not searchable
-  const filteredOptions = searchable
-    ? options.filter((option) => containsAllWords(option.content, search))
-    : options;
+  const optionsList =
+    filteredOptions.length > 0 ? (
+      filteredOptions.map((option, index) => (
+        <Option
+          key={option.value}
+          ref={(element) => {
+            optionsRef.current[index] = element;
+          }}
+          hoverBackground={theme.surface[optionsTheme.hoverBackground]}
+          gap={optionsTheme.gap}
+          onClick={() => handleSelect(option.value)}
+          tabIndex={0}
+          onFocus={rest.disabled ? undefined : handleOnFocus}
+          onBlur={rest.disabled ? undefined : handleOnBlur}
+          role={'option'}
+        >
+          {option.content}
+        </Option>
+      ))
+    ) : (
+      <EmptyOption content={emptyListContent} />
+    );
 
   return (
     <DropdownContainer ref={dropdownContainerRef}>
@@ -223,27 +261,7 @@ const Dropdown: FC<IProps> = ({
         className={isOpen ? 'show' : undefined}
         aria-hidden={!isOpen}
       >
-        {filteredOptions.length > 0 ? (
-          filteredOptions.map((option, index) => (
-            <Option
-              key={option.value}
-              ref={(element) => {
-                optionsRef.current[index] = element;
-              }}
-              hoverBackground={theme.surface[optionsTheme.hoverBackground]}
-              gap={optionsTheme.gap}
-              onClick={() => handleSelect(option.value)}
-              tabIndex={0}
-              onFocus={rest.disabled ? undefined : handleOnFocus}
-              onBlur={rest.disabled ? undefined : handleOnBlur}
-              role={'option'}
-            >
-              {option.content}
-            </Option>
-          ))
-        ) : (
-          <EmptyOption content={emptyListContent} />
-        )}
+        {optionsList}
       </Options>
     </DropdownContainer>
   );

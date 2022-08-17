@@ -12,15 +12,23 @@ const animation = keyframes`
 
 export const StyledSpinner = styled.div<{
   variant: IColor;
-  size: number;
+  size: number | string;
 }>`
   box-sizing: border-box;
   margin: 0 auto;
   border-radius: 50%;
+  width: var(--spinnerSize);
+  height: var(--spinnerSize);
+  border: var(--spinnerBorder) solid transparent;
   animation: ${animation} 1s linear infinite;
-  ${(props) =>
-    `width: ${props.size / 10}rem;
-    height: ${props.size / 10}rem;
-    border: ${props.size / 100}rem solid transparent;
-    border-top: ${props.size / 100}rem solid ${getHSL(props.variant)};`}
+  ${(props) => `--spinnerSize: ${
+    typeof props.size === 'number' ? `${props.size / 10}rem` : props.size
+  };
+  --spinnerBorder: ${
+    typeof props.size === 'number'
+      ? `${props.size / 100}rem`
+      : `calc(${props.size} / 10)`
+  };
+  border-top: var(--spinnerBorder) solid ${getHSL(props.variant)};
+`}
 `;
