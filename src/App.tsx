@@ -14,6 +14,7 @@ import Skeletons from './components/Skeletons';
 import Chips from './components/Chips';
 import Toggles from './components/Toggles';
 import Dropdowns from './components/Dropdowns';
+import HoverTilts from './components/HoverTilts';
 
 const Container = styled(Page)`
   background-color: hsl(0 0% 99% / 0.5);
@@ -33,6 +34,7 @@ const App = () => (
       <Cards />
       <Groups />
       <Skeletons />
+      <HoverTilts />
     </Container>
   </ThemeContext.Provider>
 );
