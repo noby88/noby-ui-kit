@@ -1,4 +1,12 @@
-import { FC, useEffect, useRef, useState, useTransition } from 'react';
+import {
+  FC,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from 'react';
 import { Container, Content } from './styles';
 
 type IPointerEffect = 'attract' | 'repel';
@@ -16,6 +24,11 @@ const pointerEffectMap: { [key in IPointerEffect]: number } = {
   repel: -1,
 };
 
+/**
+ *
+ * @param pointerEffect Determines weather the pointer should attract or repel the content
+ * @param force The strength of the rotations
+ */
 const HoverTilt: FC<IProps> = ({
   children,
   pointerEffect = 'attract',
@@ -57,6 +70,30 @@ const HoverTilt: FC<IProps> = ({
     setTilt({ x: 0, y: 0 });
   };
 
+  const updateLayout = (reference: RefObject<HTMLDivElement>) => {
+    const element = reference.current;
+    if (!element) {
+      return;
+    }
+    const { top, height, left, width } = element.getBoundingClientRect();
+    startTransform(() => {
+      setLayout({ top: top, height: height, left: left, width: width });
+    });
+  };
+
+  const handleScroll = useCallback((event: Event) => {
+    if (event.isTrusted) {
+      updateLayout(ref);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   useEffect(() => {
     setDeg(`${(force / 10).toFixed(2)}deg`);
   }, [force]);
@@ -81,17 +118,11 @@ const HoverTilt: FC<IProps> = ({
   }, [tilt.x, tilt.y, pointerEffect, deg]);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) {
-      return;
-    }
-    const { top, height, left, width } = element.getBoundingClientRect();
-    setLayout({ top: top, height: height, left: left, width: width });
+    updateLayout(ref);
   }, [ref]);
 
   return (
     <Container>
-      {/* {cells} */}
       <Content
         ref={ref}
         onMouseMove={handleMouseMove}
