@@ -20,6 +20,14 @@ const HoverTilts = () => {
     </UsageCard>
   );
 
+  const forceUsage = (
+    <UsageCard size={'lg'}>
+      {
+        'import { HoverTilt } from "noby-ui-kit"\n\n<HoverTilt force={50}>\n\t<YourContent />\n\t<SomeMoreContent />\n</HoverTilt>'
+      }
+    </UsageCard>
+  );
+
   return (
     <section>
       <h2>Hover Tilting</h2>
@@ -34,6 +42,10 @@ const HoverTilts = () => {
         <h4>Repel pointer effect</h4>
         <HoverTilt pointerEffect={'repel'}>
           <pre>{repelUsage}</pre>
+        </HoverTilt>
+        <h4>Custom attraction force</h4>
+        <HoverTilt force={50}>
+          <pre>{forceUsage}</pre>
         </HoverTilt>
       </Article>
     </section>

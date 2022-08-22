@@ -109,13 +109,12 @@ const HoverTilt: FC<IProps> = ({
     rotateY(calc(${deg} * ${-tilt.x * pointerEffectMap[pointerEffect]}))
     ${
       pointerEffect === 'attract'
-        ? `translateZ(calc(${Math.max(
-            Math.abs(tilt.x),
-            Math.abs(tilt.y)
-          )} * -0.2rem))`
+        ? `translateZ(calc(${Math.max(Math.abs(tilt.x), Math.abs(tilt.y))} * -${
+            force / 50
+          }rem))`
         : ''
     }`;
-  }, [tilt.x, tilt.y, pointerEffect, deg]);
+  }, [tilt.x, tilt.y, pointerEffect, deg, force]);
 
   useEffect(() => {
     updateLayout(ref);
