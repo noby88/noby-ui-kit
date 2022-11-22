@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/noby-ui-kit/static/js/main.e74f8f6d.js",
+    "static/js/787.aa7f364b.chunk.js": "/noby-ui-kit/static/js/787.aa7f364b.chunk.js",
+    "index.html": "/noby-ui-kit/index.html",
+    "main.e74f8f6d.js.map": "/noby-ui-kit/static/js/main.e74f8f6d.js.map",
+    "787.aa7f364b.chunk.js.map": "/noby-ui-kit/static/js/787.aa7f364b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e74f8f6d.js"
+  ]
+}
