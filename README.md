@@ -156,7 +156,7 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | --------- | ---------------------------- |
 | direction | `'vertical' \| 'horizontal'` |
 
-### **Skleton**
+### **Skeleton**
 
 > Intended to be used as a placeholder while data is being loaded.
 
@@ -167,6 +167,15 @@ A live showcase of components can be found on https://noby88.github.io/noby-ui-k
 | height        | `<string>` - The height in case of type Block. The diameter in case of a Circle. The height on of a line in case of type Paragraph |
 | width         | `<string>` - The width in case of type Block. The with of the long lines in case of type Paragraph                                 |
 | lines         | `<number>` - Has effect only if of type Paragraph                                                                                  |
+
+### **HoverTilt**
+
+> A wrapper element to for a hover tilt effect. The content inside will remain intractable.
+
+| Prop          | Expected value         |
+| ------------- | ---------------------- |
+| pointerEffect | `'attract' \| 'repel'` |
+| force         | `<number>`             |
 
 ## Default Theme object
 
